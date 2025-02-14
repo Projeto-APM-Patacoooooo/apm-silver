@@ -1,0 +1,142 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.caixa-central{
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+}
+
+#logo-ermelinda{
+    width: 290px;
+    margin-left: 20px;
+}
+
+.caixa-de-botoes{
+    padding: 10px 10px;
+    background-color: #000000;
+    border-radius: 7px;
+}
+
+.caixa-de-botoes a{
+    text-decoration: none;
+    margin-left: 4%;
+    background-color: white;
+    padding: 2px 2px;
+    border-radius: 4px;
+    color: black;
+}
+
+.divisoria-decorativa {
+    width: 400px;
+    margin-left: -2px;
+}
+
+.explicacao-sobre-apm{
+    font-size: small;
+}
+
+.explicacao-sobre-apm .explicacao{
+    padding: 5px 5px;
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: medium;
+}
+
+.porque-contribuir{
+    width: 400px;
+}
+
+.porque-contribuir h1{
+    margin-top: 50px;
+    font-size: medium;
+    padding: 5px 5px;
+    color: white;
+    background-color: #AA2323;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.porque-contribuir ol{
+    text-align: left;
+    margin-top: 20px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.porque-contribuir ol li{
+    margin-top: 5%;
+}
+
+.caixa-metas-noticias{
+    margin-top: -778px;
+    float: right;
+    padding: 15px 15px;
+    border: 2px solid black;
+    width: 400px;
+    height: 500px;
+    border-radius: 8px;
+}
+
+.caixa-metas-noticias h1{
+    font-size: large;
+    margin-left: 15px;
+}
+
+.caixa-metas-noticias ul{
+    padding: 5px 5px;
+    border: 2px solid black;
+    border-radius: 4px;
+    list-style-type: none;
+}
+.caixa-metas-noticias ul li{
+    margin-top: 5%;
+    border: 2px solid black;
+    padding: 2px 2px;
+    border-radius: 5px;
+}
+
+.caixa-metas-noticias a{
+    text-decoration: none;
+    color: black;
+}
+
+footer{
+    padding: 5px 5px;
+    color: white;
+    background-color: black;
+}
+
+.divisoria-footer{
+    position: absolute;
+    background-color: #303030;
+    width: 5px;
+    height: 120px;
+}
+
+footer .tel{
+    position: absolute;
+    margin-left: 240px;
+    margin-top: -149px;
+}
+
+footer .hora-func{
+    position: absolute;
+    margin-top: -149px;
+    margin-left: 380px;
+}
+
+.redes-socias{
+    position: absolute;
+    margin-top: -129px;
+    margin-left: 590px;
+}
+
+.redes-socias a img{
+    width: 40px;
+}
