@@ -140,3 +140,13 @@ footer .hora-func{
 .redes-socias a img{
     width: 40px;
 }
+
+.caixa-login{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    padding: 30px 30px;
+    border-radius: 4px;
+}
