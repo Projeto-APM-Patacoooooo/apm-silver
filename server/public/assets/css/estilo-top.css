@@ -183,3 +183,27 @@ footer .hora-func{
     margin-top: 10px;  
     margin-left: 0;
 }
+
+.thumbnail-relatorio{
+    display: inline-block;
+    margin-top: 10px;
+    border-radius: 7px;
+    width: fit-content;
+    border: 2px solid black;
+    padding: 10px 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.thumbnail-relatorio:hover{
+    color: #AA2323;
+    text-decoration: underline;
+}
+
+.thumbnail-relatorio h1{
+    border: 2px solid black;
+    font-size: medium;
+    padding: 5px 8px;
+    border-radius: 9px;
+    width: fit-content;
+}

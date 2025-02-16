@@ -40,6 +40,10 @@ servidor.get('/membros', function(req, res) {
     res.sendFile(path.join(__dirname, 'pages/membros.html'));
 });  
 
+servidor.get('/relatorios', function(req, res) {
+    res.sendFile(path.join(__dirname, 'pages/relatorios.html'));
+});  
+
 servidor.listen(porta, () => {
     console.log(`[Servidor]: Ei, eu estou rodando na porta ${porta}!`);
 }); //E finalmente colocamos o nosso servidor web para rodar
