@@ -20,9 +20,25 @@ const path = require('path'); //Biblioteca nativa do node para facilitar a naveg
 
 const servidor = express(); // Aqui nós estamos criando a instância do nosso servidor web
 
-servidor.use(express.static(path.join(__dirname, 'public'))); //Estamos dizendo ao express que todas os assets e páginas HTML estão dentro da pasta "public"
-
 let porta = 8080; //A porta em que o servidor vai rodar localmente (precisamos conversar com o professor Ivan sobre como configurar o nosso servidor para rodar num domínio)
+
+/*
+    !INICIO DO ENTREGADOR DE ASSETS!
+*/
+servidor.use(express.static(path.join(__dirname, 'public')));
+
+/*
+    !INICIO DO GERENCIADOR DE ROTAS!
+*/
+
+servidor.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'pages/index.html'));
+});  
+
+servidor.get('/login', function(req, res) {
+    res.sendFile(path.join(__dirname, 'pages/login.html'));
+});  
+
 
 servidor.listen(porta, () => {
     console.log(`[Servidor]: Ei, eu estou rodando na porta ${porta}!`);
