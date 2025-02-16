@@ -79,7 +79,7 @@ html, body{
     padding: 15px 15px;
     border: 2px solid black;
     width: 400px;
-    height: 500px;
+    height: fit-content;
     border-radius: 8px;
 }
 
@@ -93,6 +93,7 @@ html, body{
     border: 2px solid black;
     border-radius: 4px;
     list-style-type: none;
+    height: fit-content;
 }
 
 .caixa-metas-noticias ul li{
