@@ -94,6 +94,7 @@ html, body{
     border-radius: 4px;
     list-style-type: none;
 }
+
 .caixa-metas-noticias ul li{
     margin-top: 5%;
     border: 2px solid black;
@@ -104,6 +105,11 @@ html, body{
 .caixa-metas-noticias a{
     text-decoration: none;
     color: black;
+}
+
+.caixa-metas-noticias a:hover{
+    background-color: #AA2323;
+    color: white;
 }
 
 footer{
@@ -149,4 +155,31 @@ footer .hora-func{
     border: 2px solid black;
     padding: 30px 30px;
     border-radius: 4px;
+}
+
+.caixa-membros {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.caixa-membro {
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 5px 5px;
+    width: 280px;
+    margin-right: 10px;
+}
+
+.caixa-membro h1 {
+    font-size: small;
+    margin-top: 0;   
+    margin-left: 0;      
+}
+
+.caixa-membro p {
+    margin-top: 10px;  
+    margin-left: 0;
 }
