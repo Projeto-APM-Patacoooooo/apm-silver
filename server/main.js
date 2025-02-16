@@ -22,10 +22,7 @@ const servidor = express(); // Aqui nós estamos criando a instância do nosso s
 
 let porta = 8080; //A porta em que o servidor vai rodar localmente (precisamos conversar com o professor Ivan sobre como configurar o nosso servidor para rodar num domínio)
 
-/*
-    !INICIO DO ENTREGADOR DE ASSETS!
-*/
-servidor.use(express.static(path.join(__dirname, 'public')));
+servidor.use(express.static(path.join(__dirname, 'public'))); //Disponibilizando os arquivos css, png que as páginas precisam
 
 /*
     !INICIO DO GERENCIADOR DE ROTAS!
@@ -39,6 +36,9 @@ servidor.get('/login', function(req, res) {
     res.sendFile(path.join(__dirname, 'pages/login.html'));
 });  
 
+servidor.get('/membros', function(req, res) {
+    res.sendFile(path.join(__dirname, 'pages/membros.html'));
+});  
 
 servidor.listen(porta, () => {
     console.log(`[Servidor]: Ei, eu estou rodando na porta ${porta}!`);
