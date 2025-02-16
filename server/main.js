@@ -43,6 +43,11 @@ servidor.get('/relatorios', function(req, res){
     res.render('pages/relatorios');
 });
 
+//Página 404
+servidor.use((req, res, next) => {
+    res.render("pages/404")
+})
+
 /*
     !INICIO DA CONEXÃO SQL
 */
