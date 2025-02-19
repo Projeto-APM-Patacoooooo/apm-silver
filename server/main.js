@@ -43,6 +43,14 @@ servidor.get('/relatorios', function(req, res){
     res.render('pages/relatorios');
 });
 
+servidor.get('/gerar-relatorios', function(req, res){
+  res.render('pages/gerar_relatorios');
+});
+
+servidor.get('/porque-contriubir', function(req, res){
+  res.render('pages/gerar_relatorios');
+});
+
 /*
     !INICIO DA CONEXÃO SQL
 */
