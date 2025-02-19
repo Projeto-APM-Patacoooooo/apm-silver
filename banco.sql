@@ -46,7 +46,7 @@ create table if not exists metas_destaque(
 );
 
 insert into noticias(titulo_noticia, conteudo, data_publicacao, id_staff)
-values("Alunos do CPS são premiados com o Intercâmbio Cultural.", "blablabla cultura blablabla...", null, 1),
+values("Alunos do CPS são premiados com o Intercâmbio Cultural.", "blablabla cultura blablabl...", null, 1),
 ("Alunos organizam um Escape Room.", "blablabla Escape Room blablabla...", null, 2),
 ("TCC será realizado em dezembro.", "blablabla Trabalho de Conclusão de Curso blablabla...", null, 4);
 
