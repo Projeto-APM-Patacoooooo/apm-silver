@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/estilo-top.css">
+    <link rel="shortcut icon" href="assets/img/centro_paula_souza.png" type="image/x-icon">
+    <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
+</head>
+
+<body>
+    <div class="caixa-central">
+        <%- include('../partials/barra-navegacao.ejs') %>
+
+            <!--INICIO DO CONTEÚDO DA PÁGINA-->
+
+            <form class="geracao-relatorios">
+                <div class="esquerda">
+                    <label>Data</label>
+                    <input type="date" id="data">
+                    <br>
+                    <label>Descricao</label>
+                    <input type="text" id="descricao">
+                </div>
+
+                <div class="direita">
+                    <label>Saída</label>
+                    <input type="number" id="saida">
+                    <br>
+                    <label>Entrada</label>
+                    <input type="number" id="entrada">
+                </div>
+                <br>
+                <button>Gerar Relatório</button>
+            </form>
+
+            <!--FIM DO CONTEÚDO-->
+
+            <%- include('../partials/footer.ejs') %>
+    </div>
+</body>
