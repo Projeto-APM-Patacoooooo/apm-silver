@@ -4,9 +4,27 @@
     </a>
     
     <div class="caixa-de-botoes">
-        <a href="/login">Login - ADM</a>
-        <a href="/relatorios">Relatórios</a>
-        <a href="/membros">Membros</a>
-        <a href="">Gerar relatórios</a>
+        <a id="lk_login" href="/login">Login - ADM</a>
+        <a id="lk_relatorio" href="/relatorios">Relatórios</a>
+        <a id="lk_membros" href="/membros">Membros</a>
+        <a id="lk_gerar_rela" href="/gerar-relatorios">Gerar relatórios</a>
     </div>
+    <script>
+        let pathAutal = window.location.pathname
+        
+        switch (pathAutal) {
+            case '/gerar-relatorios':
+                document.getElementById("lk_gerar_rela").remove()     
+            break;
+            case '/membros':
+                document.getElementById("lk_membros").remove()     
+            break;
+            case '/relatorios':
+                document.getElementById("lk_relatorio").remove()     
+            break;
+            case '/login':
+                document.getElementById("lk_login").remove()     
+            break;
+        }
+    </script>
 </nav>
