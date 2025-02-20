@@ -14,20 +14,20 @@
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
 
         <div class="caixa-central">
-            <form class="caixa-login">
+            <form class="caixa-login" action="/login" method="post">
                 <h1>Login</h1>
                 <hr color="#AA2323">
                 <label>E-Mail:</label>
                 <br>
-               <input type="email" name="eml" required>
+               <input type="email" name="email" required>
                 <br>
                 <label>Senha:</label>
                 <br>
-                <input type="password" name="pwd" id="caixa-pwd" required>
+                <input type="password" name="password" id="caixa-pwd" required>
                 <br>
                 <br>
-                <button>Modo Visitante</button>
-                <button>Efetuar Login</button>
+                <button type="button">Modo Visitante</button>
+                <button type="submit">Efetuar Login</button>
             </form>
         </div>
 

@@ -13,6 +13,15 @@ require('dotenv').config(); // Carregando as variáveis do nosso arquivo .env (i
 
 const express = require('express'); //Importando express
 
+const session = require("express-session"); //Biblioteca do express que server para guardar ssessões de login
+
+const bcrypt = require("bcrypt"); //Nossa biblioteca de criptografia
+
+// Simulação de um "banco de dados" de usuários
+const users = [
+  { id: 1, username: "admin@site.com", passwordHash: bcrypt.hashSync("admin", 10) }
+];
+
 const path = require('path'); //Biblioteca nativa do node para facilitar a navegação por caminhos de diretórios
 
 const servidor = express(); // Aqui nós estamos criando a instância do nosso servidor web
@@ -23,6 +32,26 @@ servidor.use(express.static(path.join(__dirname, 'public'))); //Disponibilizando
 
 servidor.set('view engine', 'ejs'); //Configurando nosso melhor amigo EJS
 servidor.set('views', path.join(__dirname, 'views'));
+
+// funçao que verifica se o usuário está logado
+function isAuthenticated(req, res, next) {
+  if (req.session.user) {
+    return next();
+  }
+  res.status(401).send("Acesso negado. Faça login primeiro.");
+}
+
+// Middleware para processar JSON e formulários
+servidor.use(express.urlencoded({ extended: true }));
+servidor.use(express.json());
+
+// Configuração da sessão
+servidor.use(session({
+  secret: "chave-secreta", // Substitua por uma chave forte
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // Use true apenas em HTTPS
+}));
 
 /*
     !INICIO DO GERENCIADOR DE ROTAS!
@@ -49,6 +78,32 @@ servidor.get('/gerar-relatorios', function(req, res){
 
 servidor.get('/porque-contriubir', function(req, res){
   res.render('pages/gerar_relatorios');
+});
+
+// Rota protegida (somente para usuários logados)
+servidor.get("/dashboard", isAuthenticated, (req, res) => {
+  res.send(`Bem-vindo, ${req.session.user.username}!`);
+});
+
+//Rota para publicar o login
+servidor.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find(u => u.username === username);
+
+  if (user && await bcrypt.compare(password, user.passwordHash)) {
+    req.session.user = { id: user.id, username: user.username };
+    res.send("Login bem-sucedido!");
+  } else {
+    res.status(401).send("Usuário ou senha incorretos.");
+  }
+});
+
+// Rota de logout
+servidor.post("/logout", (req, res) => {
+  req.session.destroy(err => {
+    if (err) return res.status(500).send("Erro ao fazer logout.");
+    res.send("Logout realizado com sucesso.");
+  });
 });
 
 /*
