@@ -19,7 +19,7 @@ const bcrypt = require("bcrypt"); //Nossa biblioteca de criptografia
 
 // Simulação de um "banco de dados" de usuários
 const users = [
-  { id: 1, username: "admin@site.com", passwordHash: bcrypt.hashSync("admin", 10) }
+  { id: 1, email: "admin@site.com", passwordHash: bcrypt.hashSync("admin", 10) }
 ];
 
 const path = require('path'); //Biblioteca nativa do node para facilitar a navegação por caminhos de diretórios
@@ -38,7 +38,7 @@ function isAuthenticated(req, res, next) {
   if (req.session.user) {
     return next();
   }
-  res.status(401).send("Acesso negado. Faça login primeiro.");
+  res.redirect("/login")
 }
 
 // Middleware para processar JSON e formulários
@@ -68,11 +68,11 @@ servidor.get('/membros', function(req, res){
     res.render('pages/membros');
 });
 
-servidor.get('/relatorios', function(req, res){
+servidor.get('/relatorios', isAuthenticated, function(req, res){
     res.render('pages/relatorios');
 });
 
-servidor.get('/gerar-relatorios', function(req, res){
+servidor.get('/gerar-relatorios', isAuthenticated, function(req, res){
   res.render('pages/gerar_relatorios');
 });
 
@@ -82,17 +82,17 @@ servidor.get('/porque-contriubir', function(req, res){
 
 // Rota protegida (somente para usuários logados)
 servidor.get("/dashboard", isAuthenticated, (req, res) => {
-  res.send(`Bem-vindo, ${req.session.user.username}!`);
+  res.send(`Bem-vindo, ${req.session.user.email}!`);
 });
 
 //Rota para publicar o login
 servidor.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = users.find(u => u.username === username);
+  const { email, password } = req.body;
+  const user = users.find(u => u.email === email);
 
   if (user && await bcrypt.compare(password, user.passwordHash)) {
-    req.session.user = { id: user.id, username: user.username };
-    res.send("Login bem-sucedido!");
+    req.session.user = { id: user.id, email: user.email };
+    res.redirect('/home')
   } else {
     res.status(401).send("Usuário ou senha incorretos.");
   }
