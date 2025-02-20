@@ -1,1 +1,7 @@
-<img src="https://media.discordapp.net/attachments/1309973627437060147/1339938937761824838/silver_logo.png?ex=67b08ae1&is=67af3961&hm=96381f50abbd3fcc2754def9bf55439f07c65db2c3a5167c8ccb08e32cf988f6&=&format=webp&quality=lossless&width=781&height=582">
+# Apm Silver
+[![GitHub license](https://img.shields.io/github/license/clcmo/mifeedbot?style=for-the-badge)](https://github.com/clcmo/mifeedbot)
+[![GitHub stars](https://img.shields.io/github/stars/clcmo/mifeedbot?style=for-the-badge)](https://github.com/clcmo/mifeedbot/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/clcmo/mifeedbot?style=for-the-badge)](https://github.com/clcmo/mifeedbot/network)
+[![GitHub issues](https://img.shields.io/github/issues/clcmo/mifeedbot?style=for-the-badge)](https://github.com/clcmo/mifeedbot/issues)
+
+{INSIRA DOCUMENTAÇÃO AQUI}
