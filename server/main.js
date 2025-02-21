@@ -15,6 +15,15 @@ const express = require('express'); //Importando express
 
 const session = require("express-session"); //Biblioteca do express que server para guardar ssessões de login
 
+const rateLimit = require('express-rate-limit'); //Biblioteca que serve para limitar requests feitas por um único usuário em determinado tempo
+
+//Configurações do rate limit no nosso servidor
+const limitador = rateLimit({
+  windowMs: 60 * 1000, //1 segundo
+  max: 1025, //Limite máximo requests por ip,
+  message: 'Erro 429: Muitas requisições. Tente novamente em alguns minutos.'
+}); 
+
 const bcrypt = require("bcrypt"); //Nossa biblioteca de criptografia
 
 // Simulação de um "banco de dados" de usuários
@@ -32,6 +41,8 @@ servidor.use(express.static(path.join(__dirname, 'public'))); //Disponibilizando
 
 servidor.set('view engine', 'ejs'); //Configurando nosso melhor amigo EJS
 servidor.set('views', path.join(__dirname, 'views'));
+
+servidor.use(limitador);
 
 // funçao que verifica se o usuário está logado
 function isAuthenticated(req, res, next) {
