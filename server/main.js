@@ -71,6 +71,10 @@ servidor.get('/', function(req, res){
     res.render('pages/index');
 });
 
+servidor.get('/home',isAuthenticated, function(req, res){
+  res.render('pages/home_adm');
+});
+
 servidor.get('/login', function(req, res){
     res.render('pages/login');
 });

@@ -1,0 +1,37 @@
+<nav>
+    <button style="float: right;" onclick="Sair()">Sair</button>
+    <a href="/">
+        <img id="logo-ermelinda" src="assets/img/etec_ermelinda_giannini_teixeira.png" draggable="false">
+    </a>
+    <script>
+        function Sair() {
+            fetch("/logout", {
+                method: "POST",
+            });
+            window.location.pathname = ''
+        }
+    </script>
+    <div class="caixa-de-botoes">
+        <a id="lk_relatorio" href="/relatorios">Relatórios</a>
+        <a id="lk_membros" href="/membros">Membros</a>
+        <a id="lk_gerar_rela" href="/gerar-relatorios">Gerar relatórios</a>
+    </div>
+    <script>
+        let pathAutal = window.location.pathname
+
+        switch (pathAutal) {
+            case '/gerar-relatorios':
+                document.getElementById("lk_gerar_rela").remove()
+                break;
+            case '/membros':
+                document.getElementById("lk_membros").remove()
+                break;
+            case '/relatorios':
+                document.getElementById("lk_relatorio").remove()
+                break;
+            case '/login':
+                document.getElementById("lk_login").remove()
+                break;
+        }
+    </script>
+</nav>
