@@ -10,11 +10,11 @@ html, body{
     margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
-    width: 900px;
+    width: 1400px;
 }
 
 #logo-ermelinda{
-    width: 120px;
+    width: 150px;
     margin-left: 20px;
 }
 
@@ -40,6 +40,7 @@ html, body{
 
 .explicacao-sobre-apm{
     font-size: small;
+    width: 400px;
 }
 
 .explicacao-sobre-apm .explicacao{
@@ -76,12 +77,11 @@ html, body{
 }
 
 .caixa-metas-noticias{
-    margin-top: -778px;
     float: right;
     padding: 15px 15px;
     border: 2px solid black;
     width: 400px;
-    height: fit-content;
+    height: 500px;
     border-radius: 8px;
 }
 
@@ -230,4 +230,52 @@ footer .hora-func{
 
 .geracao-relatorios button{
     margin-top: 90px;
+}
+
+.caixa-404{
+    text-align: center;
+}
+
+.caixa-404 .lbl-erro{
+    font-size: 70px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.caixa-404 .lbl-404{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    margin-top: -30px;
+    font-size: 200px;
+}
+
+.caixa-404 p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: -120px;
+    font-size: 25px;
+}
+
+.caixa-404 .divisoria{
+    margin-left: -137px;
+    width: 1200px;
+}
+
+#quadra1{
+    margin-left: -13%;
+    rotate: -1 1 0 80deg;
+    position: absolute;
+    width: 1020px;
+    height: 150px;
+    background-color: #000000;
+}
+
+#quadra2{
+    float: right;
+    margin-left: 33%;
+    rotate: -1 1 0 80deg;
+    position: absolute;
+    margin-top: 10%;
+    width: 1020px;
+    height: 150px;
+    background-color: #000000;
 }
