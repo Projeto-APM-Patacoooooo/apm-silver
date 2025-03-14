@@ -20,19 +20,20 @@ html, body{
 }
 
 #logo-ermelinda{
-    width: 150px;
-    margin-left: 500px;
+    float: right;
+    width: 120px;
+    margin-left: auto;
+    margin-right: 14%;
 }
 
 .logo-silver{
-    margin-left: 500px;
+    margin-left: 15%;
     background-color: #2b0101;
     width: 150px;
 }
 
 .caixa-de-botoes{
     padding: 20px 0px;
-    margin-left: -5px;
     background-color: #2b0101;
 }
 
@@ -50,9 +51,19 @@ html, body{
     background-color: #AA2323;
 }
 
+#lk_login{
+    float: right;
+    color: white;
+    text-decoration: none;
+    background-color: #AA2323;
+    font-family: "Poppins", sans-serif;
+     font-weight: 400;
+    font-style: normal;
+    padding: 5px 20px;
+}
 
 .caixa-de-botoes .aplicador-margem{
-    margin-left: 480px;
+    margin-left: 14%;
 }
 
 .aceso{
@@ -111,6 +122,9 @@ html, body{
     background-color: #AA2323;
     border-radius: 20px;
     text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .porque-contribuir ol{
@@ -121,6 +135,9 @@ html, body{
 
 .porque-contribuir ol li{
     margin-top: 5%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: small;
 }
 
 .caixa-metas-noticias{
@@ -400,4 +417,28 @@ footer .hora-func{
     margin-top: 2%;
     background-color: #2b0101;
     color: white;
+}
+
+.carrosel-escola{
+    margin-top: -440px;
+    position: absolute;
+}
+
+.carrosel-escola img{
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.carrosel-escola button{
+    margin-top: 105px;
+    position: absolute;
+    background: none;
+    border: none;
+    color: #2b0101;
+    font-size: 60px;
+}
+
+.carrosel-escola button:hover{
+    cursor: pointer;
+    color: #AA2323;
 }

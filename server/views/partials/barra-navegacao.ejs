@@ -1,4 +1,6 @@
+<a id="lk_login" href="/login">Login</a>
 <nav>
+    
     <a href="/">
         <img class="logo-silver" src="assets\img\logo_mega_blaster_linhares.png" draggable="false">
         <img id="logo-ermelinda" src="assets/img/etec_ermelinda_giannini_teixeira.png" draggable="false">
@@ -6,28 +8,9 @@
     
     <div class="caixa-de-botoes">
         <div class="aplicador-margem">
-        <a id="lk_login" href="/login">Login - ADM</a>
         <a id="lk_relatorio" href="/relatorios">Relatórios</a>
         <a id="lk_membros" class="aceso" href="/membros">Membros</a>
         <a id="lk_pqcontribuir" href="/por-que-contribuir">Por que contribuir?</a>
         </div>
     </div>
-    <script>
-        let pathAutal = window.location.pathname
-        
-        switch (pathAutal) {
-            case '/membros':
-                document.getElementById("lk_membros").classList = "aceso"
-            break;
-            case '/relatorios':
-                document.getElementById("lk_relatorio").remove()     
-            break;
-            case '/login':
-                document.getElementById("lk_login").remove()     
-            break;
-            case '/por-que-contribuir':
-                document.getElementById("lk_pqcontribuir").remove()     
-            break;
-        }
-    </script>
 </nav>
