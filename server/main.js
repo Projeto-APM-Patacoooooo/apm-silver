@@ -161,6 +161,31 @@ servidor.get('/noticia', (req, res) => {
     });
 });
 
+//Faz com que seja visualizar buscar noticias especifícas
+//Para testar use: "localhost:8080/ver/noticia?id=1"
+servidor.get('/ver/noticia', (req, res) => {
+  const noticiaId = req.query.id; // Pega o parâmetro ?id= do navegador
+
+  if (!noticiaId) {
+    return res.status(400).send('ID da notícia é obrigatório');
+  }
+
+  const query = 'SELECT * FROM noticias WHERE id_noticia = ?';
+
+  connection.query(query, [noticiaId], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar notícia:', err);
+      return res.status(500).send('Erro interno no servidor');
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send('Notícia não encontrada');
+    }
+
+    res.render('pages/visualizador-noticias.ejs', {dados: results[0]}); // Retorna a notícia em formato JSON
+  });
+});
+
 //Faz com que seja possível buscar as três primeiras noticias em destaque
 //Para testar use: "localhost:8080/dest_noticia?id=1"
 servidor.get('/dest_noticia', (req, res) => {

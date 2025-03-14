@@ -45,6 +45,21 @@ create table if not exists metas_destaque(
     foreign key (id_meta) references metas(id_meta) on delete cascade
 );
 
+create table if not exists membros_etec(
+	id int primary key auto_increment,
+    cargo varchar(150) not null,
+    setor varchar(200) not null,
+    nome varchar(150) not null unique
+);
+
+insert into membros_etec(cargo, setor, nome)
+values ("Diretor", "Diretoria Executiva", "Bruno Santos Nascimento"),
+("Vice-diretora Executiva:", "Diretoria Executiva", "Maria Ângela Teodoro"),
+("Diretora", "Diretoria Financeira", "Magali Aparecida Dias"),
+("Vice-diretor financeiro:", "Diretoria Financeira", "José Antônio Labella"),
+("")
+;
+
 insert into noticias(titulo_noticia, conteudo, data_publicacao, id_staff)
 values("Alunos do CPS são premiados com o Intercâmbio Cultural.", "blablabla cultura blablabl...", null, 1),
 ("Alunos organizam um Escape Room.", "blablabla Escape Room blablabla...", null, 2),
