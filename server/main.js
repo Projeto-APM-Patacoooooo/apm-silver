@@ -72,7 +72,10 @@ servidor.get('/', function(req, res){
 });
 
 servidor.get('/home',isAuthenticated, function(req, res){
-  res.render('pages/home_adm');
+  console.log(req.session.user)
+  res.render('pages/home_adm', {
+    emailLogado: req.session.user.email
+  });
 });
 
 servidor.get('/login', function(req, res){

@@ -24,10 +24,16 @@ html, body{
     margin-left: 500px;
 }
 
-.caixa-de-botoes{
-    padding: 20px 20px;
+.logo-silver{
+    margin-left: 500px;
     background-color: #2b0101;
+    width: 150px;
+}
 
+.caixa-de-botoes{
+    padding: 20px 0px;
+    margin-left: -5px;
+    background-color: #2b0101;
 }
 
 .caixa-de-botoes a{
@@ -35,15 +41,13 @@ html, body{
     text-decoration: none;
     background-color: rgb(116, 8, 8);
     padding: 10px 10px;
-    margin-left: 65px;
+    margin-left: 25px;
     color: white;
     border-radius: 10px;
 }
 
 .caixa-de-botoes a:hover{
-    font-family: "Inter", sans-serif;
     background-color: #AA2323;
-    color: rgb(255, 255, 255);
 }
 
 
@@ -75,7 +79,7 @@ html, body{
 .explicacao-sobre-apm .explicacao{
     padding: 5px 5px;
     width: 400px;
-    border: 2px solid black;
+    border: 2px solid #2b0101;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
      font-weight: 400;
@@ -83,6 +87,8 @@ html, body{
 }
 
 .container{
+    margin-top: 2px;
+    padding: 10px 10px;
     margin-left: auto;
     margin-right: auto;
     width: 900px;
@@ -339,4 +345,59 @@ footer .hora-func{
     width: 1020px;
     height: 150px;
     background-color: #000000;
+}
+
+.rotulo-email-logado{
+    width: 90px;
+    margin-left: auto;
+    margin-right: 50px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #2b0101;
+}
+
+.balao-cookies{
+    width: 1570px;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    padding: 10px 10px;
+    margin-top: 37.78%;
+    background-color: #2b0101;
+    color: white;
+}
+
+.balao-cookies header{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.balao-cookies p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.balao-cookies button{
+    margin-top: -57px;
+    float: right;
+    padding: 10px 30px;
+    color: white;
+    border: none;
+    background-color: rgb(116, 8, 8);
+    border-radius: 10px;
+}
+
+.balao-pix{
+    border-radius: 10px;
+    width: 140px;
+    margin-left: auto;
+    margin-right: 10px;
+    position: fixed;
+    padding: 10px 10px;
+    margin-top: 2%;
+    background-color: #2b0101;
+    color: white;
 }
