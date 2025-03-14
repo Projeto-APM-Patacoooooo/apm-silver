@@ -8,55 +8,42 @@
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
 <body>
-    <div class="caixa-central">
+    
         <%- include('../partials/barra-navegacao.ejs') %>
-
+        
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
+        <div class="balao-pix" id="pix">
+            <h1>Pix:</h1>
+            <p>11961748831</p>
+            <button onclick="document.getElementById('pix').remove()">X</button>
+        </div>
 
+        <div class="container">
+            <div class="explicacao-sobre-apm">
+                <h1>Associação de Pais e Mestres (APM)</h1>
+                <img class="divisoria-decorativa" src="assets/img/divisoria-decorativa.png" draggable="false">
+                <p class="explicacao">A Associação de Pais e Mestres (APM) da Escola Técnica Estadual (Etec) Profª Ermelinda Giannini Teixeira , é um meio de participação ativa da comunidade na gestão escolar. Ela contribui para o alcance dos objetivos educacionais da escola e atua como representante das demandas e interesses da comunidade, dos pais e dos responsáveis pelos alunos.</p>
+            </div>
+    
+            <div class="caixa-metas-noticias">
+                <h1>Metas:</h1>
+                <ul>
+                    <li><a id="lbl_meta1" href="">Carregando...</a></li>
+                    <li><a id="lbl_meta2" href="">Carregando...</a></li>
+                    <li><a id="lbl_meta3" href="">Carregando...</a></li>
+                </ul>
+                <h1>Notícias:</h1>
+                <ul>
+                    <li><a id="lbl_noticia1" href="">Carregando...</a></li>
+                    <li><a id="lbl_noticia2" href="">Carregando...</a></li>
+                    <li><a id="lbl_noticia3" href="">Carregando...</a></li>
+                </ul>
+            </div>
+        </div>
         <script src="assets/js/carregador_de_noticias.js"></script>
         <script src="assets/js/carregador_de_metas.js"></script>
-        <div class="explicacao-sobre-apm">
-            <h1>Associação de Pais e Mestres (APM)</h1>
-            <img class="divisoria-decorativa" src="assets/img/divisoria-decorativa.png" draggable="false">
-            <p class="explicacao">A Associação de Pais e Mestres (APM) da Escola Técnica Estadual (Etec) Profª Ermelinda Giannini Teixeira , é um meio de participação ativa da comunidade na gestão escolar. Ela contribui para o alcance dos objetivos educacionais da escola e atua como representante das demandas e interesses da comunidade, dos pais e dos responsáveis pelos alunos.</p>
-        </div>
-
-        <div class="porque-contribuir">
-            <h1>Por que contribuir?</h1>
-            <ol type="1">
-                <li>Melhoria do Ensino: Recursos para infraestrutura e materiais didáticos.</li>
-                <li>Apoio a Projetos: Financia atividades complementares e eventos.</li>
-                <li>Fortalecimento da Comunidade: Aproxima pais, alunos e escola.</li>
-                <li>Cidadania: Incentiva responsabilidade e colaboração.</li>
-                <li>Suporte à Escola: Ajuda em necessidades urgentes.</li>
-                <li>Participação nas Decisões: Dá voz aos pais na escola.</li>
-                <li>Segurança e Bem-Estar: Investimento em um ambiente escolar mais seguro.</li>
-                <li>Apoio a Estudantes em Situação de Vulnerabilidade: Auxílio financeiro a alunos que precisam.</li>
-                <li>Promoção de Eventos e Confraternizações: Fortalece o laço social entre a comunidade escolar.</li>
-                <li>Valorização dos Professores: Apoio para capacitações e homenagens ao corpo docente.</li>
-                <li>Transparência e Prestação de Contas: Participação ativa garante o bom uso dos recursos.</li>
-            </ol>
-        </div>
-
-        <div class="caixa-metas-noticias">
-            <h1>Metas:</h1>
-            <ul>
-                <li><a id="lbl_meta1" href="">Carregando...</a></li>
-                <li><a id="lbl_meta2" href="">Carregando...</a></li>
-                <li><a id="lbl_meta3" href="">Carregando...</a></li>
-            </ul>
-            <h1>Notícias:</h1>
-            <ul>
-                <li><a id="lbl_noticia1" href="">Carregando...</a></li>
-                <li><a id="lbl_noticia2" href="">Carregando...</a></li>
-                <li><a id="lbl_noticia3" href="">Carregando...</a></li>
-            </ul>
-        </div>
-
-
-
+        
         <!--FIM DO CONTEÚDO-->
 
         <%- include('../partials/footer.ejs') %>
-    </div>
 </body>

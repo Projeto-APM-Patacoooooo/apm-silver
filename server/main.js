@@ -20,7 +20,7 @@ const rateLimit = require('express-rate-limit'); //Biblioteca que serve para lim
 //Configurações do rate limit no nosso servidor
 const limitador = rateLimit({
   windowMs: 60 * 1000, //1 minuto
-  max: 4025, //Limite máximo requests por ip,
+  max: 1025, //Limite máximo requests por ip,
   message: 'Erro 429: Muitas requisições. Tente novamente em alguns minutos.'
 }); 
 
@@ -72,7 +72,10 @@ servidor.get('/', function(req, res){
 });
 
 servidor.get('/home',isAuthenticated, function(req, res){
-  res.render('pages/home_adm');
+  console.log(req.session.user)
+  res.render('pages/home_adm', {
+    emailLogado: req.session.user.email
+  });
 });
 
 servidor.get('/login', function(req, res){
@@ -89,6 +92,10 @@ servidor.get('/relatorios', isAuthenticated, function(req, res){
 
 servidor.get('/gerar-relatorios', isAuthenticated, function(req, res){
   res.render('pages/gerar_relatorios');
+});
+
+servidor.get('/por-que-contribuir', function(req, res){
+  res.render('pages/porque-contribuir');
 });
 
 servidor.get('/porque-contriubir', function(req, res){

@@ -1,4 +1,5 @@
-/*JooooooooooooooJ*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 html, body{
     margin: 0;
@@ -6,31 +7,57 @@ html, body{
     border: 0;
 }
 
+::selection{
+    background-color: #AA2323;
+    color: white;
+}
+
 .caixa-central{
     margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
-    width: 900px;
+    width: 1400px;
 }
 
 #logo-ermelinda{
-    width: 120px;
-    margin-left: 20px;
+    width: 150px;
+    margin-left: 500px;
+}
+
+.logo-silver{
+    margin-left: 500px;
+    background-color: #2b0101;
+    width: 150px;
 }
 
 .caixa-de-botoes{
-    padding: 10px 10px;
-    background-color: #000000;
-    border-radius: 7px;
+    padding: 20px 0px;
+    margin-left: -5px;
+    background-color: #2b0101;
 }
 
 .caixa-de-botoes a{
+    font-family: "Inter", sans-serif;
     text-decoration: none;
-    margin-left: 4%;
-    background-color: white;
-    padding: 2px 2px;
-    border-radius: 4px;
-    color: black;
+    background-color: rgb(116, 8, 8);
+    padding: 10px 10px;
+    margin-left: 25px;
+    color: white;
+    border-radius: 10px;
+}
+
+.caixa-de-botoes a:hover{
+    background-color: #AA2323;
+}
+
+
+.caixa-de-botoes .aplicador-margem{
+    margin-left: 480px;
+}
+
+.aceso{
+    color: green;
+    background-color: #AA2323;
 }
 
 .divisoria-decorativa {
@@ -40,18 +67,40 @@ html, body{
 
 .explicacao-sobre-apm{
     font-size: small;
+    width: 400px;
+}
+
+.explicacao-sobre-apm h1{
+    font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .explicacao-sobre-apm .explicacao{
     padding: 5px 5px;
     width: 400px;
-    border: 2px solid black;
+    border: 2px solid #2b0101;
     border-radius: 5px;
-    font-size: medium;
+    font-family: "Poppins", sans-serif;
+     font-weight: 400;
+    font-style: normal;
+}
+
+.container{
+    margin-top: 2px;
+    padding: 10px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
 }
 
 .porque-contribuir{
-    width: 400px;
+    margin-left: auto;
+    margin-right: auto;  
+    width: 900px;
+    padding: 10px 10px;
+    border: 2px solid black;
+    margin-top: 10px;
 }
 
 .porque-contribuir h1{
@@ -67,7 +116,6 @@ html, body{
 .porque-contribuir ol{
     text-align: left;
     margin-top: 20px;
-    border: 2px solid black;
     border-radius: 8px;
 }
 
@@ -76,18 +124,22 @@ html, body{
 }
 
 .caixa-metas-noticias{
-    margin-top: -778px;
-    float: right;
+    margin-top: -220px;
+    margin-left: auto;
+    margin-right: 1px;
+    align-self: flex-end;
     padding: 15px 15px;
     border: 2px solid black;
     width: 400px;
-    height: fit-content;
+    height: 650px;
     border-radius: 8px;
 }
 
 .caixa-metas-noticias h1{
-    font-size: large;
     margin-left: 15px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: small;
 }
 
 .caixa-metas-noticias ul{
@@ -96,6 +148,9 @@ html, body{
     border-radius: 4px;
     list-style-type: none;
     height: fit-content;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .caixa-metas-noticias ul li{
@@ -111,15 +166,17 @@ html, body{
 }
 
 .caixa-metas-noticias a:hover{
-    background-color: #AA2323;
-    color: white;
+    color: #AA2323;;
 }
 
 footer{
+    font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
     padding: 5px 5px;
     margin-top: 20px;
     color: white;
-    background-color: black;
+    background-color: #000000;
 }
 
 .divisoria-footer{
@@ -131,20 +188,21 @@ footer{
 
 footer .tel{
     position: absolute;
-    margin-left: 240px;
-    margin-top: -149px;
+    margin-left: 270px;
+    margin-top: -187px;
+    
 }
 
 footer .hora-func{
     position: absolute;
-    margin-top: -149px;
-    margin-left: 380px;
+    margin-top: -189px;
+    margin-left: 420px;
 }
 
 .redes-socias{
     position: absolute;
     margin-top: -129px;
-    margin-left: 590px;
+    margin-left: 630px;
 }
 
 .redes-socias a img{
@@ -166,6 +224,9 @@ footer .hora-func{
     flex-wrap: nowrap;
     width: 100%;
     overflow-x: auto;
+    font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .caixa-membro {
@@ -175,12 +236,18 @@ footer .hora-func{
     padding: 5px 5px;
     width: 280px;
     margin-right: 10px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .caixa-membro h1 {
     font-size: small;
     margin-top: 0;   
-    margin-left: 0;      
+    margin-left: 0;    
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .caixa-membro p {
@@ -230,4 +297,107 @@ footer .hora-func{
 
 .geracao-relatorios button{
     margin-top: 90px;
+}
+
+.caixa-404{
+    text-align: center;
+}
+
+.caixa-404 .lbl-erro{
+    font-size: 70px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.caixa-404 .lbl-404{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    margin-top: -30px;
+    font-size: 200px;
+}
+
+.caixa-404 p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: -120px;
+    font-size: 25px;
+}
+
+.caixa-404 .divisoria{
+    margin-left: -137px;
+    width: 1200px;
+}
+
+#quadra1{
+    margin-left: -13%;
+    rotate: -1 1 0 80deg;
+    position: absolute;
+    width: 1020px;
+    height: 150px;
+    background-color: #000000;
+}
+
+#quadra2{
+    float: right;
+    margin-left: 33%;
+    rotate: -1 1 0 80deg;
+    position: absolute;
+    margin-top: 10%;
+    width: 1020px;
+    height: 150px;
+    background-color: #000000;
+}
+
+.rotulo-email-logado{
+    width: 90px;
+    margin-left: auto;
+    margin-right: 50px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #2b0101;
+}
+
+.balao-cookies{
+    width: 1570px;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    padding: 10px 10px;
+    margin-top: 37.78%;
+    background-color: #2b0101;
+    color: white;
+}
+
+.balao-cookies header{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.balao-cookies p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.balao-cookies button{
+    margin-top: -57px;
+    float: right;
+    padding: 10px 30px;
+    color: white;
+    border: none;
+    background-color: rgb(116, 8, 8);
+    border-radius: 10px;
+}
+
+.balao-pix{
+    border-radius: 10px;
+    width: 140px;
+    margin-left: auto;
+    margin-right: 10px;
+    position: fixed;
+    padding: 10px 10px;
+    margin-top: 2%;
+    background-color: #2b0101;
+    color: white;
 }
