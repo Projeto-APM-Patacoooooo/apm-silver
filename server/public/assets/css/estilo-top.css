@@ -140,6 +140,18 @@ html, body{
     font-style: small;
 }
 
+.manutencao{
+    margin-top: 15%;
+    margin-bottom: auto;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 10px;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 .caixa-metas-noticias{
     margin-top: -220px;
     margin-left: auto;
