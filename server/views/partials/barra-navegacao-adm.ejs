@@ -1,10 +1,6 @@
 <nav>
     <p class="rotulo-email-logado"><%=emailLogado%></p>
     <button style="float: right;" onclick="Sair()">Sair</button>
-    <a href="/">
-        
-        <img id="logo-ermelinda" src="assets/img/etec_ermelinda_giannini_teixeira.png" draggable="false">
-    </a>
     <script>
         function Sair() {
             fetch("/logout", {
@@ -16,7 +12,6 @@
     <div class="caixa-de-botoes">
         <a id="lk_relatorio" href="/relatorios">Relatórios</a>
         <a id="lk_membros" href="/membros">Membros</a>
-        <a id="lk_gerar_rela" href="/gerar-relatorios">Gerar relatórios</a>
     </div>
     <script>
         let pathAutal = window.location.pathname
