@@ -3,10 +3,54 @@
     <h1 class="logo">APMSILVER</h1>
 
     <div class="caixa-de-botoes">
-        <a href="" class="botao-selecionado">Inicio</a>
+        <a id="lk_home" href="/" >Inicio</a>
         <a id="lk_relatorio" href="/relatorios">Relatórios</a>
         <a id="lk_membros" href="/membros">Membros</a>
         <a id="lk_pqcontribuir" href="/por-que-contribuir">Por que contribuir?</a>
     </div>
     <a id="lk_login" href="/login">Entrar</a>
+    <script>
+        const lk_home = document.getElementById("lk_home");
+        const lk_relatorio = document.getElementById("lk_relatorio");
+        const lk_membros = document.getElementById("lk_membros");
+        const lk_pqcontribuir = document.getElementById("lk_pqcontribuir");
+        const secaoAtual = window.location.pathname;
+        
+        switch (secaoAtual) {
+            case '/':
+                lk_home.classList.add("botao-selecionado");
+                lk_relatorio.classList.add("botao-naoselecionado");
+                lk_membros.classList.add("botao-naoselecionado");
+                lk_pqcontribuir.classList.add("botao-naoselecionado");
+            break;
+
+            case '/relatorios':
+                lk_home.classList.add("botao-naoselecionado");
+                lk_relatorio.classList.add("botao-selecionado");
+                lk_membros.classList.add("botao-naoselecionado");
+                lk_pqcontribuir.classList.add("botao-naoselecionado");
+            break;
+
+            case '/membros':
+                lk_home.classList.add("botao-naoselecionado");
+                lk_relatorio.classList.add("botao-naoselecionado");
+                lk_membros.classList.add("botao-selecionado");
+                lk_pqcontribuir.classList.add("botao-naoselecionado");
+            break;
+
+            case '/por-que-contribuir':
+                lk_home.classList.add("botao-naoselecionado");
+                lk_relatorio.classList.add("botao-naoselecionado");
+                lk_membros.classList.add("botao-naoselecionado");
+                lk_pqcontribuir.classList.add("botao-selecionado");
+            break;
+
+            default:
+                lk_home.classList.add("botao-naoselecionado");
+                lk_relatorio.classList.add("botao-naoselecionado");
+                lk_membros.classList.add("botao-naoselecionado");
+                lk_pqcontribuir.classList.add("botao-naoselecionado");
+            break;
+        }
+    </script>
 </nav>

@@ -64,6 +64,10 @@ html, body{
     text-decoration-thickness: 5px;
 }
 
+.botao-naoselecionado{
+    text-decoration: none;
+}
+
 .barra-navegacao a:hover{
     color: #FFBD53;
 }
@@ -87,6 +91,9 @@ html, body{
     margin-right: 15%;
 }
 
+#lk_login:hover{
+    background-color: #d69429;
+}
 
 .caixa-de-botoes .aplicador-margem{
     margin-left: 14%;
