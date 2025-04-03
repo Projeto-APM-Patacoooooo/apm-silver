@@ -553,3 +553,34 @@ footer .hora-func{
     cursor: pointer;
     color: #AA2323;
 }
+
+.caixa-visu-noticia{
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+}
+
+.caixa-visu-noticia h1{
+    font-family: "Istok Web", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 30px;
+}
+
+.conteudo_not {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: justify;
+    margin-bottom: 90px;
+}
+
+.data_not{
+    margin-top: -20px;
+    font-size: small;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-align: justify;
+    color: #6d6969;
+}

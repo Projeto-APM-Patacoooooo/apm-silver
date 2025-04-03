@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/estilo-top.css">
-    <link rel="shortcut icon" href="assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
 <body>
-    <div class="caixa-central">
+    
         <%- include('../partials/barra-navegacao.ejs') %>
-
-        <!--INICIO DO CONTEÚDO DA PÁGINA-->
-
         
-
+        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+        <div class="caixa-visu-noticia">
+            <h1><%= titulo %></h1>
+            <p class="conteudo_not"><%= conteudo %></p>
+            <h2 id="inverter_data" class="data_not"><%= data_publi %></h2>
+        </div>
+        
+        <script src="/assets/js/inverter_data.js"></script>
         <!--FIM DO CONTEÚDO-->
 
         <%- include('../partials/footer.ejs') %>
-    </div>
 </body>

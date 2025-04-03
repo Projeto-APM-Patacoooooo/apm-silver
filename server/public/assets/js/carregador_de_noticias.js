@@ -125,6 +125,15 @@ Promise.all([
     if(tm3.innerHTML === "Hoje" || tm3.innerHTML === "Há 1 dias" || tm3.innerHTML === "Há 2 dias" || tm3.innerHTML === "Há 3 dias"){
         document.getElementById("lbl-novo3").hidden = false;
     }
+
+    let lknot1 = document.getElementById("lk_not1");
+    lknot1.href = `/ver/noticia?id=${newsResults[0].id_noticia}`;
+
+    let lknot2 = document.getElementById("lk_not2");
+    lknot2.href = `/ver/noticia?id=${newsResults[1].id_noticia}`;
+
+    let lknot3 = document.getElementById("lk_not3");
+    lknot3.href = `/ver/noticia?id=${newsResults[2].id_noticia}`;
 }).catch(error => {
     console.error(error);
 });

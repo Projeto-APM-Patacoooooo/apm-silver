@@ -189,7 +189,13 @@ servidor.get('/ver/noticia', (req, res) => {
       return res.status(404).send('Notícia não encontrada');
     }
 
-    res.render('pages/visualizador-noticias.ejs', {dados: results[0]}); // Retorna a notícia em formato JSON
+
+    let titulo = results[0].titulo_noticia;
+    let conteudo = results[0].conteudo;
+
+    let data_publi = JSON.stringify(results[0].data_publicacao).substring(1, 11);
+
+    res.render('pages/visualizador-noticias',  {titulo, conteudo, data_publi}); // Retorna a notícia em formato JSON
   });
 });
 
