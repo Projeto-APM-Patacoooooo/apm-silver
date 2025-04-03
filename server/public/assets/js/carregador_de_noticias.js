@@ -121,7 +121,7 @@ Promise.all([
     }
 
     lbl3.innerHTML = newsResults[2].titulo_noticia;
-    tm3.innerHTML = calcularIdadeNoticia(dia_not2, mes_not2, ano_not2);
+    tm3.innerHTML = calcularIdadeNoticia(dia_not3, mes_not3, ano_not3);
     if(tm3.innerHTML === "Hoje" || tm3.innerHTML === "Há 1 dias" || tm3.innerHTML === "Há 2 dias" || tm3.innerHTML === "Há 3 dias"){
         document.getElementById("lbl-novo3").hidden = false;
     }
