@@ -6,6 +6,8 @@ let estagio = 1;
 let maxEstagio = 3;
 let intervaloAutomatico = 5000; //Ms
 
+let relogio = 200;
+
 function atualizarImagem(){
     switch (estagio) {
         case 1:
@@ -20,6 +22,32 @@ function atualizarImagem(){
     }
 };
 
+function atualizar(){
+
+    if(relogio >= 1){
+        relogio -= 1;
+    } else {
+        relogio = 200;
+
+        switch(estagio){
+            case maxEstagio:
+                estagio = 1;
+            break;
+    
+            default:
+                estagio += 1;
+            break;
+        };    
+        atualizarImagem();
+    }
+    
+    window.requestAnimationFrame(atualizar);
+}
+
+atualizar();
+
+
+
 function avancar(){
     switch(estagio){
         case maxEstagio:
@@ -30,6 +58,8 @@ function avancar(){
             estagio += 1;
         break;
     };
+
+    relogio += 50;
     
     atualizarImagem();
 };
@@ -45,12 +75,7 @@ function retroceder(){
         break;
     };
 
+    relogio += 50;
+
     atualizarImagem();
 };
-
-function avancoAutomatico(){
-    avancar()
-    setTimeout(avancoAutomatico, intervaloAutomatico);
-};
-
-avancoAutomatico();

@@ -126,6 +126,7 @@ html, body{
     font-family: "Poppins", sans-serif;
      font-weight: 400;
     font-style: normal;
+    text-align: justify;
 }
 
 .container{
@@ -270,22 +271,60 @@ html, body{
 }
 
 .caixa-metas{
-    margin-top: 322px;
-    margin-left: auto;
-    margin-right: 1px;
-    align-self: flex-end;
+    margin-top: 200px;
     padding: 1px 15px;
     background-color: #434040;
     width: 400px;
-    height: auto;
-    border-radius: 8px;
+    height: 340px;
+    margin-left: auto;
+    margin-bottom: 90px;
+    border-radius: 3px;
 }
 
 .caixa-metas h1{
+    position: absolute;
     font-family: "Gothic A1", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: white;
+}
+
+.lk_met{
+    text-decoration: none;
+}
+
+.meta{
+    margin-top: 4px;
+    padding: 5px 15px;
+    background-color: #F2F2F2;
+    border-radius: 3px; 
+}
+
+.metas{
+    margin-top: 79px;
+}
+
+.meta:hover{
+    background-color: #cccaca;
+}
+
+.titulo-meta{
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: x-small;
+    font-style: small;
+    text-decoration: none;
+}
+
+.status-meta{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: x-small;
+    font-style: small;
+    color: #A09292;
+    margin-top: -10px;
+    font-weight: bolder;
 }
 
 .caixa-metas-noticias a{
@@ -304,7 +343,7 @@ footer{
     padding: 5px 5px;
     margin-top: 20px;
     color: white;
-    background-color: #000000;
+    background-color: #201F1F;
 }
 
 .divisoria-footer{
@@ -338,13 +377,48 @@ footer .hora-func{
 }
 
 .caixa-login{
-    width: 220px;
-    margin-top: 15%;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid black;
-    padding: 30px 30px;
-    border-radius: 4px;
+    width: 420px;
+    border: 2px solid #3030301b;
+    padding: 15px 15px;
+    height: 300px;
+    margin-bottom: 14px;
+    border-radius: 7px;
+}
+
+.caixa-login input{
+    
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: none;
+    border: 2px solid #201F1F;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.caixa-login button{
+    float: right;
+    margin-left: 2px;
+    color: white;
+    margin-top: 35px;
+    text-decoration: none;
+    background-color: #FFBD53;
+    font-family: "Istok Web", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    border-radius: 5px;
+    padding: 10px 10px;
+    border: none;
+}
+
+.caixa-login button:hover{
+    background-color: #d5ab68;
+    cursor: pointer;
 }
 
 .caixa-membros {
@@ -358,15 +432,15 @@ footer .hora-func{
 }
 
 .caixa-membro {
-    display: inline-block;
-    border: 2px solid black;
-    border-radius: 4px;
-    padding: 5px 5px;
-    width: 280px;
-    margin-right: 10px;
+    padding: 15px 15px;
+    width: 400px;
+    color:  white;
+    background-color: #434040;
+    border-radius: 3px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
+    margin-top: 10px;
 }
 
 .caixa-membro h1 {
@@ -531,13 +605,13 @@ footer .hora-func{
 }
 
 .carrosel-escola{
-    margin-top: -440px;
+    margin-top: -610px;
     position: absolute;
 }
 
 .carrosel-escola img{
-    border-radius: 10px;
-    border: 2px solid black;
+    border-radius: 3px;
+    border: 2px solid #303030;
 }
 
 .carrosel-escola button{
@@ -545,13 +619,13 @@ footer .hora-func{
     position: absolute;
     background: none;
     border: none;
-    color: #2b0101;
+    color: #000000;
     font-size: 60px;
 }
 
 .carrosel-escola button:hover{
     cursor: pointer;
-    color: #AA2323;
+    color: #FFBD53;
 }
 
 .caixa-visu-noticia{
@@ -583,4 +657,10 @@ footer .hora-func{
     font-style: normal;
     text-align: justify;
     color: #6d6969;
+}
+
+.conteudo-footer{
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
 }

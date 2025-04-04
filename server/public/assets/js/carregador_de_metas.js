@@ -1,9 +1,3 @@
-/*
-    Este script carrega as 3 metas em destaque para a página principal
-*/
-
-// FASE[1]: BUSCANDO QUAIS SÃO AS NOTÍCIAS EM DESTAQUE
-
 function BuscarDestaque(id) {
     return new Promise((resolve, reject) => {
         var xhttp = new XMLHttpRequest();
@@ -52,14 +46,56 @@ Promise.all([
     ]);
 }).then(newsResults => {
 
-    const lbl1 = document.getElementById("lbl_meta1");
-    const lbl2 = document.getElementById("lbl_meta2");
-    const lbl3 = document.getElementById("lbl_meta3");
+    const lbl_meta1 = document.getElementById("lbl_meta1");
+    lbl_meta1.textContent = newsResults[0].titulo_meta;
+
+    const sts_met1 = document.getElementById("sts_met1");
+
+    switch (newsResults[0].batida) {
+        case 1:
+            sts_met1.textContent = "Atingida!";
+            sts_met1.style.color = "#198366";
+        break;
+
+        case 0:
+            sts_met1.textContent = "Ainda não atingida...";
+            sts_met1.style.color = "#EE7A2E";
+        break;
+    }
+
+    const lbl_meta2 = document.getElementById("lbl_meta2");
+    lbl_meta2.textContent = newsResults[1].titulo_meta;
+
+    const sts_met2 = document.getElementById("sts_met2");
+
+    switch (newsResults[1].batida) {
+        case 1:
+            sts_met2.textContent = "Atingida!";
+            sts_met2.style.color = "#198366";
+        break;
+
+        case 0:
+            sts_met2.textContent = "Ainda não atingida...";
+            sts_met2.style.color = "#EE7A2E";
+        break;
+    }
     
-    // FASE[3]: MOSTRANDO ELAS PARA O USUÁRIO
-    lbl1.text = newsResults[0].titulo_meta;
-    lbl2.text = newsResults[1].titulo_meta;
-    lbl3.text = newsResults[2].titulo_meta;
+    const lbl_meta3 = document.getElementById("lbl_meta3");
+    lbl_meta3.textContent = newsResults[2].titulo_meta;
+
+    const sts_met3 = document.getElementById("sts_met3");
+
+    switch (newsResults[2].batida) {
+        case 1:
+            sts_met3.textContent = "Atingida!";
+            sts_met3.style.color = "#198366";
+        break;
+
+        case 0:
+            sts_met3.textContent = "Ainda não atingida...";
+            sts_met3.style.color = "#EE7A2E";
+        break;
+    }
 }).catch(error => {
     console.error(error);
 });
