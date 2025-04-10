@@ -21,15 +21,20 @@
             <a href="" target="_blank"><img style="width: 50px; margin-top: -5px; position: absolute;"
                     src="assets/img/whatsapp.png"></a>
         </div>
-        <p>©<span id="ano"></span> Etec Ermelinda Giannini Teixeira - Todos os direitos reservados. <br>Para mais
-            informações sobre como os seus dados pessoais são tratados em nosso site acesse nossa <a href="">Política de
-                Privacidade</a>.</p>
+        <p style="text-align: center; margin-top: 20px;">©<span id="ano"></span> Etec Ermelinda Giannini Teixeira - Todos os direitos reservados. <br>Para mais
+            informações sobre como utilizamos seus dados pessoais em nosso site acesse nossa <a class="link"
+                href="/politica-de-privacidade">Política de Privacidade</a>.</p>
     </div>
 
     <script>
         const rotuloAno = document.getElementById("ano");
 
         let ano = new Date().getFullYear();
-        rotuloAno.innerText = ano
+
+        if(ano == 2025){
+            rotuloAno.innerText = ano
+        }else{
+            rotuloAno.innerText = "2025-"+ ano
+        }
     </script>
 </footer>

@@ -22,6 +22,10 @@ html, body{
     width: 1400px;
 }
 
+.link{
+    color: #FFBD53;
+}
+
 #logo-ermelinda{
     float: right;
     width: 120px;
@@ -138,24 +142,23 @@ html, body{
 }
 
 .porque-contribuir{
+    background-color: #434040;
+    color: white;
     margin-left: auto;
     margin-right: auto;  
     width: 900px;
     padding: 10px 10px;
-    border: 2px solid black;
-    margin-top: 10px;
+    margin-top: 15px;
+    border-radius: 3px;
 }
 
 .porque-contribuir h1{
     margin-top: 50px;
-    font-size: medium;
+    margin-left: 19px;
     padding: 5px 5px;
-    color: white;
-    background-color: #AA2323;
     border-radius: 20px;
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-family: "Istok Web", sans-serif;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -167,6 +170,7 @@ html, body{
 
 .porque-contribuir ol li{
     margin-top: 5%;
+    text-align: justify;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: small;
@@ -424,12 +428,18 @@ footer .hora-func{
 
 .caixa-membros {
     display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    overflow-x: auto;
+    width: 1330px;
+    margin-left: auto;
+    margin-right: auto;
     font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-weight: 400;
+    font-style: normal;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .caixa-membro {
@@ -620,7 +630,7 @@ footer .hora-func{
     position: absolute;
     background: none;
     border: none;
-    color: #000000;
+    color: #FFF;
     font-size: 60px;
 }
 
@@ -663,5 +673,52 @@ footer .hora-func{
 .conteudo-footer{
     margin-left: auto;
     margin-right: auto;
+    width: 1200px;
+}
+
+.caixa-politica-privacidade{
+    text-align: justify;
     width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.caixa-politica-privacidade p{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.caixa-politica-privacidade li{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #cccaca;
+}
+
+.caixa-politica-privacidade h2{
+    font-family: "Istok Web", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.alerta-login-erro{
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    background-color: #FF5153;
+    padding: 15px 15px;
+    width: 420px;
+    text-align: center;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    animation: fadeIn 700ms;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }

@@ -86,6 +86,10 @@ servidor.get('/membros', function(req, res){
     res.render('pages/membros');
 });
 
+servidor.get('/politica-de-privacidade', function(req, res){
+  res.render('pages/politica-de-privacidade')
+});
+
 servidor.get('/relatorios', isAuthenticated, function(req, res){
     res.render('pages/relatorios');
 });
@@ -116,7 +120,7 @@ servidor.post("/login", async (req, res) => {
     req.session.user = { id: user.id, email: user.email };
     res.redirect('/home')
   } else {
-    res.status(401).send("Usuário ou senha incorretos.");
+    res.render('pages/login-erro');
   }
 });
 
