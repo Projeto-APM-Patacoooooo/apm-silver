@@ -1,34 +1,67 @@
-<nav>
-    <p class="rotulo-email-logado"><%=emailLogado%></p>
-    <button style="float: right;" onclick="Sair()">Sair</button>
-    <script>
-        function Sair() {
-            fetch("/logout", {
-                method: "POST",
-            });
-            window.location.pathname = ''
-        }
-    </script>
+<nav class="barra-navegacao">
+    <h1 class="logo">APMSILVER</h1>
+
     <div class="caixa-de-botoes">
+        <a id="lk_home" href="/" >Inicio</a>
         <a id="lk_relatorio" href="/relatorios">Relatórios</a>
         <a id="lk_membros" href="/membros">Membros</a>
+        <a id="lk_pqcontribuir" href="/por-que-contribuir">Por que contribuir?</a>
+        <div class="conteudo-usuario-logado">
+            <p class="rotulo-email-logado"><%=emailLogado%></p>
+            <button onclick="Sair()">Sair</button>
+        </div>
+        <script>
+            function Sair() {
+                fetch("/logout", {
+                    method: "POST",
+                });
+                window.location.pathname = ''
+            }
+        </script>
     </div>
+    
     <script>
-        let pathAutal = window.location.pathname
+        const lk_home = document.getElementById("lk_home");
+        const lk_relatorio = document.getElementById("lk_relatorio");
+        const lk_membros = document.getElementById("lk_membros");
+        const lk_pqcontribuir = document.getElementById("lk_pqcontribuir");
+        const secaoAtual = window.location.pathname;
+        
+        switch (secaoAtual) {
+            case '/':
+                lk_home.classList.add("botao-selecionado");
+                lk_relatorio.classList.add("botao-naoselecionado");
+                lk_membros.classList.add("botao-naoselecionado");
+                lk_pqcontribuir.classList.add("botao-naoselecionado");
+            break;
 
-        switch (pathAutal) {
-            case '/gerar-relatorios':
-                document.getElementById("lk_gerar_rela").remove()
-                break;
-            case '/membros':
-                document.getElementById("lk_membros").remove()
-                break;
             case '/relatorios':
-                document.getElementById("lk_relatorio").remove()
-                break;
-            case '/login':
-                document.getElementById("lk_login").remove()
-                break;
+                lk_home.classList.add("botao-naoselecionado");
+                lk_relatorio.classList.add("botao-selecionado");
+                lk_membros.classList.add("botao-naoselecionado");
+                lk_pqcontribuir.classList.add("botao-naoselecionado");
+            break;
+
+            case '/membros':
+                lk_home.classList.add("botao-naoselecionado");
+                lk_relatorio.classList.add("botao-naoselecionado");
+                lk_membros.classList.add("botao-selecionado");
+                lk_pqcontribuir.classList.add("botao-naoselecionado");
+            break;
+
+            case '/por-que-contribuir':
+                lk_home.classList.add("botao-naoselecionado");
+                lk_relatorio.classList.add("botao-naoselecionado");
+                lk_membros.classList.add("botao-naoselecionado");
+                lk_pqcontribuir.classList.add("botao-selecionado");
+            break;
+
+            default:
+                lk_home.classList.add("botao-naoselecionado");
+                lk_relatorio.classList.add("botao-naoselecionado");
+                lk_membros.classList.add("botao-naoselecionado");
+                lk_pqcontribuir.classList.add("botao-naoselecionado");
+            break;
         }
     </script>
 </nav>

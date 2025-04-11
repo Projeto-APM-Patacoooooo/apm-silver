@@ -68,7 +68,7 @@ servidor.use(session({
     !INICIO DO GERENCIADOR DE ROTAS!
 */
 servidor.get('/', function(req, res){
-    res.render('pages/index');
+  res.render('pages/index', {cliente_logado: false});
 });
 
 servidor.get('/home',isAuthenticated, function(req, res){
@@ -170,6 +170,25 @@ servidor.get('/noticia', (req, res) => {
   
       res.json(results[0]); // Retorna a notícia em formato JSON
     });
+});
+
+//Retorna todas as noticias do banco de dados em formato JSON
+//Para testar use: "localhost:8080/noticia/tudo
+servidor.get('/noticia/tudo', (req, res) => {
+  const query = 'SELECT * FROM noticias';
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar notícia:', err);
+      return res.status(500).send('Erro interno no servidor');
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send('Notícia não encontrada');
+    }
+
+    res.json(results); // Retorna a notícia em formato JSON
+  });
 });
 
 //Faz com que seja visualizar buscar noticias especifícas

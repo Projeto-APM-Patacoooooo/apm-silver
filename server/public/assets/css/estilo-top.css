@@ -561,13 +561,10 @@ footer .hora-func{
 }
 
 .rotulo-email-logado{
-    width: 90px;
-    margin-left: auto;
-    margin-right: 50px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: #2b0101;
+    color: #FFBD53;
 }
 
 .balao-cookies{
@@ -722,3 +719,16 @@ footer .hora-func{
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+.conteudo-usuario-logado{
+    position: absolute;
+    display: flex;
+    margin-top: -42px;
+    margin-left: 195%;
+    
+}
+
+.conteudo-usuario-logado button{
+    margin-left: 10px;
+}
+
