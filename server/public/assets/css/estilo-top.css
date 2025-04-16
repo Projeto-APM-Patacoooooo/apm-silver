@@ -715,11 +715,19 @@ footer .hora-func{
     animation: fadeIn 700ms;
 }
 
+.alerta-erro-login-saindo{
+    animation: fadeOut 700ms;
+}
+
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
 
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
 .conteudo-usuario-logado{
     position: absolute;
     display: flex;
@@ -732,3 +740,10 @@ footer .hora-func{
     margin-left: 10px;
 }
 
+.titulo-pq-contriubir{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 400;
+    text-align: center;
+}

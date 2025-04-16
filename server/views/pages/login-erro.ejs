@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +8,46 @@
     <link rel="shortcut icon" href="assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
+
 <body style="overflow: hidden;">
-        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+    <!--INICIO DO CONTEÚDO DA PÁGINA-->
 
-        <div class="caixa-central">
-            <form class="caixa-login" action="/login" method="post">
-                <h1>Entre para continuar</h1>
-                <label>E-Mail:</label>
-                <br>
-               <input type="email" name="email" required>
-                <br>
-                <label>Senha:</label>
-                <br>
-                <input type="password" name="password" id="caixa-pwd" required>
-                <br>
-                <br>
+    <div class="caixa-central">
+        <form class="caixa-login" action="/login" method="post">
+            <h1>Entre para continuar</h1>
+            <label>E-Mail:</label>
+            <br>
+            <input type="email" name="email" required>
+            <br>
+            <label>Senha:</label>
+            <br>
+            <input type="password" name="password" id="caixa-pwd" required>
+            <br>
+            <br>
+
+            <button type="submit">Entrar</button>
+            <br>
+            <button type="button">Modo Visitante</button>
+        </form>
+    </div>
+    <div class="alerta-login-erro" id="alerta-erro-login"> &#9888; Email ou senha incorretos! &#9888;</div>
+    <script>
+        const alerta = document.getElementById("alerta-erro-login");
+        function destruirAlerta(){
+            alerta.remove();         
+        }
+        function executarSaída() {
+            if (alerta) {
+                alerta.classList.add("alerta-erro-login-saindo")
+
                 
-                <button type="submit">Entrar</button>
-                <br>
-                <button type="button">Modo Visitante</button>
-            </form>
-        </div>
-        <div class="alerta-login-erro">	&#9888; Email ou senha incorretos! 	&#9888;</div>
-
-        <!--FIM DO CONTEÚDO-->
+                setTimeout(destruirAlerta, 500);
+                
+            } else {
+                console.warn("[Erro nível 1]: Não foi possível encontrar nenhuma caixa de alerta nesta página.");
+            }
+        }
+        setTimeout(executarSaída, 4500);
+    </script>
+    <!--FIM DO CONTEÚDO-->
 </body>
