@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/estilo-top.css">
-    <link rel="shortcut icon" href="assets/img/brasao_ermelinda.png" type="image/x-icon">
-    <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
+    <link rel="shortcut icon" href="assets/img/brasao_ermeanda.png" type="image/x-icon">
+    <title>Apm Silver - Etec Profª Ermeanda Giannini Teixeira</title>
 </head>
+
 <body>
-        <%- include('../partials/barra-navegacao-adm.ejs') %>
+    <%- include('../partials/barra-navegacao-adm.ejs') %>
 
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
 
-        <div class="caixa-adm">
-            <h1>Opções de Postagem</h1>
-            <button>Postar notícia</button>
-            <button>Postar meta</button>
-            <button>Postar relatório</button>
-            <h1>Cadastro</h1>
-            <button>Cadastrar novo contribuinte</button>
-            <h1>Edição</h1>
-            <button>Editar página de membros</button>
-            <button>Editar notícias fixadas</button>
-            <button>Editar metas fixadas</button>
+
+        <div class="painel-de-controle">
+            <h1 class="titulo">Painel de Controle</h1>
+            <div class="ferramentas">
+                <h3>CONTEÚDO</h3>
+                <ul>
+                    <li><a href="">Nova Notícia</a></li>
+                    <li><a href="">Nova Meta</a></li>
+                    <li><a href="">Novo Relatório</a></li>
+                    <li><a href="">Gerenciar Notícias</a></li>
+                    <li><a href="">Gerenciar Metas</a></li>
+                    <li><a href="">Gerenciar Relatórios</a></li>
+                    <li><a href="">Gerenciar Lista de Membros</a></li>
+                </ul>
+                <h3>USUÁRIOS</h3>
+                <ul>
+                    <li><a href="">Gerenciar Usuários</a></li>
+                    <li><a href="">Cadastrar Usuário</a></li>
+                </ul>
+            </div>
+
         </div>
 
         <!--FIM DO CONTEÚDO-->

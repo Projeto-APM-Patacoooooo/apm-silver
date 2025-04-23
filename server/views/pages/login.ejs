@@ -12,7 +12,7 @@
 
         <div class="caixa-central">
             <form class="caixa-login" action="/login" method="post">
-                <h1>Entre para continuar</h1>
+                <h1 id="titulo-login">Entre para continuar</h1>
                 <label>E-Mail:</label>
                 <br>
                <input type="email" name="email" required>
@@ -28,6 +28,23 @@
                 <button type="button">Modo Visitante</button>
             </form>
         </div>
+        <script>
+            const rotulo = document.getElementById("titulo-login");
+            let numAleatorio = Math.random(1, 10);
 
+            switch (numAleatorio) {
+                case 1:
+                    rotulo.innerText = "Só falta mais um passo!"
+                break;
+
+                case 2:
+                    rotulo.innerText = "Bem-vindo(a) de volta!"
+                break;
+
+                case 3:
+                    rotulo.innerText = "Apertem os cintos!"
+                break;
+            };
+        </script>
         <!--FIM DO CONTEÚDO-->
 </body>

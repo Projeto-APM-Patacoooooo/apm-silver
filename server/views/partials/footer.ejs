@@ -1,7 +1,7 @@
 <footer>
     <div class="conteudo-footer">
         <h3>Etec Profª Ermelinda<br>Giannini Teixeira</h3>
-        <p>R. Fernão Dias Falcão 196 -<br> Centro, Santana de Parnaíba -<br>SP, 06501-120</p>
+        <a class="atalho-endereco" href="https://www.google.com/maps/place/R.+Fern%C3%A3o+Dias+Falc%C3%A3o,+196+-+Centro,+Santana+de+Parna%C3%ADba+-+SP,+06501-120/@-23.4473745,-46.918431,19z/data=!4m6!3m5!1s0x94cf1b4928e8d909:0x892106a0cf9423f4!8m2!3d-23.447723!4d-46.9178936!16s%2Fg%2F11gcqw88qs?entry=ttu&g_ep=EgoyMDI1MDQxMy4wIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D" target="_blank">R. Fernão Dias Falcão 196 -<br> Centro, Santana de Parnaíba -<br>SP, 06501-120</a>
         <div style="margin-top: -128px; margin-left: 250px;" class="divisoria-footer"></div>
         <div class="tel">
             <h3>Telefone:</h3>
@@ -10,7 +10,7 @@
         <div style="margin-top: -128px; margin-left: 390px;" class="divisoria-footer"></div>
         <div class="hora-func">
             <h3>Horário de<br>funcionamento:</h3>
-            <p>7h às 22h</p>
+            <p>7h às 22h <br>
         </div>
         <div style="margin-top: -128px; margin-left: 590px;" class="divisoria-footer"></div>
         <div class="redes-socias">
@@ -30,11 +30,6 @@
         const rotuloAno = document.getElementById("ano");
 
         let ano = new Date().getFullYear();
-
-        if(ano == 2025){
-            rotuloAno.innerText = ano
-        }else{
-            rotuloAno.innerText = "2025-"+ ano
-        }
+        rotuloAno.innerText = ano
     </script>
 </footer>
