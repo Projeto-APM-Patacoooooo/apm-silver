@@ -1,56 +1,32 @@
 
-<nav class="barra-navegacao">
-    <h1 class="logo">APMSILVER</h1>
-
-    <div class="caixa-de-botoes">
-        <a id="lk_home" href="/" >Inicio</a>
-        <a id="lk_relatorio" href="/relatorios">Relatórios</a>
-        <a id="lk_membros" href="/membros">Membros</a>
-        <a id="lk_pqcontribuir" href="/por-que-contribuir">Por que contribuir?</a>
-    </div>
-    <a id="lk_login" href="/login">Entrar</a>
-    <script>
-        const lk_home = document.getElementById("lk_home");
-        const lk_relatorio = document.getElementById("lk_relatorio");
-        const lk_membros = document.getElementById("lk_membros");
-        const lk_pqcontribuir = document.getElementById("lk_pqcontribuir");
-        const secaoAtual = window.location.pathname;
-        
-        switch (secaoAtual) {
-            case '/':
-                lk_home.classList.add("botao-selecionado");
-                lk_relatorio.classList.add("botao-naoselecionado");
-                lk_membros.classList.add("botao-naoselecionado");
-                lk_pqcontribuir.classList.add("botao-naoselecionado");
-            break;
-
-            case '/relatorios':
-                lk_home.classList.add("botao-naoselecionado");
-                lk_relatorio.classList.add("botao-selecionado");
-                lk_membros.classList.add("botao-naoselecionado");
-                lk_pqcontribuir.classList.add("botao-naoselecionado");
-            break;
-
-            case '/membros':
-                lk_home.classList.add("botao-naoselecionado");
-                lk_relatorio.classList.add("botao-naoselecionado");
-                lk_membros.classList.add("botao-selecionado");
-                lk_pqcontribuir.classList.add("botao-naoselecionado");
-            break;
-
-            case '/por-que-contribuir':
-                lk_home.classList.add("botao-naoselecionado");
-                lk_relatorio.classList.add("botao-naoselecionado");
-                lk_membros.classList.add("botao-naoselecionado");
-                lk_pqcontribuir.classList.add("botao-selecionado");
-            break;
-
-            default:
-                lk_home.classList.add("botao-naoselecionado");
-                lk_relatorio.classList.add("botao-naoselecionado");
-                lk_membros.classList.add("botao-naoselecionado");
-                lk_pqcontribuir.classList.add("botao-naoselecionado");
-            break;
-        }
-    </script>
+<nav>
+    <ul class="barra-lateral">
+        <li onclick=esconderBarraLateral()><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="black"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></li>
+        <li><a href="/">Início</a></li>
+        <li><a href="/relatorios">Relatórios</a></li>
+        <li><a href="/membros">Membros</a></li>
+        <li><a href="/por-que-contribuir">Por que contribuir?</a></li>
+        <li><a href="/login">Entrar</a></li>
+    </ul>
+    <ul>
+        <li><a href="/">APMSILVER</a></li>
+        <li><a class="esconder-no-mobile" href="/">Início</a></li>
+        <li><a class="esconder-no-mobile" href="/relatorios">Relatórios</a></li>
+        <li><a class="esconder-no-mobile" href="/membros">Membros</a></li>
+        <li><a class="esconder-no-mobile" href="/por-que-contribuir">Por que contribuir?</a></li>
+        <li><a class="esconder-no-mobile" href="/login">Entrar</a></li>
+        <li class="botao-menu" onclick=mostrarBarraLateral()><a><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="26px" fill="black"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+    </ul>
 </nav>
+
+<script>
+    function mostrarBarraLateral(){
+        const barraLateral = document.querySelector(".barra-lateral");
+        barraLateral.style.display = 'flex';
+    }
+
+    function esconderBarraLateral(){
+        const barraLateral = document.querySelector(".barra-lateral");
+        barraLateral.style.display = 'none';
+    }
+</script>
