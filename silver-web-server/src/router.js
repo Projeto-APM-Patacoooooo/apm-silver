@@ -105,6 +105,7 @@ function Router(servidor) {
     
     //Faz com que seja visualizar buscar noticias especifícas
     //Para testar use: "localhost:8080/ver/noticia?id=1"
+
     servidor.get('/ver/noticia', (req, res) => {
       const noticiaId = req.query.id; // Pega o parâmetro ?id= do navegador
     
