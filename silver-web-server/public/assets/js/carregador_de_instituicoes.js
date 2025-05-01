@@ -1,6 +1,3 @@
-
-//let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
 let xhr = new XMLHttpRequest();
 
 xhr.responseType = '';
@@ -13,11 +10,10 @@ xhr.onreadystatechange = () => {
 
 
         if (Object.keys(resultadoFormatado).length > 0) {
-
+            
             for (var i = 0; i < Object.keys(resultadoFormatado).length; i++) {
-                var alvoAtual = resultadoFormatado[i]
-
-                alvoInstituicoes.innerHTML += "<tr><td>" + alvoAtual.id + "</td><td>" + alvoAtual.nome + "</td><td><button>Editar</button></td><td><button>Excluir</button></td></tr>"
+                var alvoAtual = resultadoFormatado[i]         
+                alvoInstituicoes.innerHTML += `<tr><td>${alvoAtual.id}</td><td>${alvoAtual.nome}</td><td><button>Editar</button></td><td><button onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td><tr>`
             }
             document.getElementById("aviso-nada").remove();
         }

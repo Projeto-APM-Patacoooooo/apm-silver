@@ -46,8 +46,6 @@ function atualizar(){
 
 atualizar();
 
-
-
 function avancar(){
     switch(estagio){
         case maxEstagio:
