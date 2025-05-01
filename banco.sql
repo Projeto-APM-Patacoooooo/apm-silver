@@ -26,6 +26,17 @@ create table if not exists noticias (
     foreign key (id_staff) references staffs(id_staff) on delete cascade
 );
 
+create table if not exists instituicao(
+	id int auto_increment primary key unique,
+	nome varchar(250) not null,
+    cnpj varchar(20) not null,
+    conta int not null,
+    agencia int not null
+);
+
+insert into instituicao(nome, cnpj, conta, agencia)
+values ("Bradesco", "1242141", 1240129, 12094801);
+
 create table if not exists noticias_destaque(
 	id_destaque int primary key not null,
 	id_noticia int not null,
@@ -58,9 +69,7 @@ insert into membros_etec(cargo, setor, nome)
 values ("Diretor", "Diretoria Executiva", "Bruno Santos Nascimento"),
 ("Vice-diretora Executiva:", "Diretoria Executiva", "Maria Ângela Teodoro"),
 ("Diretora", "Diretoria Financeira", "Magali Aparecida Dias"),
-("Vice-diretor financeiro:", "Diretoria Financeira", "José Antônio Labella"),
-("")
-;
+("Vice-diretor financeiro:", "Diretoria Financeira", "José Antônio Labella");
 
 insert into noticias(titulo_noticia, conteudo, data_publicacao, id_staff)
 values("Alunos do CPS são premiados com o Intercâmbio Cultural.", "blablabla cultura blablabl...", "2025-03-31", 1),
@@ -81,3 +90,4 @@ values("1", "1"), ("2", "2"), ("3", "3");
 select * from staffs;
 select * from noticias;
 select * from metas;
+select * from instituicao;

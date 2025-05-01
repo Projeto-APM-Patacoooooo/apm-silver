@@ -932,6 +932,25 @@ footer {
     color: #FFBD53;
 }
 
+.tabela-instituicoes{
+    padding: 5px 5px;
+    background-color: rgb(228, 228, 228);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+}
+
+.instituicoes-container{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #2F2F2F;

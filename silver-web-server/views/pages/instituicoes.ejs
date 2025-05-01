@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
+</head>
+<body>
+        <%- include('../partials/barra-navegacao.ejs') %>
+   
+        
+        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+        
+        <div class="instituicoes-container">
+            <h2>Instituições</h2>
+            <a href="/dashboard/instituicoes/adicionar">adicionar</a>
+            <table border=1 class="tabela-instituicoes">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                    </tr>
+                </thead>
+                <tbody id="alvo-instituicoes">
+                    <tr id="aviso-nada">
+                        <th>Não há nenhuma Instituição cadastrada no momento.</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <script src="/assets\js\carregador_de_instituicoes.js"></script>
+        <!--FIM DO CONTEÚDO-->
+
+        <%- include('../partials/footer.ejs') %>
+</body>

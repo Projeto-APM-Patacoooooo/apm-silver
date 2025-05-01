@@ -14,7 +14,7 @@ function Configuar(servidor){
     
       if (user && await bcrypt.compare(password, user.passwordHash)) {
         req.session.user = { id: user.id, email: user.email };
-        res.redirect('/home')
+        res.redirect('/dashboard')
       } else {
         res.render('pages/login-erro');
       }
