@@ -12,6 +12,7 @@ const path = require('path');
 //Importando bibliotecas caseiras
 const router = require('./src/router.js');
 const sessaoLogin = require('./src/sessao_login.js');
+const teclasMagicas = require('./src/teclas_magicas.js');
 
 //Configurando rate limit (contra ataques DoS de nerds zé ruelas)
 const limitador = rateLimit({
@@ -40,6 +41,7 @@ servidor.set('views', path.join(__dirname, 'views'));
 //Iniciando bibliotecas caseiras
 router.Router(servidor);
 sessaoLogin.Configuar(servidor);
+teclasMagicas.TeclasMagicas(router.mudarModoDeManutencao);
 
 //Colocando essa bagaça para rodar
 servidor.listen(porta, () => {

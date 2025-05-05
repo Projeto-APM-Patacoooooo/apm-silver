@@ -1,5 +1,8 @@
+const { GerarNovaChave } = require("./chaves.js");
+
 function Configuar(servidor){
   const bcrypt = require("bcrypt");
+
   console.warn("[Servidor]: Configurando rotas de login...") 
 
   // Simulação de uma tabela no banco de dados
@@ -11,9 +14,9 @@ function Configuar(servidor){
     servidor.post("/login", async (req, res) => {
       const { email, password } = req.body;
       const user = users.find(u => u.email === email);
-    
+
       if (user && await bcrypt.compare(password, user.passwordHash)) {
-        req.session.user = { id: user.id, email: user.email };
+        req.session.user = { id: user.id, email: user.email, chave: GerarNovaChave() };
         res.redirect('/dashboard')
       } else {
         res.render('pages/login-erro');

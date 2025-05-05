@@ -1,6 +1,21 @@
+let manutencao = false;
+
+function mudarModoDeManutencao(valor){
+  manutencao = valor;
+}
+
+function verificarManutencao(res){
+  switch (manutencao) {
+    case true:
+      res.render('pages/manutencao');
+    return; 
+  }
+}
+
 //Script que controla cada rota dentro do nosso website
 function Router(servidor) {
   console.warn("[Servidor]: Iniciando Router...")
+
 
   const connection = require("./conexao_bd").Iniciar();
   // funçao que verifica se o usuário está logado
@@ -16,57 +31,74 @@ function Router(servidor) {
   */
 
   servidor.get('/', function (req, res) {
-    res.render('pages/index', { cliente_logado: false });
+    verificarManutencao(res);
+    if(req.session.user){
+      res.render('pages/index', {logado: true, emailLogado: req.session.user.email})
+    } else {
+      res.render('pages/index',  {logado: false});
+    }
   });
 
   servidor.get('/dashboard', isAuthenticated, function (req, res) {
+    verificarManutencao(res);
     res.render('pages/home_adm', {
-      emailLogado: req.session.user.email
+      emailLogado: req.session.user.emailLogado,
     });
   });
 
   servidor.get('/dashboard/instituicoes', isAuthenticated, function (req, res) {
+    verificarManutencao(res);
     res.render('pages/instituicoes', {
-      emailLogado: req.session.user.email
+      emailLogado: req.session.user.email,
+      chave: req.session.user.chave
     });
   });
 
   servidor.get('/dashboard/instituicoes/adicionar', isAuthenticated, function (req, res) {
+    verificarManutencao(res);
     res.render('pages/adicionar_instituicao', {
       emailLogado: req.session.user.email
     });
   });
 
   servidor.get('/login', function (req, res) {
+    verificarManutencao(res);
     res.render('pages/login');
   });
 
   servidor.get('/membros', function (req, res) {
+    verificarManutencao(res);
     res.render('pages/membros');
   });
 
   servidor.get('/politica-de-privacidade', function (req, res) {
+    verificarManutencao(res);
     res.render('pages/politica-de-privacidade')
   });
 
   servidor.get('/relatorios', isAuthenticated, function (req, res) {
+    verificarManutencao(res);
     res.render('pages/relatorios');
   });
 
   servidor.get('/gerar-relatorios', isAuthenticated, function (req, res) {
+    verificarManutencao(res);
     res.render('pages/gerar_relatorios');
   });
 
   servidor.get('/por-que-contribuir', function (req, res) {
+    verificarManutencao(res);
     res.render('pages/porque-contribuir');
   });
 
   servidor.get('/porque-contriubir', function (req, res) {
+    verificarManutencao(res);
     res.render('pages/gerar_relatorios');
   });
 
   // Rota protegida (somente para usuários logados)
   servidor.get("/dashboard", isAuthenticated, (req, res) => {
+    verificarManutencao(res);
     res.send(`Bem-vindo, ${req.session.user.email}!`);
   });
 
@@ -118,6 +150,7 @@ function Router(servidor) {
   //Para testar use: "localhost:8080/ver/noticia?id=1"
 
   servidor.get('/ver/noticia', (req, res) => {
+    verificarManutencao(res);
     const noticiaId = req.query.id; // Pega o parâmetro ?id= do navegador
 
     if (!noticiaId) {
@@ -301,6 +334,7 @@ function Router(servidor) {
   });
 
   servidor.post('/cadastrar/instituicao', isAuthenticated, (req, res) => {
+    verificarManutencao(res);
     console.log(req.body)
     console.log(Number(req.body.conta))
     if(req.body.nome && req.body.cnpj && req.body.conta  && req.body.agencia){
@@ -320,8 +354,10 @@ function Router(servidor) {
 
   //Faz com que seja possível buscar as 3 metas em destaque
   //Para testar use: "localhost:8080/excluir/instituicao?id=1"
-  servidor.post('/excluir/instituicao', (req, res) => {
-    const instituicaoId = req.query.id; // Pega o parâmetro ?id= do navegador
+  servidor.post('/excluir/instituicao', isAuthenticated, (req, res) => {
+
+    const instituicaoId = req.body.id; // Pega o parâmetro ?id= do navegador
+    console.log("Nova solicitação de exclusão de instituição: id: " + instituicaoId)
 
     if (!instituicaoId) {
       return res.status(400).send('ID do destaque é obrigatório');
@@ -329,7 +365,7 @@ function Router(servidor) {
 
     const query = 'DELETE FROM instituicao WHERE id = ?';
 
-    connection.query(query, isAuthenticated, [instituicaoId], (err, results) => {
+    connection.query(query,  [instituicaoId], (err, results) => {
       if (err) {
         console.error('Erro ao excluir instituição:', err);
         return res.status(500).send('Erro interno no servidor');
@@ -342,10 +378,14 @@ function Router(servidor) {
       res.redirect("/dashboard/instituicoes")
     });
   });
+  servidor.get('*', function(req, res){
+    res.status(404).render('pages/404');
+  });
   console.log("[Servidor]: Rotas de POST/GET configuradas.")
   console.log("[Servidor]: Router configurado.")
 }
 
 module.exports = {
-  Router
+  Router,
+  mudarModoDeManutencao
 }

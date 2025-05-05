@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/estilo-top.css">
-    <link rel="shortcut icon" href="assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
-<body style="overflow: hidden;">
+<body>
 
-    <div class="caixa-central">
-        
+    <%- include('../partials/barra-navegacao.ejs') %>
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
-        <div class="caixa-404">
-            <h1 class="lbl-erro">Erro</h1>
-            <h1 class="lbl-404">404</h1>
-            <p>Página não encontrada!</p>
-            <img class="divisoria" src="assets/img/divisoria-decorativa.png">
-            <img src="assets/img/dexter.png" width="280">
+        <img class="imagem-404" src="assets/img/nao-encontrada.png">
+        <div class="container-404-mobile">
+            <h2>404</h2>
+            <p>A página que você está tentando acessar não existe ou foi excluída para todo sempre...</p>
         </div>
         <!--FIM DO CONTEÚDO-->
-        
-    </div>
+    <%- include('../partials/footer.ejs') %>
 </body>

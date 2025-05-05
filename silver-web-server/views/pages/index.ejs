@@ -8,8 +8,13 @@
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
 <body>
+    <% if (logado) { %>
+        <%- include('../partials/barra-navegacao-adm.ejs') %>
+    <% } else { %>
         <%- include('../partials/barra-navegacao.ejs') %>
-   
+    <% } %>
+    
+          
         
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
         <div class="balao-pix" id="pix">

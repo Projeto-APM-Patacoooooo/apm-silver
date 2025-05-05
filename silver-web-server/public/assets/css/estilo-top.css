@@ -649,32 +649,20 @@ footer {
     margin-top: 90px;
 }
 
-.caixa-404{
+.imagem-404{
+    position: relative;
+    left: 50%;
+    transform: translate(-10px, 0);
+    -ms-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+}
+
+.container-404-mobile{
     text-align: center;
-}
-
-.caixa-404 .lbl-erro{
-    font-size: 70px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-}
-
-.caixa-404 .lbl-404{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-    margin-top: -30px;
-    font-size: 200px;
-}
-
-.caixa-404 p{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin-top: -120px;
-    font-size: 25px;
-}
-
-.caixa-404 .divisoria{
-    margin-left: -137px;
-    width: 1200px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: none;
 }
 
 #quadra1{
@@ -951,6 +939,25 @@ footer {
     margin-top: 10px;
     text-align: center;
 }
+
+.rotulo-usuario{
+    color: black;
+    font-weight: 500;
+    background-color: #c6c5c5;
+}
+
+.rotulo-usuario:hover{
+    background-color: #c6c5c5;
+}
+
+.botao-sair{
+    background-color: #d69429;
+}
+
+.botao-sair:hover {
+    background-color: #ffb43b;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #2F2F2F;
@@ -969,6 +976,16 @@ footer {
         padding: 15px 15px;
         height: 300px;
         border-radius: 7px;
+    }
+}
+
+@media (max-width: 682px){
+    .imagem-404{
+        display: none;
+    }
+
+    .container-404-mobile{
+        display: block;
     }
 }
 

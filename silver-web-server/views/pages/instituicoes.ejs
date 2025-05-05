@@ -8,8 +8,9 @@
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
 <body>
-        <%- include('../partials/barra-navegacao.ejs') %>
-   
+        
+        <%- include('../partials/barra-navegacao-adm.ejs') %>
+        <span id="session" hidden><%=chave%></span>
         
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
         
@@ -31,6 +32,7 @@
                     </tr>
                 </tbody>
             </table>
+            <p>*O ID não necessáriamente representa a ordem em que as instituições foram cadastradas.</p>
         </div>
         
         <script src="/assets\js\carregador_de_instituicoes.js"></script>

@@ -13,6 +13,7 @@ function Excluir(id){
       .then(response => {
         if (response.ok) {
           console.log('Instituição excluída com sucesso.');
+          location.reload(); //Dando um F5 na página para atualizar a lista
         } else {
           console.error('Erro ao excluir instituição.');
         }
