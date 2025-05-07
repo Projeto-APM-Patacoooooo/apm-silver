@@ -37,6 +37,11 @@
         
         <script src="/assets\js\carregador_de_instituicoes.js"></script>
         <script src="/assets/js/excluidor_de_instituicoes.js"></script>
+        <script>
+            function irParaPaginaDeEdicao(id){
+                window.location = `/dashboard/instituicoes/editar?id=${id}`
+            }
+        </script>
         <!--FIM DO CONTEÚDO-->
 
         <%- include('../partials/footer.ejs') %>

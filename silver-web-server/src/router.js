@@ -144,13 +144,14 @@ function Router(servidor) {
         return;
       }
 
-
       var nome = results[0].nome;
       var cnpj = results[0].cnpj;
       var conta = results[0].conta;
       var agencia = results[0].agencia;
+      
 
-      res.render('pages/editar_instituicao', { nome, cnpj, conta, agencia, emailLogado: req.session.user.email }); // Retorna a notícia em formato JSON
+      console.log(results[0])
+      res.render('pages/editar_instituicao', { id: req.query.id, nome, cnpj, conta, agencia, emailLogado: req.session.user.email }); // Retorna a notícia em formato JSON
     });
   });
 
@@ -359,6 +360,51 @@ function Router(servidor) {
       res.json(results); // Retorna a notícia em formato JSON
     });
   });
+
+  servidor.post('/editar/instituicao', isAuthenticated, (req, res) => {
+    verificarManutencao(res);
+    
+    if(req.body.nome && req.body.cnpj && req.body.conta && req.body.agencia){
+      console.log('Valor do ID: '+ req.body.id) 
+       const query = `update instituicao set nome = ${req.body.nome}, cnpj = ${req.body.cnpj}, conta = ${Number(req.body.conta)}, agencia = ${Number(req.body.agencia)} where id = ${req.body.id}`
+  
+       connection.query(query, (err, results) => {
+        if (err) {
+          console.error('Erro ao cadastrar insituicao', err);
+          return res.status(500).send('Erro interno no servidor');
+        }
+        res.redirect("/dashboard/instituicoes")
+      });
+    }else {
+      return res.status(400).send("[400]<br><hr><br>Bad Request!")
+    }
+  })
+
+  servidor.put('/editar/instituicao/:id', isAuthenticated, (req, res) => {
+    verificarManutencao(res);
+  
+    const id = req.params.id;
+    const { nome, cnpj, conta, agencia } = req.body;
+  
+    if (nome && cnpj && conta && agencia) {
+      console.log('Valor do ID: ' + id);
+  
+      const query = `UPDATE instituicao SET nome = ?, cnpj = ?, conta = ?, agencia = ? WHERE id = ?`;
+      const values = [nome, cnpj, Number(conta), Number(agencia), Number(id)];
+  
+      connection.query(query, values, (err, results) => {
+        if (err) {
+          console.error('Erro ao editar instituição', err);
+          return res.status(500).send('Erro interno no servidor');
+        }
+        res.redirect("/dashboard/instituicoes");
+      });
+  
+    } else {
+      return res.status(400).send("[400]<br><hr><br>Bad Request!");
+    }
+  });
+  
 
   servidor.post('/cadastrar/instituicao', isAuthenticated, (req, res) => {
     verificarManutencao(res);
