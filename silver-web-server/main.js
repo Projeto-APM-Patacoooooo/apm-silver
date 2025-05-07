@@ -1,3 +1,6 @@
+//Limpando console para não confudirmos logs antigos com logs atuais
+console.clear();
+
 console.warn("[Servidor]: Iniciando...");
 
 let porta = 8080;
@@ -45,5 +48,5 @@ teclasMagicas.TeclasMagicas(router.mudarModoDeManutencao);
 
 //Colocando essa bagaça para rodar
 servidor.listen(porta, () => {
-    console.log(`[Servidor]: Estou funcionando e rodando em localhost:${porta}`);
+  console.log(`\n\n\n\n====================================================================\nSERVIDOR ZICA PARA O APM SILVER V1.5\n====================================================================\nFeito com ❤️  para a Etec Ermelinda \nRodando na porta ${porta} \nCom o enderenço de IP: N/A \n `);
 });

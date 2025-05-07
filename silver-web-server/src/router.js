@@ -1,3 +1,5 @@
+const express = require("express");
+
 let manutencao = false;
 
 function mudarModoDeManutencao(valor){
@@ -30,21 +32,11 @@ function Router(servidor) {
       Aqui se inicia uma lista extensa de rotas e o destino que elas levam
   */
 
-  servidor.get('/', function (req, res) {
-    verificarManutencao(res);
-    if(req.session.user){
-      res.render('pages/index', {logado: true, emailLogado: req.session.user.email})
-    } else {
-      res.render('pages/index',  {logado: false});
-    }
-  });
-
-  servidor.get('/dashboard', isAuthenticated, function (req, res) {
-    verificarManutencao(res);
-    res.render('pages/home_adm', {
-      emailLogado: req.session.user.emailLogado,
-    });
-  });
+  const inicio = require("./rotas/inicio.js")
+  inicio.rotear(servidor, verificarManutencao, isAuthenticated);
+  
+  const dashboard = require("./rotas/dashboard.js");
+  dashboard.rotear(servidor, verificarManutencao, isAuthenticated);
 
   servidor.get('/dashboard/instituicoes', isAuthenticated, function (req, res) {
     verificarManutencao(res);
@@ -76,7 +68,11 @@ function Router(servidor) {
 
   servidor.get('/membros', function (req, res) {
     verificarManutencao(res);
-    res.render('pages/membros');
+    if(req.session.user){
+      res.render('pages/membros', {logado: true, emailLogado: req.session.user.email})
+    } else {
+      res.render('pages/membros',  {logado: false});
+    }
   });
 
   servidor.get('/politica-de-privacidade', function (req, res) {
@@ -96,12 +92,11 @@ function Router(servidor) {
 
   servidor.get('/por-que-contribuir', function (req, res) {
     verificarManutencao(res);
-    res.render('pages/porque-contribuir');
-  });
-
-  servidor.get('/porque-contriubir', function (req, res) {
-    verificarManutencao(res);
-    res.render('pages/gerar_relatorios');
+    if(req.session.user){
+      res.render('pages/porque-contribuir', {logado: true, emailLogado: req.session.user.email})
+    } else {
+      res.render('pages/porque-contribuir',  {logado: false});
+    }
   });
 
   // Rota protegida (somente para usuários logados)
@@ -132,6 +127,38 @@ function Router(servidor) {
       }
 
       res.json(results[0]); // Retorna a notícia em formato JSON
+    });
+  });
+
+  servidor.get('/dashboard/instituicoes/editar', isAuthenticated, (req, res) => {
+    verificarManutencao(res);
+    const noticiaId = req.query.id; // Pega o parâmetro ?id= do navegador
+
+    if (!noticiaId) {
+      res.redirect('/dashboard/instituicoes')
+    }
+
+    const query = 'SELECT nome, cnpj, conta, agencia FROM instituicao WHERE id = ?';
+
+    connection.query(query, [noticiaId], (err, results) => {
+      if (err) {
+        console.error('Erro ao buscar notícia:', err);
+        return res.status(500).send('Erro interno no servidor');
+      }
+
+      if (results.length === 0) {
+        console.log("results: " + results)
+        console.error("[Erro um pouco preocupante]: Não foi possível encontrar uma notícia para editar. Mas ela deveria existir já que o usuário clicou no botão dela na página de dashboard?")
+        return;
+      }
+
+
+      var nome = results[0].nome;
+      var cnpj = results[0].cnpj;
+      var conta = results[0].conta;
+      var agencia = results[0].agencia;
+
+      res.render('pages/editar_instituicao', { nome, cnpj, conta, agencia, emailLogado: req.session.user.email }); // Retorna a notícia em formato JSON
     });
   });
 
