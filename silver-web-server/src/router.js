@@ -61,6 +61,14 @@ function Router(servidor) {
     });
   });
 
+  servidor.post('/dashboard/instituicoes/editar', isAuthenticated, function (req, res) {
+    verificarManutencao(res);
+    console.log(req.body)
+    res.render('pages/editar_inst', {
+      emailLogado: req.session.user.email
+    });
+  });
+
   servidor.get('/login', function (req, res) {
     verificarManutencao(res);
     res.render('pages/login');
