@@ -1,8 +1,16 @@
-function rotear(servidor, callbackVerificarMan, callbackIsAuth){
+function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection){
     servidor.get('/dashboard', callbackIsAuth, function (req, res) {
         callbackVerificarMan(res);
         res.render('pages/home_adm', {
           emailLogado: req.session.user.emailLogado,
+        });
+      });
+
+      servidor.get('/dashboard/instituicoes', callbackIsAuth, function (req, res) {
+        callbackVerificarMan(res);
+        res.render('pages/instituicoes', {
+          emailLogado: req.session.user.email,
+          chave: req.session.user.chave
         });
       });
 }
