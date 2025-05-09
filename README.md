@@ -6,7 +6,8 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
 
-> Levando a informação de cada centavo gasto na Associação de Pais e Mestres 
+## Nosso Objetivo
+O APMSILVER tem como finalidade facilitar a comunicação, a gestão de informações, o acompanhamento de atividades escolares e a organização de ações da Associação de Pais e Mestres (APM), promovendo a integração entre pais, responsáveis, professores e a escola.
 
 ### Ajustes e melhorias
 
