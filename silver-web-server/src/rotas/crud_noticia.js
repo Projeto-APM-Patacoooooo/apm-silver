@@ -93,6 +93,23 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
           res.json(results); // Retorna a notícia em formato JSON
         });
       });
+
+      servidor.get('/consultar/noticias', callbackIsAuth, (req, res) => {
+        const query = 'SELECT * FROM noticias';
+    
+        connection.query(query, (err, results) => {
+          if (err) {
+            console.error('Erro ao buscar meta:', err);
+            return res.status(500).send('Erro interno no servidor');
+          }
+    
+          if (results.length === 0) {
+            return res.status(404).send('Nenhuma noticia cadastrada');
+          }
+    
+          res.json(results); // Retorna a notícia em formato JSON
+        });
+      });
 }
 
 module.exports = {

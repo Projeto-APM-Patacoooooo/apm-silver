@@ -1,22 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/estilo-top.css">
     <link rel="shortcut icon" href="assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/estilo-top.css">
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
+
 <body>
-    
-        <%- include('../partials/barra-navegacao.ejs') %>
-        
+
+    <%- include('../partials/barra-navegacao.ejs') %>
+
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
-        <div class="caixa-politica-privacidade">
-            <h1>Política de Privacidade</h1>
-            <p></p>
+        <div class="container my-5">
+            <h1 class="text-center mb-4" class="titulo_termos">Termos de Uso do Sistema APMSILVER</h1>
+            <p style="text-align: center;">Última alteração: 8 de Maio de 2025 ás 20:47</p>
+            <div id="terms" class="terms-box">
+                <h5>1. Aceitação dos Termos</h5>
+                <p>Ao acessar e utilizar o sistema <strong>APMSILVER</strong>, o usuário concorda com os presentes
+                    Termos de Uso. Caso não concorde, não utilize o sistema.</p>
+
+                <h5>2. Objetivo do Sistema</h5>
+                <p>O <strong>APMSILVER</strong> tem como finalidade facilitar a comunicação, a gestão de informações, o
+                    acompanhamento de atividades escolares e a organização de ações da Associação de Pais e Mestres
+                    (APM), promovendo a integração entre pais, responsáveis, professores e a escola.</p>
+
+                <h5>3. Cadastro e Acesso</h5>
+                <ul>
+                    <li>O acesso ao <strong>APMSILVER</strong> está restrito a usuários autorizados pela APM.</li>
+                    <li>O usuário se compromete a fornecer informações verídicas e manter seus dados atualizados.</li>
+                    <li>O acesso é pessoal e intransferível.</li>
+                </ul>
+
+                <h5>4. Responsabilidades dos Usuários</h5>
+                <ul>
+                    <li>Utilizar o sistema de forma ética e em conformidade com as leis.</li>
+                    <li>Não publicar conteúdos ofensivos, discriminatórios ou ilegais.</li>
+                    <li>Não usar o sistema para fins comerciais sem autorização.</li>
+                </ul>
+
+                <h5>5. Privacidade e Proteção de Dados</h5>
+                <p>Os dados serão usados conforme a <strong>Lei Geral de Proteção de Dados (LGPD - Lei nº
+                        13.709/2018)</strong> e não serão compartilhados sem consentimento, salvo exigência legal.</p>
+
+                <h5>6. Propriedade Intelectual</h5>
+                <p>Todo o conteúdo do sistema <strong>APMSILVER</strong> é protegido por direitos autorais. É proibido
+                    reproduzir ou modificar qualquer parte sem autorização.</p>
+
+                <h5>7. Suspensão ou Encerramento de Acesso</h5>
+                <p>O acesso poderá ser suspenso ou encerrado em caso de violação destes Termos ou uso indevido.</p>
+
+                <h5>8. Modificações nos Termos</h5>
+                <p>A APM pode modificar estes Termos a qualquer momento. As mudanças entram em vigor após publicação no
+                    sistema.</p>
+
+                <h5>9. Contato</h5>
+                <p>Para dúvidas ou suporte, entre em contato: <strong>bernardino.silva@etec.sp.gov.br</strong>.</p>
+
+                <div class="mt-5 text-muted text-center">
+                    &copy; 2025 APMSILVER – Todos os direitos reservados.
+                    <br>
+                    Aplicável a partir de: 9 de Maio de 2025 ás 11:59
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button id="agreeBtn" class="btn btn-success agree-btn" onclick="proceed()"
+                    style="position:static; float: inline-end;">Concordo com os Termos</button>
+            </div>
         </div>
-        
+
+        <script>
+            const termsBox = document.getElementById('terms');
+            const agreeBtn = document.getElementById('agreeBtn');
+
+            termsBox.addEventListener('scroll', () => {
+                const atBottom = termsBox.scrollHeight - termsBox.scrollTop === termsBox.clientHeight;
+                if (atBottom) {
+                    agreeBtn.style.display = 'block';
+                }
+            });
+
+            function proceed() {
+                // Redirecionar ou executar ação ao concordar
+                window.location.href = "/"; // Altere o destino conforme necessário
+            }
+        </script>
+
         <!--FIM DO CONTEÚDO-->
 
         <%- include('../partials/footer.ejs') %>

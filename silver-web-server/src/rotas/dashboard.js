@@ -13,6 +13,14 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection){
           chave: req.session.user.chave
         });
       });
+
+      servidor.get('/dashboard/noticias', callbackIsAuth, function(req, res) {
+        callbackVerificarMan(res);
+        res.render('pages/noticias', {
+          emailLogado: req.session.user.email,
+          chave: req.session.user.chave
+        });
+      });
 }
 
 module.exports = {
