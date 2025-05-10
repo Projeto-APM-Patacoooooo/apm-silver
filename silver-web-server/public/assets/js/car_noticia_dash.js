@@ -15,26 +15,12 @@ xhr.onreadystatechange = () => {
 
 
             for (var i = 0; i < Object.keys(resultadoFormatado).length; i++) {
-
-                function invertStringWithoutInvertingContents(str) {
-                    // Split the string into an array of words
-                    let wordsArray = str.split(' ');
-                    
-                    // Reverse the order of the words in the array
-                    let reversedArray = wordsArray.reverse();
-                    
-                    // Join the reversed array back into a string
-                    let invertedString = reversedArray.join(' ');
-                    
-                    return invertedString;
-                }
-                
-                // Example usage:
                 var alvoAtual = resultadoFormatado[i]
                 var data_pub = alvoAtual.data_publicacao;
-                var data_formatada = invertStringWithoutInvertingContents(JSON.stringify(data_pub));
+                var data = new Date(data_pub); 
+                let formatada = new Intl.DateTimeFormat('pt-BR').format(data);
 
-                alvoInstituicoes.innerHTML += `<tr><td>${alvoAtual.id_noticia}</td><td>${alvoAtual.titulo_noticia}</td><td>${data_formatada}</td><td><button onclick=irParaPaginaDeEdicao(${alvoAtual.id})>Editar</button></td><td><button onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td><tr>`
+                alvoInstituicoes.innerHTML += `<tr><td scope="row">${alvoAtual.titulo_noticia}</td><td>${formatada}</td><td><button onclick=irParaPaginaDeEdicao(${alvoAtual.id})>Editar</button></td><td><button onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td><tr>`
 
             }
             document.getElementById("aviso-nada").remove();

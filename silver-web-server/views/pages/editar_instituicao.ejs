@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
     <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
@@ -32,9 +33,11 @@
                 <br>
                 <input id="agencia" type="number" name="agencia" value="<%=agencia%>" required>
                 <br>
-                <button onclick="EditarUrl(Number(document.getElementById('id').value), document.getElementById('nome').value, document.getElementById('cnpj').value, Number(document.getElementById('conta').value), Number(document.getElementById('agencia').value))">Editar</button>
+                <button onclick="EditarUrl(Number(document.getElementById('id').value), document.getElementById('nome').value, document.getElementById('cnpj').value, Number(document.getElementById('conta').value), Number(document.getElementById('agencia').value))" type="button" style="margin-top: 10px;" class="btn btn-dark">Editar</button>
             </form>
         </div>
+
+        
         <script src="/assets/js/editor_de_instituicoes.js"></script>
         <!--FIM DO CONTEÚDO-->
 

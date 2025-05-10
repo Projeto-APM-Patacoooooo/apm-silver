@@ -938,6 +938,7 @@ footer {
     margin-bottom: 10px;
     margin-top: 10px;
     text-align: center;
+    padding: 35px 35px;
 }
 
 .rotulo-usuario{
@@ -996,8 +997,46 @@ footer {
     margin-bottom: 10px;
     margin-top: 10px;
     text-align: center;
+    padding: 35px 35px;
 }
 
+.em-linha{
+     display: flex;
+    flex-direction: row;
+}
+
+.btn-adicionar{
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-size: x-large;
+    background-color: #211f1f;
+    padding: 0px 10px;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.btn-adicionar:hover{
+    background-color: #434040;
+}
+
+.adicionar-instituicao-container{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 490px;
+    padding: 15px 15px;
+    margin-bottom: 30px;
+    background-color: #cccaca;
+    border-radius: 3px;
+    color: black;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.adicionar-instituicao-container input, button{
+    width: 70%;
+}
 
 @media (prefers-color-scheme: dark) {
     body {

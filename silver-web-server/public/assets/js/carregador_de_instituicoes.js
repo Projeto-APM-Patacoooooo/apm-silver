@@ -14,7 +14,7 @@ xhr.onreadystatechange = () => {
             for (var i = 0; i < Object.keys(resultadoFormatado).length; i++) {
                 var alvoAtual = resultadoFormatado[i]         
 
-                alvoInstituicoes.innerHTML += `<tr><td>${alvoAtual.id}</td><td>${alvoAtual.nome}</td><td><button onclick=irParaPaginaDeEdicao(${alvoAtual.id})>Editar</button></td><td><button onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td><tr>`
+                alvoInstituicoes.innerHTML += `<tr><td scope="row">${alvoAtual.nome}</td><td><button class="btn btn-primary" onclick=irParaPaginaDeEdicao(${alvoAtual.id})>Editar</button></td><td><button class="btn btn-danger" onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td><tr>`
 
             }
             document.getElementById("aviso-nada").remove();

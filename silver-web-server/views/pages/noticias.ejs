@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
     <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
@@ -12,16 +13,18 @@
         
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
         <div class="noticias-container">
-            <h2>Notícias</h2>
-            <a href="/dashboard/instituicoes/adicionar">adicionar</a>
-            <table border=1 class="tabela-noticias">
+            <div class="em-linha"></div>
+                <h2>Notícias</h2>
+                <a href="/dashboard/instituicoes/adicionar">adicionar</a>
+            </div>
+            
+            <table border=1 class="tabela-noticias table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Título</th>
-                        <th>Data de Publicação</th>
-                        <th>Editar</th>
-                        <th>Excluir</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Data de Publicação</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Excluir</th>
                     </tr>
                 </thead>
                 <tbody id="alvo-noticias">

@@ -1,6 +1,6 @@
 function Editar(id, novoNome, NovoCNPJ, novaConta, novaAgencia){
     console.log(id)
-    fetch('/editar/instituicao', {
+    fetch('/editar/noticia', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

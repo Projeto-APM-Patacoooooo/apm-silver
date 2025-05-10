@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
     <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
@@ -19,15 +20,16 @@
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
 
         <div class="instituicoes-container">
-            <h2>Instituições</h2>
-            <a href="/dashboard/instituicoes/adicionar">adicionar</a>
-            <table border=1 class="tabela-instituicoes">
+            <div class="em-linha">
+                <h2>Instituições</h2>
+                <a href="/dashboard/instituicoes/adicionar" class="btn-adicionar">Adicionar +</a>
+            </div>
+            <table class="tabela-instituicoes table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Editar</th>
-                        <th>Excluir</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Excluir</th>
                     </tr>
                 </thead>
                 <tbody id="alvo-instituicoes">
@@ -36,7 +38,6 @@
                     </tr>
                 </tbody>
             </table>
-            <p>*O ID não necessáriamente representa a ordem em que as instituições foram cadastradas.</p>
         </div>
 
         <script src="/assets\js\carregador_de_instituicoes.js"></script>
