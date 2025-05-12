@@ -17,10 +17,15 @@ xhr.onreadystatechange = () => {
             for (var i = 0; i < Object.keys(resultadoFormatado).length; i++) {
                 var alvoAtual = resultadoFormatado[i]
                 var data_pub = alvoAtual.data_publicacao;
-                var data = new Date(data_pub); 
-                let formatada = new Intl.DateTimeFormat('pt-BR').format(data);
+                var data_edi = alvoAtual.data_edicao;
 
-                alvoInstituicoes.innerHTML += `<tr><td scope="row">${alvoAtual.titulo_noticia}</td><td>${formatada}</td><td><button onclick=irParaPaginaDeEdicao(${alvoAtual.id})>Editar</button></td><td><button onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td><tr>`
+                var data = new Date(data_pub); 
+                var formatada = new Intl.DateTimeFormat('pt-BR').format(data);
+
+                var edi_data = new Date(data_edi);
+                var edi_forma = new Intl.DateTimeFormat('pt-BR').format(edi_data);
+
+                alvoInstituicoes.innerHTML += `<tr><td scope="row">${alvoAtual.titulo_noticia}</td><td>${formatada}</td><td>${edi_forma}</td><td><button class="btn btn-primary" onclick=irParaPaginaDeEdicao(${alvoAtual.id})>Editar</button></td><td><button class="btn btn-danger" onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td><tr>`
 
             }
             document.getElementById("aviso-nada").remove();

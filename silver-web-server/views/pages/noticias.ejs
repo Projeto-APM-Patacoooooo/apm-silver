@@ -13,16 +13,17 @@
         
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
         <div class="noticias-container">
-            <div class="em-linha"></div>
+            <div class="em-linha">
                 <h2>Notícias</h2>
-                <a href="/dashboard/instituicoes/adicionar">adicionar</a>
+                <a href="/dashboard/noticias/adicionar" class="btn-adicionar">Adicionar +</a>
             </div>
             
-            <table border=1 class="tabela-noticias table">
+            <table class="tabela-noticias table">
                 <thead>
                     <tr>
                         <th scope="col">Título</th>
                         <th scope="col">Data de Publicação</th>
+                        <th scope="col">Última Edição</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Excluir</th>
                     </tr>
@@ -33,7 +34,7 @@
                     </tr>
                 </tbody>
             </table>
-            <p>*O ID não necessáriamente representa a ordem em que as notícias foram cadastradas.</p>
+
         </div>
         
         <script src="/assets/js/car_noticia_dash.js"></script>

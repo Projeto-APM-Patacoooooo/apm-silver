@@ -54,16 +54,11 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
     
       //Faz com que seja possível buscar as três primeiras noticias em destaque
       //Para testar use: "localhost:8080/dest_noticia?id=1"
-      servidor.get('/dest_noticia', (req, res) => {
-        const destaqueId = req.query.id; // Pega o parâmetro ?id= do navegador
+      servidor.get('/noticias_recentes', (req, res) => {
     
-        if (!destaqueId) {
-          return res.status(400).send('ID do destaque é obrigatório');
-        }
+        const query = 'SELECT * FROM noticias ORDER BY data_publicacao DESC LIMIT 3';
     
-        const query = 'SELECT * FROM noticias_destaque WHERE id_destaque = ?';
-    
-        connection.query(query, [destaqueId], (err, results) => {
+        connection.query(query, (err, results) => {
           if (err) {
             console.error('Erro ao buscar destaque:', err);
             return res.status(500).send('Erro interno no servidor');
@@ -73,7 +68,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
             return res.status(404).send('Destaque não encontrado');
           }
     
-          res.json(results[0]); // Retorna a notícia em formato JSON
+          res.json(results); // Retorna a notícia em formato JSON
         });
       });
 
@@ -110,6 +105,22 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
           res.json(results); // Retorna a notícia em formato JSON
         });
       });
+
+      servidor.post('/cadastrar/noticia', callbackIsAuth, (req, res) => {
+        if(req.body.titulo && req.body.conteudo){
+          const query = `insert into noticias(titulo_noticia, conteudo, data_publicacao, data_edicao, id_staff) values(${req.body.titulo}, ${req.body.conteudo}, now(), now(), 1)`
+          
+          connection.query(query, (err, results) => {
+            if (err) {
+              console.error('Erro ao postar noticia', err);
+              return res.status(500).send('Erro interno no servidor');
+            }
+            res.redirect("/dashboard/noticias")
+          });
+
+        }
+        
+      })
 }
 
 module.exports = {

@@ -21,6 +21,13 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection){
           chave: req.session.user.chave
         });
       });
+
+      servidor.get('/dashboard/noticias/adicionar', callbackIsAuth, (req, res) => {
+        res.render('pages/adicionar_noti', {
+          emailLogado: req.session.user.email,
+  
+        });
+      });
 }
 
 module.exports = {

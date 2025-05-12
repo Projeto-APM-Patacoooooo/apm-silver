@@ -1,8 +1,6 @@
 create database apm_silver;
 use apm_silver;
 
-
-drop database apm_silver;
 create table if not exists staffs (
     id_staff int primary key auto_increment,
     nome varchar(250) not null,
@@ -21,7 +19,8 @@ create table if not exists noticias (
     id_noticia int primary key auto_increment,
     titulo_noticia varchar(150) not null,
     conteudo varchar(250) not null,
-    data_publicacao date,
+    data_publicacao date not null,
+    data_edicao date not null,
     id_staff int not null,
     foreign key (id_staff) references staffs(id_staff) on delete cascade
 );
@@ -36,12 +35,6 @@ create table if not exists instituicao(
 
 insert into instituicao(nome, cnpj, conta, agencia)
 values ("Bradesco", "1242141", 1240129, 12094801);
-
-create table if not exists noticias_destaque(
-	id_destaque int primary key not null,
-	id_noticia int not null,
-    foreign key (id_noticia) references noticias(id_noticia) on delete cascade
-);
 
 create table if not exists metas (
     id_meta int primary key auto_increment,
@@ -71,10 +64,10 @@ values ("Diretor", "Diretoria Executiva", "Bruno Santos Nascimento"),
 ("Diretora", "Diretoria Financeira", "Magali Aparecida Dias"),
 ("Vice-diretor financeiro:", "Diretoria Financeira", "José Antônio Labella");
 
-insert into noticias(titulo_noticia, conteudo, data_publicacao, id_staff)
-values("Alunos do CPS são premiados com o Intercâmbio Cultural.", "blablabla cultura blablabl...", "2025-03-31", 1),
-("Alunos organizam um Escape Room.", "blablabla Escape Room blablabla...", "2025-03-31", 2),
-("TCC será realizado em dezembro.", "blablabla Trabalho de Conclusão de Curso blablabla...", "2025-03-31", 4);
+insert into noticias(titulo_noticia, conteudo, data_publicacao, data_edicao, id_staff)
+values("Alunos do CPS são premiados com o Intercâmbio Cultural.", "blablabla cultura blablabl...", "2025-03-31", "2025-03-31", 1),
+("Alunos organizam um Escape Room.", "blablabla Escape Room blablabla...", "2025-03-31", "2025-03-31", 2),
+("TCC será realizado em dezembro.", "blablabla Trabalho de Conclusão de Curso blablabla...", "2025-03-31", "2025-03-31", 4);
 
 insert into noticias_destaque(id_destaque, id_noticia)
 values("1", "1"), ("2", "2"), ("3", "3");
