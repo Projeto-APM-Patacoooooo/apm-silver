@@ -108,7 +108,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
 
       servidor.post('/cadastrar/noticia', callbackIsAuth, (req, res) => {
         if(req.body.titulo && req.body.conteudo){
-          const query = `insert into noticias(titulo_noticia, conteudo, data_publicacao, data_edicao, id_staff) values(${req.body.titulo}, ${req.body.conteudo}, now(), now(), 1)`
+          const query = `insert into noticias(titulo_noticia, conteudo, data_publicacao, data_edicao, id_staff) values("${req.body.titulo}", "${req.body.conteudo}", now(), now(), 1)`
           
           connection.query(query, (err, results) => {
             if (err) {
@@ -120,7 +120,57 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
 
         }
         
-      })
+      });
+
+      servidor.post('/excluir/noticia', callbackIsAuth, (req, res) => {
+    
+        const instituicaoId = req.body.id; // Pega o parâmetro ?id= do navegador
+        console.log("Nova solicitação de exclusão de instituição: id: " + instituicaoId)
+    
+        if (!instituicaoId) {
+          return res.status(400).send('ID do destaque é obrigatório');
+        }
+    
+        const query = 'DELETE FROM noticias WHERE id_noticia = ?';
+    
+        connection.query(query,  [instituicaoId], (err, results) => {
+          if (err) {
+            console.error('Erro ao excluir noticia:', err);
+            return res.status(500).send('Erro interno no servidor');
+          }
+    
+          if (results.length === 0) {
+            return res.status(404).send('A noticia não existe!');
+          }
+    
+          res.redirect("/dashboard/noticias")
+        });
+      });
+
+      servidor.put('/editar/noticia/:id', callbackIsAuth, (req, res) => {
+        callbackVerificarMan(res);
+      
+        const id = req.params.id;
+        const { titulo, conteudo } = req.body;
+      
+        if (titulo && conteudo) {
+          console.log('Valor do ID: ' + id);
+      
+          const query = `UPDATE noticias SET titulo = ?, conteudo = ? WHERE id = ?`;
+          const values = [titulo, conteudo, Number(id)];
+      
+          connection.query(query, values, (err, results) => {
+            if (err) {
+              console.error('Erro ao editar noticia', err);
+              return res.status(500).send('Erro interno no servidor');
+            }
+            res.redirect("/dashboard/instituicoes");
+          });
+      
+        } else {
+          return res.status(400).send("[400]<br><hr><br>Bad Request!");
+        }
+      });
 }
 
 module.exports = {

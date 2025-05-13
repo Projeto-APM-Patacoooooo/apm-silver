@@ -25,7 +25,7 @@ xhr.onreadystatechange = () => {
                 var edi_data = new Date(data_edi);
                 var edi_forma = new Intl.DateTimeFormat('pt-BR').format(edi_data);
 
-                alvoInstituicoes.innerHTML += `<tr><td scope="row">${alvoAtual.titulo_noticia}</td><td>${formatada}</td><td>${edi_forma}</td><td><button class="btn btn-primary" onclick=irParaPaginaDeEdicao(${alvoAtual.id})>Editar</button></td><td><button class="btn btn-danger" onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td><tr>`
+                alvoInstituicoes.innerHTML += `<tr><td scope="row">${alvoAtual.titulo_noticia}</td><td>${formatada}</td><td>${edi_forma}</td><td><button class="btn btn-primary" onclick=irParaPaginaDeEdicao(${alvoAtual.id})>Editar</button></td><td><button class="btn btn-danger" onclick=IniciarExclusao(${alvoAtual.id_noticia})>Excluir</button></td><tr>`
 
             }
             document.getElementById("aviso-nada").remove();

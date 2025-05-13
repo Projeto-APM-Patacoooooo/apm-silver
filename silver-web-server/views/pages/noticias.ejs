@@ -38,6 +38,13 @@
         </div>
         
         <script src="/assets/js/car_noticia_dash.js"></script>
+        <script src="/assets/js/excluidor_de_noticias.js"></script>
+        <script>
+
+            function irParaPaginaDeEdicao(id){
+                window.location = `/dashboard/noticias/editar`
+        }
+        </script>
         <!--FIM DO CONTEÚDO-->
 
         <%- include('../partials/footer.ejs') %>
