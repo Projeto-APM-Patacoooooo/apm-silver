@@ -27,7 +27,7 @@ function Editar(id, titulo, conteudo){
 
 function EditarUrl(id, titulo, conteudo) {
   console.log(id);
-  fetch(`/editar/noticia/${id}`, {
+  fetch(`/editar/noticia?id=${Number(id)}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

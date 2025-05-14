@@ -18,7 +18,7 @@ values ("Bernadino", "bernardino@etec.sp.gov.br", "palmeiras", "Desenvolvedor"),
 create table if not exists noticias (
     id_noticia int primary key auto_increment,
     titulo_noticia varchar(150) not null,
-    conteudo varchar(250) not null,
+    conteudo longtext not null,
     data_publicacao date not null,
     data_edicao date not null,
     id_staff int not null,
@@ -63,14 +63,6 @@ values ("Diretor", "Diretoria Executiva", "Bruno Santos Nascimento"),
 ("Vice-diretora Executiva:", "Diretoria Executiva", "Maria Ângela Teodoro"),
 ("Diretora", "Diretoria Financeira", "Magali Aparecida Dias"),
 ("Vice-diretor financeiro:", "Diretoria Financeira", "José Antônio Labella");
-
-insert into noticias(titulo_noticia, conteudo, data_publicacao, data_edicao, id_staff)
-values("Alunos do CPS são premiados com o Intercâmbio Cultural.", "blablabla cultura blablabl...", "2025-03-31", "2025-03-31", 1),
-("Alunos organizam um Escape Room.", "blablabla Escape Room blablabla...", "2025-03-31", "2025-03-31", 2),
-("TCC será realizado em dezembro.", "blablabla Trabalho de Conclusão de Curso blablabla...", "2025-03-31", "2025-03-31", 4);
-
-insert into noticias_destaque(id_destaque, id_noticia)
-values("1", "1"), ("2", "2"), ("3", "3");
 
 insert into metas(titulo_meta, data_meta, batida, id_staff)
 values("Comprar SSD´S para as máquinas dos laboratórios.", null, true, 2),

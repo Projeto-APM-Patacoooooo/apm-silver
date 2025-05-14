@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,94 +8,105 @@
     <link rel="shortcut icon" href="assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
+
 <body>
     <% if (logado) { %>
         <%- include('../partials/barra-navegacao-adm.ejs') %>
-    <% } else { %>
-        <%- include('../partials/barra-navegacao.ejs') %>
-    <% } %>
-    
-          
-        
-        <!--INICIO DO CONTEÚDO DA PÁGINA-->
-        <div class="balao-pix" id="pix">
+            <% } else { %>
+                <%- include('../partials/barra-navegacao.ejs') %>
+                    <% } %>
+
+
+
+                        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+                        <!--div class="balao-pix" id="pix">
             <h1>Pix:</h1>
             <p>11961748831</p>
             <button onclick="document.getElementById('pix').remove()">X</button>
-        </div>
+        </div-->
 
-        <div class="container">
-            <div class="explicacao-sobre-apm">
-                <h1>Associação de Pais e Mestres (APM)</h1>
-                <p class="explicacao">A Associação de Pais e Mestres (APM) da Escola Técnica Estadual (Etec) Profª Ermelinda Giannini Teixeira , é um meio de participação ativa da comunidade na gestão escolar. Ela contribui para o alcance dos objetivos educacionais da escola e atua como representante das demandas e interesses da comunidade, dos pais e dos responsáveis pelos alunos.</p>
-            </div>
-
-            <div class="caixa-noticias">
-                <h1>Notícias</h1>
-                <a href="" id="lk_not1" class="lk_not">
-                    <div class="noticia">
-                        <p class="titulo-noticia" id="lbl_noticia1">Carregando...</p>
-                        <p class="time-stamp-noticia" id="tm_noticia1">Há 2025 anos atrás</p>
-                        <p class="lbl-novo" hidden="true" id="lbl-novo1">NOVO!</p>
-                    </div>
-                </a>
-                <a href="" id="lk_not2" class="lk_not">
-                    <div class="noticia">
-                        <p class="titulo-noticia" id="lbl_noticia2">Carregando...</p>
-                        <p class="time-stamp-noticia" id="tm_noticia2">Há 2025 anos atrás</p>
-                        <p class="lbl-novo" hidden="true" id="lbl-novo2">NOVO!</p>
-                    </div>
-                </a>
-
-                <a href="" id="lk_not3" class="lk_not">
-                    <div class="noticia">
-                        <p class="titulo-noticia" id="lbl_noticia3">Carregando...</p>
-                        <p class="time-stamp-noticia" id="tm_noticia3">Há 2025 anos atrás</p>
-                        <p class="lbl-novo" hidden="true" id="lbl-novo3">NOVO!</p>
-                    </div>
-                </a>
-                <a class="btn-ver-mais" href="">Ver tudo</a>
-                
-            </div>
-
-            <div class="caixa-metas">
-
-                <h1>Metas</h1>
-                    <div class="metas">
-                        <a href="" id="lk_met1" class="lk_met">
-                            <div class="meta">
-                                <p class="titulo-meta" id="lbl_meta1">Carregando...</p>
-                                <p class="status-meta" id="sts_met1">Carregando..</p>
+                        <div class="container">
+                            <div class="explicacao-sobre-apm">
+                                <h1>Associação de Pais e Mestres (APM)</h1>
+                                <p class="explicacao">A Associação de Pais e Mestres (APM) da Escola Técnica Estadual
+                                    (Etec) Profª Ermelinda Giannini Teixeira , é um meio de participação ativa da
+                                    comunidade na gestão escolar. Ela contribui para o alcance dos objetivos
+                                    educacionais da escola e atua como representante das demandas e interesses da
+                                    comunidade, dos pais e dos responsáveis pelos alunos.</p>
                             </div>
-                        </a>
-                        <a href="" id="lk_met2" class="lk_met">
-                            <div class="meta">
-                                <p class="titulo-meta" id="lbl_meta2">Carregando...</p>
-                                <p class="status-meta" id="sts_met2">Carregando..</p>
-                            </div>
-                        </a>
-                        <a href="" id="lk_met3" class="lk_met">
-                            <div class="meta">
-                                <p class="titulo-meta" id="lbl_meta3">Carregando...</p>
-                                <p class="status-meta" id="sts_met3">Carregando..</p>
-                            </div>
-                        </a>
-                    </div>
-                    
-                <a class="btn-ver-mais" href="">Ver tudo</a>
-            </div>
 
-            <div class="carrosel-escola">
-                <button onclick="retroceder()" style="margin-left: 2px;">&lt;</button>
-                <img id="carro_img" src="assets/img/ermelinda_01.jpeg" width="510" height="270">
-                <button onclick="avancar()" style="margin-left: -49px;">&gt;</rt></button>
-            </div>
-        </div>
-        <script src="assets/js/carregador_de_noticias.js"></script>
-        <script src="assets/js/carregador_de_metas.js"></script>
-        <script src="assets/js/gerenciador_carrossel.js"></script>
-        
-        <!--FIM DO CONTEÚDO-->
+                            <div class="centralizador-not-met">
+                                <!--Notícias-->
+                                <div class="caixa-noticias">
+                                    <h1>Notícias</h1>
+                                    <a class="lk_not" id="nada-not" style="display: none;">
+                                        <div class="noticia">
+                                            <p class="titulo-noticia">Não temos nenhuma notícia para te mostrar... ☹️
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a href="" id="lk_not1" class="lk_not">
+                                        <div class="noticia">
+                                            <p class="titulo-noticia" id="lbl_noticia1">Carregando...</p>
+                                            <p class="time-stamp-noticia" id="tm_noticia1">Há 2025 anos atrás</p>
+                                            <p class="lbl-novo" hidden="true" id="lbl-novo1">NOVO!</p>
+                                        </div>
+                                    </a>
+                                    <a href="" id="lk_not2" class="lk_not">
+                                        <div class="noticia">
+                                            <p class="titulo-noticia" id="lbl_noticia2">Carregando...</p>
+                                            <p class="time-stamp-noticia" id="tm_noticia2">Há 2025 anos atrás</p>
+                                            <p class="lbl-novo" hidden="true" id="lbl-novo2">NOVO!</p>
+                                        </div>
+                                    </a>
 
-        <%- include('../partials/footer.ejs') %>
+                                    <a href="" id="lk_not3" class="lk_not">
+                                        <div class="noticia">
+                                            <p class="titulo-noticia" id="lbl_noticia3">Carregando...</p>
+                                            <p class="time-stamp-noticia" id="tm_noticia3">Há 2025 anos atrás</p>
+                                            <p class="lbl-novo" hidden="true" id="lbl-novo3">NOVO!</p>
+                                        </div>
+                                    </a>
+                                    <a class="btn-ver-mais" id="btn-vmais" href="">Ver tudo</a>
+                                </div>
+
+                                <!--Metas (por mais que seja o mesmo estilo das notícias)-->
+                                <div class="caixa-noticias">
+                                    <h1>Metas</h1>
+                                    <a href="" id="lk_not1" class="lk_not">
+                                        <div class="noticia">
+                                            <p class="titulo-noticia" id="lbl_meta1">Carregando...</p>
+                                            <p class="time-stamp-noticia" id="sts_met1">Há 2025 anos atrás</p>
+                                        </div>
+                                    </a>
+                                    <a href="" id="lk_not2" class="lk_not">
+                                        <div class="noticia">
+                                            <p class="titulo-noticia" id="lbl_meta2">Carregando...</p>
+                                            <p class="time-stamp-noticia" id="sts_met2">Há 2025 anos atrás</p>
+                                        </div>
+                                    </a>
+                                    <a href="" id="lk_not3" class="lk_not">
+                                        <div class="noticia">
+                                            <p class="titulo-noticia" id="lbl_meta3">Carregando...</p>
+                                            <p class="time-stamp-noticia" id="sts_met3">Há 2025 anos atrás</p>
+                                        </div>
+                                    </a>
+                                    <a class="btn-ver-mais" id="btn-vmais" href="">Ver tudo</a>
+                                </div>
+                            </div>
+
+
+                            <div class="carrosel-escola">
+                                <button onclick="retroceder()" style="margin-left: 2px;">&lt;</button>
+                                <img id="carro_img" src="assets/img/ermelinda_01.jpeg" width="510" height="270">
+                                <button onclick="avancar()" style="margin-left: -49px;">&gt;</rt></button>
+                            </div>
+                        </div>
+                        <script src="assets/js/carregador_de_noticias.js"></script>
+                        <script src="assets/js/carregador_de_metas.js"></script>
+                        <script src="assets/js/gerenciador_carrossel.js"></script>
+
+                        <!--FIM DO CONTEÚDO-->
+
+                        <%- include('../partials/footer.ejs') %>
 </body>
