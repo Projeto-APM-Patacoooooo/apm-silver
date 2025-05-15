@@ -143,7 +143,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
         });
       });
 
-      servidor.put('/editar/noticia/:id', callbackIsAuth, (req, res) => {
+      servidor.put('/editar/noticia/', callbackIsAuth, (req, res) => {
         callbackVerificarMan(res);
       
         const id = req.params.id;
@@ -176,12 +176,13 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
           res.redirect('/dashboard/noticias')
         }
     
-        const query = 'SELECT nome, cnpj, conta, agencia FROM instituicao WHERE id = ?';
+        console.log(noticiaId)
+        const query =`SELECT * FROM noticias WHERE id_noticia = ${Number(req.query.id)}`;
     
-        connection.query(query, [noticiaId], (err, results) => {
+        connection.query(query, (err, results) => {
           if (err) {
             console.error('Erro ao buscar notícia:', err);
-            return res.status(500).send('Erro interno no servidor');
+            return
           }
     
           if (results.length === 0) {
@@ -190,12 +191,11 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
             return;
           }
     
-          var nome = results[0].nome;
-          var cnpj = results[0].cnpj;
-          var conta = results[0].conta;
-          var agencia = results[0].agencia;
           
-          res.render('pages/editar_noticia', { id: req.query.id, nome, cnpj, conta, agencia, emailLogado: req.session.user.email }); // Retorna a notícia em formato JSON
+          var titulo_noticia = results[0].titulo_noticia;
+          var conteudo = results[0].conteudo;
+
+          res.render('pages/editar_noticia', { id: req.query.id, titulo_noticia, conteudo, emailLogado: req.session.user.email }); // Retorna a notícia em formato JSON
         });
       });
 }

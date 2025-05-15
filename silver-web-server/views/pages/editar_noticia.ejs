@@ -15,18 +15,17 @@
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
         <div class="adicionar-instituicao-container">
             <form action="/editar/noticia" method="get">
-                <h1 id="titulo-login">Editar Noticia</h1>
+                <h1 id="titulo-login">Editar Notícia</h1>
                 <input type="number" value="<%=id%>" id="id" hidden>
                 <label>Título:</label>
                 <br>
-                <input id="nome" type="text" name="titulo" value="<%=titulo%>" required>
+                <input id="nome" type="text" name="titulo" value="<%=titulo_noticia%>" required>
                 <br>
                 <label>Conteúdo:</label>
                 <br>
-                <textarea name="conteudo" value="<%conteudo%>" required></textarea>
-                <input id="cnpj" type="text" name="cnpj" value="<%=cnpj%>" required>
+                <textarea id="conteudo" name="conteudo" required><%=conteudo%></textarea>
                 <br>
-                <button onclick="EditarUrl(Number(document.getElementById('id').value), document.getElementById('nome').value, document.getElementById('cnpj').value)" type="button" style="margin-top: 10px;" class="btn btn-dark">Editar</button>
+                <button onclick="EditarUrl(Number(document.getElementById('id').value), document.getElementById('nome').value, document.getElementById('conteudo').innerText)" type="button" style="margin-top: 10px;" class="btn btn-dark">Editar</button>
             </form>
         </div>
 

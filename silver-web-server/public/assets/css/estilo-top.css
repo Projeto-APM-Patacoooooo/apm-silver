@@ -14,6 +14,7 @@
 
 body {
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 ::selection {
@@ -271,6 +272,8 @@ footer {
     width: 800px;
     margin-right: auto;
     margin-left: auto;
+    border: 2px dotted #c6c5c5;
+    padding: 15px 15px;
 }
  
 .explicacao-sobre-apm h1{
@@ -355,14 +358,15 @@ footer {
 }
 
 .caixa-noticias{
-    margin-top: 10px;
+    margin-top: 8px;
     padding: 1px 15px;
     width: 400px;
     height: 240px;
     border-radius: 3px;
     color: #2b0101; 
-    border: 2px dotted whitesmoke;
-    margin-left: 10px;
+    border: 2px dotted #c6c5c5;
+    background-color: #cccaca;
+    margin-left: 1px;
 }
 
 .lk_not{
@@ -401,9 +405,9 @@ footer {
     font-weight: 400;
     font-size: x-small;
     font-style: small;
-    margin-top: -21px;
+    margin-top: -25px;
     float: right;
-    color: #C67C14;
+    color: #ffb43b;
     font-size: x-small;
 }
 
@@ -448,7 +452,7 @@ footer {
     height: 240px;
     border-radius: 3px;
     color: #2b0101; 
-    border: 2px dotted whitesmoke;
+    border: 2px dotted #c6c5c5;
 }
 
 .caixa-metas h1{
@@ -901,7 +905,7 @@ footer {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-style: normal;
-    background-color: #C67C14;
+    background-color: #c6c5c5;
 }
 
 .painel-de-controle h3{

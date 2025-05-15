@@ -45,7 +45,7 @@ function EditarUrl(id, titulo, conteudo) {
       } else {
           console.error('Erro ao editar noticia.');
       }
-      window.location = "/dashboard/noticias"
+      //window.location = "/dashboard/noticias"
   })
   .catch(error => {
       console.error('Erro de rede:', error);
