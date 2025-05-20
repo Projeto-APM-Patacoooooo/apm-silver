@@ -1,91 +1,65 @@
-# APM SILVER
+# APM SILVER 📘
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/Projeto-APM-Patacoooooo/apm-silver)
+![GitHub language count](https://img.shields.io/github/languages/count/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Projeto-APM-Patacoooooo/apm-silver?style=for-the-badge)
 
-## Nosso Objetivo
-O APMSILVER tem como finalidade facilitar a comunicação, a gestão de informações, o acompanhamento de atividades escolares e a organização de ações da Associação de Pais e Mestres (APM), promovendo a integração entre pais, responsáveis, professores e a escola.
+---
 
-### Ajustes e melhorias
+## 🎯 Nosso Objetivo
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
+O **APM SILVER** é uma plataforma online com o objetivo de facilitar a comunicação, a gestão de informações, o acompanhamento de atividades escolares e a organização de ações da Associação de Pais e Mestres (APM). Seu foco é promover a integração entre pais, responsáveis, professores e a escola.
 
-- [X] Prototipar BackEnd e FrontEnd
-- [ ] Implementar um design responsivo e prático
-- [ ] Finalizar BackEnd e FrontEnd
-- [ ] Procurar por Bugs
-- [ ] Hospedar o site em um servidor dedicado
+---
 
-## Pré-requisitos
+## 📅 Ajustes e Melhorias
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
+O projeto ainda está em desenvolvimento. As próximas etapas previstas incluem:
 
-- Você instalou a versão mais recente de `NODE.js` e `SQL`
-- Você tem uma máquina `Windows / Linux / Mac`. 
-- Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
+- ✅ Prototipar Back-End e Front-End
+- ⏳ Implementar um design responsivo e prático
+- ⏳ Finalizar Back-End e Front-End
+- ⏳ Realizar testes e correções de bugs
+- ⏳ Hospedar o site em um servidor dedicado ou na nuvem
 
-## Instalando APM SILVER
+---
 
-Para instalar o APM SILVER, siga estas etapas:
+## ⚙️ Pré-requisitos
 
-Windows:
+Antes de começar, verifique se você atende aos seguintes requisitos:
 
-baixe o código fonte do projeto e abra o prompt de comando na pasta em que você salvou:
+- Possui a versão mais recente do **Node.js** e do **MySQL**
+- Está utilizando uma máquina com **Windows**, **Linux** ou **macOS**
+- Leu e seguiu a documentação do projeto
 
-```
+---
+
+## 📦 Instalando Dependências
+
+Clone o repositório e abra o terminal na pasta do projeto:
+
+```bash
 npm install
 ```
-
-em seguida crie um arquivo `.env` no diretório pricipal do projeto e defina uma variável `PWD` na qual o valor deve ser a senha do seu banco de dados
-
-execute o script `bd.sql` para iniciar o banco de dados
-
-## Usando APM SILVER
-
-Para usar APM SILVER, siga estas etapas:
-
-No terminal execute:
-```
-node .
+Depois, crie um arquivo .env no diretório principal com o seguinte conteúdo:
+```.env 
+PWD=suaSenhaDoBanco
 ```
 
+## 🚀 Usando o APM SILVER
 
-## Comandos Bônus
+Para iniciar o projeto, execute o seguinte comando no terminal:
+```bash
+node . 
+ ```
 
-modo manutenção
-`aperte 'M' durante a execução do projeto`
+## 🛠️ Comandos Bônus
 
-## Equipe de Desenvolvimento
+Durante a execução do projeto, você pode ativar o modo de manutenção pressionando a tecla:
+``M``
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="#" title="Produtor Executivo">
-        <img src="https://avatars.githubusercontent.com/u/168495018?v=4" width="100px;" alt="Foto do Steve Jobs"/><br>
-        <sub>
-          <b>BMS_@007</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#" title="Designer">
-        <img src="https://avatars.githubusercontent.com/u/168494022?v=4" width="100px;" alt="Foto do Steve Jobs"/><br>
-        <sub>
-          <b>Galo_Dante</b>
-        </sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="#" title="Programador">
-        <img src="https://avatars.githubusercontent.com/u/168492663?v=4" width="100px;"/><br>
-        <sub>
-          <b>Pardoardo</b>
-        </sub>
-      </a>
-    </td>
-    
-  </tr>
-</table>
+## 👥 Equipe de Desenvolvimento
+
+<table> <tr> <td align="center"> <a href="#" title="Produtor Executivo"> <img src="https://avatars.githubusercontent.com/u/168495018?v=4" width="100px;" alt="Foto do BMS_@007"/><br> <sub><b>BMS_@007</b></sub> </a> </td> <td align="center"> <a href="#" title="Designer"> <img src="https://avatars.githubusercontent.com/u/168494022?v=4" width="100px;" alt="Foto do Galo_Dante"/><br> <sub><b>Galo_Dante</b></sub> </a> </td> <td align="center"> <a href="#" title="Programador"> <img src="https://avatars.githubusercontent.com/u/168492663?v=4" width="100px;" alt="Foto do Pardoardo"/><br> <sub><b>Pardoardo</b></sub> </a> </td> </tr> </table>
