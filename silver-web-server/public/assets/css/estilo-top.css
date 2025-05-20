@@ -396,16 +396,17 @@ footer {
     font-weight: 400;
     font-size: x-small;
     font-style: small;
+    margin-top: -15px;
     color: #A09292;
-    margin-top: 0;
 }
 
 .lbl-novo{
+    position: absolute;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: x-small;
     font-style: small;
-    margin-top: -25px;
+    margin-top: -55px;
     float: right;
     color: #ffb43b;
     font-size: x-small;
