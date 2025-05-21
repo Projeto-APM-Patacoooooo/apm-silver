@@ -25,11 +25,21 @@
                 <br>
                 <textarea id="conteudo" name="conteudo" required><%=conteudo%></textarea>
                 <br>
-                <button onclick="EditarUrl(Number(document.getElementById('id').value), document.getElementById('nome').value, document.getElementById('conteudo').innerText)" type="button" style="margin-top: 10px;" class="btn btn-dark">Editar</button>
+                <button type="button" style="margin-top: 10px;" class="btn btn-dark">Editar</button>
             </form>
         </div>
+        <script>
+            document.querySelector('button').addEventListener('click', function () {
+                const id = Number(document.getElementById('id').value);
+                const titulo = document.getElementById('nome').value;
+                const conteudo = document.getElementById('conteudo').value;
+                
 
-        
+                EditarUrl(id, titulo, conteudo);
+            });
+
+        </script>
+
         <script src="/assets/js/editor_de_noticias.js"></script>
         <!--FIM DO CONTEÚDO-->
 

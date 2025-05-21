@@ -9,16 +9,10 @@ create table if not exists staffs (
     cargo varchar(150) not null
 );
 
-insert into staffs(nome, email, senha, cargo)
-values ("Bernadino", "bernardino@etec.sp.gov.br", "palmeiras", "Desenvolvedor"),
-("Eduardo Linhares", "eduardo@etec.sp.gov.br", "agronejo", "Desenvolvedor"),
-("Eduardo Bezerra", "eduardo@etec.sp.gov.br", "churrasco", "Desenvolvedor"),
-("Gabriel", "gabriel@gmail.com", "garrafa", "Desenvolvedor");
-
 create table if not exists noticias (
     id_noticia int primary key auto_increment,
     titulo_noticia varchar(150) not null,
-    conteudo longtext not null,
+    conteudo varchar(250) not null,
     data_publicacao date not null,
     data_edicao date not null,
     id_staff int not null,
@@ -33,9 +27,6 @@ create table if not exists instituicao(
     agencia int not null
 );
 
-insert into instituicao(nome, cnpj, conta, agencia)
-values ("Bradesco", "1242141", 1240129, 12094801);
-
 create table if not exists metas (
     id_meta int primary key auto_increment,
     titulo_meta varchar(150) not null,
@@ -43,12 +34,6 @@ create table if not exists metas (
     batida boolean default false,
     id_staff int not null,
     foreign key (id_staff) references staffs(id_staff) on delete cascade
-);
-
-create table if not exists metas_destaque(
-	id_metades int primary key auto_increment,
-    id_meta int not null,
-    foreign key (id_meta) references metas(id_meta) on delete cascade
 );
 
 create table if not exists membros_etec(
@@ -68,9 +53,6 @@ insert into metas(titulo_meta, data_meta, batida, id_staff)
 values("Comprar SSD´S para as máquinas dos laboratórios.", null, true, 2),
 ("Comprar novos ventiladores", null, true, 3),
 ("Passeio cultural para o Museu de História Natural de São Paulo", null, false, 1);
-
-insert into metas_destaque(id_metades, id_meta)
-values("1", "1"), ("2", "2"), ("3", "3");
 
 select * from staffs;
 select * from noticias;

@@ -143,16 +143,16 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
         });
       });
 
-      servidor.put('/editar/noticia/', callbackIsAuth, (req, res) => {
+      servidor.put('/editar/noticia', callbackIsAuth, (req, res) => {
         callbackVerificarMan(res);
       
-        const id = req.params.id;
+        const id = req.query.id;
         const { titulo, conteudo } = req.body;
       
         if (titulo && conteudo) {
           console.log('Valor do ID: ' + id);
-      
-          const query = `UPDATE noticias SET titulo = ?, conteudo = ? WHERE id = ?`;
+
+          const query = `UPDATE noticias SET titulo_noticia = ?, conteudo = ?, data_edicao = now() WHERE id_noticia = ?`;
           const values = [titulo, conteudo, Number(id)];
       
           connection.query(query, values, (err, results) => {
@@ -160,7 +160,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
               console.error('Erro ao editar noticia', err);
               return res.status(500).send('Erro interno no servidor');
             }
-            res.redirect("/dashboard/instituicoes");
+
           });
       
         } else {
