@@ -9,6 +9,9 @@ create table if not exists staffs (
     cargo varchar(150) not null
 );
 
+insert into staffs(nome, email, senha, cargo)
+values("Admin", "admin@apmsilver.com.br", "$2b$10$n7K4TsKlT3VCKtd66VKmHOoN./0u/gJy13kTGexGIw/JXOmWvnHti", "Conta Administrativa");
+
 create table if not exists noticias (
     id_noticia int primary key auto_increment,
     titulo_noticia varchar(150) not null,
