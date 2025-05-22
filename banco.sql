@@ -29,9 +29,7 @@ create table if not exists noticias (
     titulo_noticia varchar(150) not null,
     conteudo varchar(250) not null,
     data_publicacao date not null,
-    data_edicao date not null,
-    id_staff int not null,
-    foreign key (id_staff) references staffs(id_staff) on delete cascade
+    data_edicao date not null
 );
 
 
@@ -119,6 +117,6 @@ select * from staffs;
 select * from noticias;
 select * from metas;
 select * from instituicao;
-
+select * from relatorios;
 
 drop database apm_silver;
