@@ -22,7 +22,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
           res.redirect('/dashboard/instituicoes')
         }
     
-        const query = 'SELECT nome, cnpj, conta, agencia FROM instituicao WHERE id = ?';
+        const query = 'SELECT nome, cnpj, conta, agencia FROM instituicoes WHERE id = ?';
     
         connection.query(query, [noticiaId], (err, results) => {
           if (err) {
@@ -47,7 +47,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
 
       servidor.get('/consultar/instiuicoes', callbackIsAuth, (req, res) => {
 
-        const query = 'SELECT * FROM instituicao';
+        const query = 'SELECT * FROM instituicoes';
     
         connection.query(query, (err, results) => {
           if (err) {
@@ -72,7 +72,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
         if (nome && cnpj && conta && agencia) {
           console.log('Valor do ID: ' + id);
       
-          const query = `UPDATE instituicao SET nome = ?, cnpj = ?, conta = ?, agencia = ? WHERE id = ?`;
+          const query = `UPDATE instituicoes SET nome = ?, cnpj = ?, conta = ?, agencia = ? WHERE id = ?`;
           const values = [nome, cnpj, Number(conta), Number(agencia), Number(id)];
       
           connection.query(query, values, (err, results) => {
@@ -93,7 +93,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
 
         console.log(Number(req.body.conta))
         if(req.body.nome && req.body.cnpj && req.body.conta  && req.body.agencia){
-           const query = `insert into instituicao(nome, cnpj, conta, agencia) values("${req.body.nome}",  "${req.body.cnpj}", ${Number(req.body.conta)}, ${Number(req.body.agencia)})`
+           const query = `insert into instituicoes(nome, cnpj, conta, agencia) values("${req.body.nome}",  "${req.body.cnpj}", ${Number(req.body.conta)}, ${Number(req.body.agencia)})`
 
            connection.query(query, (err, results) => {
             if (err) {
@@ -118,7 +118,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
           return res.status(400).send('ID do destaque é obrigatório');
         }
     
-        const query = 'DELETE FROM instituicao WHERE id = ?';
+        const query = 'DELETE FROM instituicoes WHERE id = ?';
     
         connection.query(query,  [instituicaoId], (err, results) => {
           if (err) {

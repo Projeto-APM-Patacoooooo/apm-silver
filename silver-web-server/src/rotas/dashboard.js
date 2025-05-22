@@ -22,6 +22,14 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection){
         });
       });
 
+      servidor.get('/dashboard/relatorios', callbackIsAuth, function (req, res) {
+        callbackVerificarMan(res);
+        res.render('pages/relatorios_dash', {
+          emailLogado: req.session.user.email,
+          chave: req.session.user.chave
+        });
+      });
+
       servidor.get('/dashboard/noticias/adicionar', callbackIsAuth, (req, res) => {
         res.render('pages/adicionar_noti', {
           emailLogado: req.session.user.email,

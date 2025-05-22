@@ -27,6 +27,11 @@ api.get('/', function (req, res) {
     res.send("Ei! Você não deveria estar aqui. \n Eu sou só uma API solitária que trabalha com dados :[")
 });
 
+api.get('/ping', function (req, res) {
+  res.status(200).send("Ok")
+});
+
+
 api.use(session({
   secret: "chave-secreta",
   resave: false,

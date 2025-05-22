@@ -43,7 +43,7 @@ servidor.set('views', path.join(__dirname, 'views'));
 
 //Iniciando bibliotecas caseiras
 router.Router(servidor);
-sessaoLogin.Configuar(servidor);
+sessaoLogin.Configuar(servidor, router.connection);
 teclasMagicas.TeclasMagicas(router.mudarModoDeManutencao);
 
 //Colocando essa bagaça para rodar

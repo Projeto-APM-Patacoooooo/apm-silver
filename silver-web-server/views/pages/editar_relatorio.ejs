@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
+    <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
+</head>
+
+<body>
+    <%- include('../partials/barra-navegacao-adm.ejs') %>
+
+
+        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+        <div class="adicionar-instituicao-container">
+            <form action="/cadastrar/relatorio" method="post">
+                <h1 id="titulo-login">Editar Relatório</h1>
+                <label for="mes">Mês:</label>
+                <br>
+                <select name="mes" required>
+                    <option id="m1" value="Janeiro">Janeiro</option>
+                    <option id="m2" value="Fevereiro">Fevereiro</option>
+                    <option id="m3" value="Março">Março</option>
+                    <option id="m4" value="Abril">Abril</option>
+                    <option id="m5" value="Maio">Maio</option>
+                    <option id="m6" value="Junho">Junho</option>
+                    <option id="m7" value="Julho">Julho</option>
+                    <option id="m8" value="Agosto">Agosto</option>
+                    <option id="m9" value="Setembro">Setembro</option>
+                    <option id="m10" value="Outubro">Outubro</option>
+                    <option id="m11" value="Novembro">Novembro</option>
+                    <option id="m12" value="Dezembro">Dezembro</option>
+                </select>
+                <br>
+                <label for="ano">Ano:</label>
+                <br>
+                <input name="ano" id="anor" type="number" min="1900" max="2099" step="1" value="<%= ano %>" required />
+                <br>
+                <label for="instituicao">Instituição</label>
+                <br>
+                <select name="instituicao" id="seletor_inst" required>
+                    
+                </select>
+                <br>
+                <br>
+                <button type="submit">Editar</button>
+            </form>
+        </div>
+
+        <script>
+            let xhr = new XMLHttpRequest();
+
+            xhr.responseType = '';
+            xhr.onreadystatechange = () => {
+
+                if (xhr.status == 200 && xhr.readyState == 4) {
+                    let resultadoFormatado = JSON.parse(xhr.responseText);
+                    console.log(resultadoFormatado)
+                    const alvoInstituicoes = document.getElementById("seletor_inst");
+
+
+                    if (Object.keys(resultadoFormatado).length > 0) {
+
+                        for (var i = 0; i < Object.keys(resultadoFormatado).length; i++) {
+                            var alvoAtual = resultadoFormatado[i]
+
+                            alvoInstituicoes.innerHTML += `<option name="${alvoAtual.nome}">${alvoAtual.nome}</option>`
+
+                        }
+                    }
+                }
+
+            };
+
+            let url = "/consultar/instiuicoes";
+
+            xhr.open('GET', url);
+            xhr.send();
+        </script>
+        <!--FIM DO CONTEÚDO-->
+
+        <%- include('../partials/footer.ejs') %>
+</body>

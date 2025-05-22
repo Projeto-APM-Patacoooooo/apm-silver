@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
+    <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
+</head>
+
+<body>
+
+    <%- include('../partials/barra-navegacao-adm.ejs') %>
+        <span id="session" hidden>
+            <%=chave%>
+        </span>
+
+        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+
+        <div class="instituicoes-container">
+            <div class="em-linha">
+                <h2>Relatórios</h2>
+                <a href="/dashboard/relatorios/adicionar" class="btn-adicionar">Adicionar +</a>
+            </div>
+            <table class="tabela-instituicoes table">
+                <thead>
+                    <tr>
+                        <th scope="col">Ano</th>
+                        <th scope="col">Mês</th>
+                        <th scope="col">Instituição</th>
+                        <th scope="col">Última Edição</th>
+                        <th scope="col">Data de Criação</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody id="alvo-instituicoes">
+                    <tr id="aviso-nada">
+                        <th>Não há nenhum relatório criado no momento.</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="/assets\js\carregador_de_relatorios.js"></script>
+        <script src="/assets/js/excluidor_de_relatorios.js"></script>
+        <script>
+
+            function irParaPaginaDeEdicao(id){
+                window.location = `/dashboard/instituicoes/editar?id=${id}`
+
+            function RedirecionarParaEdicao(id) {
+                fetch('/dashboard/instituicoes/editar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: id })
+                })
+                    .then(async response => {
+                        if (!response.ok) {
+                            const text = await response.text(); // pega o erro como texto se não for JSON
+                            throw new Error(`Erro HTTP ${response.status}: ${text}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Resposta:', data);
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error.message);
+                    });
+
+            }
+        }
+        </script>
+        <!--FIM DO CONTEÚDO-->
+
+        <%- include('../partials/footer.ejs') %>
+</body>

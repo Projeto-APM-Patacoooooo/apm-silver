@@ -104,7 +104,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
 
       servidor.post('/cadastrar/noticia', callbackIsAuth, (req, res) => {
         if(req.body.titulo && req.body.conteudo){
-          const query = `insert into noticias(titulo_noticia, conteudo, data_publicacao, data_edicao, id_staff) values("${req.body.titulo}", "${req.body.conteudo}", now(), now(), 1)`
+          const query = `insert into noticias(titulo_noticia, conteudo, data_publicacao, data_edicao) values("${req.body.titulo}", "${req.body.conteudo}", now(), now())`
           
           connection.query(query, (err, results) => {
             if (err) {
