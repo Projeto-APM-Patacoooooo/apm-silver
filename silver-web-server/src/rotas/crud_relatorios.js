@@ -137,7 +137,35 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
         });
       });
 
+      servidor.get("/editor-de-relatorio", callbackIsAuth, (req, res) => {
+        callbackVerificarMan();
+        
+        const relatorioID = req.query.relatorio
 
+        if(!relatorioID){
+          res.send("<h1>Mensagem do Servidor:</h1><hr><p>Você não me disse qual relatório você quer editar.</p>")
+          return;
+        }
+
+        const query = 'select * from relatorios where id = ?';
+
+        connection.query(query, [relatorioID], (err, results) => {
+          if(err){
+            res.send("<h1>Um terrível erro aconteceu no nosso servidor</h1><hr><p>Demonstre sua autoridade tentando novamente!</p>")
+            return
+          }
+
+          if(results.length < 1){
+            res.send(results)
+            return
+          } else {
+            res.send(relatorioID);
+          }
+        });
+
+        
+          
+      })
 }
 
 module.exports = {

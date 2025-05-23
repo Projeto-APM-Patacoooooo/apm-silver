@@ -20,7 +20,7 @@ const teclasMagicas = require('./src/teclas_magicas.js');
 //Configurando rate limit (contra ataques DoS de nerds zé ruelas)
 const limitador = rateLimit({
     windowMs: 60 * 1000,
-    max: 1000,
+    max: 4000,
     message: 'Erro 429: Muitas requisições no servidor. Tente novamente em alguns minutos.'
 });
 
