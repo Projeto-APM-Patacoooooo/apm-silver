@@ -29,7 +29,7 @@ xhr.onreadystatechange = () => {
                 <td>${alvoAtual.instituicao}</td>
                 <td>${edi_forma}</td>
                 <td>${formatada}</td>
-                <td><button class="btn btn-primary" onclick="window.location = '/dashboard/relatorios/editar?id=${alvoAtual.id}'">Editar</button></td>
+                <td><button class="btn btn-primary" onclick="window.location = '/editor-de-relatorio?relatorio=${alvoAtual.id}'">Editar</button></td>
                 <td><button class="btn btn-danger" onclick=IniciarExclusao(${alvoAtual.id})>Excluir</button></td>
                 <tr>`
 

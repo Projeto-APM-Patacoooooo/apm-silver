@@ -49,32 +49,8 @@
         <script>
 
             function irParaPaginaDeEdicao(id){
-                window.location = `/dashboard/instituicoes/editar?id=${id}`
-
-            function RedirecionarParaEdicao(id) {
-                fetch('/dashboard/instituicoes/editar', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id: id })
-                })
-                    .then(async response => {
-                        if (!response.ok) {
-                            const text = await response.text(); // pega o erro como texto se não for JSON
-                            throw new Error(`Erro HTTP ${response.status}: ${text}`);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('Resposta:', data);
-                    })
-                    .catch(error => {
-                        console.error('Erro:', error.message);
-                    });
-
+                window.location = `editor-de-relatorio?relatorio=${id}`
             }
-        }
         </script>
         <!--FIM DO CONTEÚDO-->
 
