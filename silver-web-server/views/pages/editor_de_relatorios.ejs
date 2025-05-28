@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
+    <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
+</head>
+
+<body>
+
+    <%- include('../partials/barra-navegacao-adm.ejs') %>
+        <!--span id="session" hidden>
+                </span-->
+
+        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+
+        <div class="instituicoes-container">
+            <div class="em-linha">
+                <h2>CONTROLE APM <%=rela_ano%></h2>
+            </div>
+            <div class="em-linha">
+                <p style="margin-right: 12px;">Agência: <%=inst_agencia%></p>
+                <p>Conta: <%=inst_conta%></p>
+            </div>
+            <h4><%=rela_mes%> / <%=rela_ano%></h4>
+            <p>Instituição: <%=inst_nome%></p>
+            
+            <a href="/dashboard/instituicoes/adicionar" class="btn-adicionar" style="float: right;">Adicionar +</a>
+            <table class="tabela-instituicoes table">
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Entrada</th>
+                        <th scope="col">Saída</th>
+                        <th scope="col">Saldo</th>
+                    </tr>
+                </thead>
+                <tbody id="alvo-instituicoes">
+                    <tr id="aviso-nada">
+                        <th>Não há nenhuma Instituição cadastrada no momento.</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--script src="/assets\js\carregador_de_instituicoes.js"></script>
+        <script src="/assets/js/excluidor_de_instituicoes.js"></script>
+        <script>
+
+            function irParaPaginaDeEdicao(id){
+                window.location = `/dashboard/instituicoes/editar?id=${id}`
+
+            function RedirecionarParaEdicao(id) {
+                fetch('/dashboard/instituicoes/editar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: id })
+                })
+                    .then(async response => {
+                        if (!response.ok) {
+                            const text = await response.text(); // pega o erro como texto se não for JSON
+                            throw new Error(`Erro HTTP ${response.status}: ${text}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Resposta:', data);
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error.message);
+                    });
+
+            }
+        }
+        </script-->
+        <!--FIM DO CONTEÚDO-->
+
+        <%- include('../partials/footer.ejs') %>
+</body>

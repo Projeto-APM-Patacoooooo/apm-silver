@@ -156,10 +156,29 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
           }
 
           if(results.length < 1){
-            res.send(results)
+            res.send("<h1>Relatório não encontrado</h1><hr><p>Não foi possível encontrar este relatório no servidor.</p>")
             return
           } else {
-            res.send(relatorioID);
+
+            const query2 = `select * from instituicoes where id = ${Number(results[0].instituicao)}`
+
+            connection.query(query2, (err, results2) =>{
+              if(err){
+                console.error("[Servidor]: Lascou muito na hora de pegar a instiuição do relatório");
+                return
+              }
+
+              if(results.length < 1){
+                console.warn("[Servidor]: Não foi possível achar nenhuma instituição com o id requerido")
+                
+                return
+              } else {
+                console.log(results2)
+                res.render('pages/editor_de_relatorios', { rela_ano: results[0].ano, rela_mes: results[0].mes, inst_nome: results2[0].nome, inst_conta: results2[0].conta, inst_agencia: results2[0].agencia,  emailLogado: req.session.user.email })
+              }
+            })
+            
+            
           }
         });
 
