@@ -32,9 +32,9 @@ async function criarPastaComData(diretorioBase) {
 const conector = require('./src/conexao');
 const novaConexao = conector.novaConexao();
 
-// Faz backup todos os dias 00:30
-cron.schedule('30 00 * * *', () => {
-  console.warn('[Backup]: começando backup automático das 00:00');
+// Faz backup todas as segundas 00:30
+cron.schedule('30 0 * * 1', () => {
+  console.warn('[Backup]: começando backup automático das 00:30');
 
   try {
     criarPastaComData('./silver-backup-system/saves');
@@ -154,5 +154,5 @@ cron.schedule('30 00 * * *', () => {
   } catch (err) {
     console.error("[Backup]: Backup falhou: ", err);
   }
-  
+
 });
