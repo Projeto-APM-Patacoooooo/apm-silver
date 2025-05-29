@@ -1057,6 +1057,10 @@ footer {
     align-items: center;
 }
 
+.descricao_rela{
+    width: 900px;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #2F2F2F;

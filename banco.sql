@@ -75,6 +75,9 @@ create table if not exists dados_rela(
     saida decimal(10, 2)
 );
 
+insert into dados_rela(relatorio_pai, dat, descricao, entrada, saida)
+values (3, "2025/03/05", "Doação de Responsáveis", 40, null);
+
 /* 
 	====================================
 	METAS

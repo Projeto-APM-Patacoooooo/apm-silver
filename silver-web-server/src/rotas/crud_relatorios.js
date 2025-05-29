@@ -39,6 +39,30 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
         }
     })
 
+    servidor.get('/consultar/relatorio/blocos', callbackIsAuth, (req, res) => {
+    
+      const instituicaoId = req.query.id; // Pega o parâmetro ?id= do navegador
+      console.log("Nova solicitação de exclusão de relatório: id: " + instituicaoId)
+  
+      if (!instituicaoId) {
+        return res.status(400).send('ID do relatório é obrigatório');
+      }
+  
+      const query = 'select * from dados_rela where relatorio_pai = ?';
+  
+      connection.query(query,  [instituicaoId], (err, results) => {
+        if (err) {
+          console.error('Erro ao excluir relatório:', err);
+          return res.status(500).send('Erro interno no servidor');
+        }
+  
+        if (results.length === 0) {
+          return res.status(404).send('O relatório não existe!');
+        }
+        res.send(results)
+      });
+    });
+
     servidor.get('/consultar/relatorios', callbackIsAuth, (req, res) => {
 
         const query = 'SELECT * FROM relatorios';
