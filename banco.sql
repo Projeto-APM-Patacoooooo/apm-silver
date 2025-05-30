@@ -67,16 +67,13 @@ create table if not exists relatorios(
 
 create table if not exists dados_rela(
 	id int auto_increment primary key, 
-    relatorio_pai int not null,
+    relatorio_pai int,
     foreign key (relatorio_pai) references relatorios(id) on delete cascade,
-    dat date not null,
+    dat date,
     descricao varchar(100),
     entrada decimal(10, 2),
     saida decimal(10, 2)
 );
-
-insert into dados_rela(relatorio_pai, dat, descricao, entrada, saida)
-values (3, "2025/03/05", "Doação de Responsáveis", 40, null);
 
 /* 
 	====================================
