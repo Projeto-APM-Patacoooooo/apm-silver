@@ -183,6 +183,26 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
     });
   });
 
+  servidor.post('/relatorios/excluir/bloco', callbackIsAuth, (req, res) => {
+    callbackVerificarMan(res);
+     const blocoId = req.query.id;
+
+    if (!blocoId) {
+      res.redirect('/dashboard/relatorios')
+    }
+
+    const query = `delete from dados_rela where id = ${blocoId}`;
+
+    connection.query(query, [relatorioId], (err, results) => {
+      if (err) {
+        console.error('Erro ao excluir bloco', err);
+        return res.status(500).send('Erro interno no servidor');
+      }
+
+      res.status(200).end();
+    });
+  });
+
 
   servidor.post('/relatorios/salvar/blocos', express.json(), (req, res) => {
     const idRelatorio = req.query.id;

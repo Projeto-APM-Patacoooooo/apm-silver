@@ -28,6 +28,35 @@ async function criarPastaComData(diretorioBase) {
   }
 }
 
+const fs = require('fs').promises;
+const path = require('path');
+
+// Função que verifica a data de criação da pasta e apaga se tiver mais de 7 dias
+async function apagarBackupsAntigos(diretorioBase) {
+  console.warn("[Backup]: Iniciando limpeza de backups antigos");
+
+  try {
+    const arquivos = await fs.readdir(diretorioBase, { withFileTypes: true });
+    const hoje = new Date();
+    const umaSemanaEmMilissegundos = 7 * 24 * 60 * 60 * 1000; // 7 dias em milissegundos
+
+    for (const arquivo of arquivos) {
+      if (arquivo.isDirectory()) {
+        const caminhoPasta = path.join(diretorioBase, arquivo.name);
+        const stats = await fs.stat(caminhoPasta);
+        const dataCriacao = stats.birthtime.getTime(); // Timestamp de criação
+
+        if (hoje - dataCriacao > umaSemanaEmMilissegundos) {
+          console.warn(`[Backup]: Apagando backup antigo: ${arquivo.name}`);
+          await fs.rm(caminhoPasta, { recursive: true, force: true }); // Apaga a pasta e todo o seu conteúdo
+        }
+      }
+    }
+  } catch (erro) {
+    console.error('[Backup]: Erro ao tentar apagar backups antigos:', erro);
+  }
+}
+
 // Conectando ao nosso banco de dados
 const conector = require('./src/conexao');
 const novaConexao = conector.novaConexao();
@@ -150,6 +179,8 @@ cron.schedule('30 0 * * 1', () => {
       fs.writeFile(caminhoArquivo, conteudoJSON, 'utf8');
     });
 
+    console.warn('[Backup]: Iniciando o processo de limpeza de backups antigos');
+    apagarBackupsAntigos('./silver-backup-system/saves');
 
   } catch (err) {
     console.error("[Backup]: Backup falhou: ", err);

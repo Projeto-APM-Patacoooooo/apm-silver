@@ -52,10 +52,10 @@ function construir() {
   blocosRecebidos.forEach(bloco => {
     const linha = document.createElement('tr');
     linha.innerHTML = `
-      <td scope="row"><input type="text" value="${formatarData(bloco.dat)}"></td>
+      <td scope="row"><input type="date" value="${formatarData(bloco.dat)}"></td>
       <td><input class="descricao_rela" type="text" value="${bloco.descricao || ''}"></td>
-      <td><input type="number" value="${formatarDinheiro(bloco.entrada)}"></td>
-      <td><input type="number" value="${bloco.saida || ''}"></td>
+      <td><input type="text" value="${formatarDinheiro(bloco.entrada)}"></td>
+      <td><input type="text" value="${bloco.saida || ''}"></td>
       <td><input type="text" value="${bloco.extra || ''}"></td>
       <td>
         <button class="btn-remover" type="button" title="Remover bloco">
