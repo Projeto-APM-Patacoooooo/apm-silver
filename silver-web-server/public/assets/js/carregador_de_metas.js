@@ -8,7 +8,7 @@ function BuscarDestaque(id) {
                 reject('Erro ao buscar dados');
             }
         };
-        xhttp.open("GET", `/dest_meta?id=${id}`, true);
+        xhttp.open("GET", `/meta?id=${id}`, true);
         xhttp.send();
     });
 }
@@ -59,7 +59,7 @@ Promise.all([
 
         case 0:
             sts_met1.textContent = "Ainda não atingida...";
-            sts_met1.style.color = "#EE7A2E";
+            sts_met1.style.color = "#F0552E";
         break;
     }
 
@@ -76,7 +76,7 @@ Promise.all([
 
         case 0:
             sts_met2.textContent = "Ainda não atingida...";
-            sts_met2.style.color = "#EE7A2E";
+            sts_met2.style.color = "#F0552E";
         break;
     }
     
@@ -93,7 +93,7 @@ Promise.all([
 
         case 0:
             sts_met3.textContent = "Ainda não atingida...";
-            sts_met3.style.color = "#EE7A2E";
+            sts_met3.style.color = "#F0552E";
         break;
     }
 }).catch(error => {

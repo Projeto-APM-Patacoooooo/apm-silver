@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,44 +8,50 @@
     <link rel="shortcut icon" href="assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
-<body style="overflow: hidden;">
-        <!--INICIO DO CONTEÚDO DA PÁGINA-->
 
-        <div class="caixa-central">
-            <form class="caixa-login" action="/login" method="post">
-                <h1 id="titulo-login">Entre para continuar</h1>
-                <label>E-Mail:</label>
-                <br>
-               <input type="email" name="email" required>
-                <br>
-                <label>Senha:</label>
-                <br>
-                <input type="password" name="password" id="caixa-pwd" required>
-                <br>
-                <br>
-                
-                <button type="submit">Entrar</button>
-                <br>
-                <button type="button">Modo Visitante</button>
-            </form>
+<body>
+    <!--INICIO DO CONTEÚDO DA PÁGINA-->
+
+        <%- include('../partials/barra-navegacao.ejs') %>
+        
+
+    <form class="caixa-login" action="/login" method="post">
+        <h1 id="titulo-login" class="titulo-login">Primeiro, indentifique-se!</h1>
+        <div class="container-email">
+            <label for="email">E-Mail:</label>
+            <input type="email" name="email" required>
         </div>
-        <script>
-            const rotulo = document.getElementById("titulo-login");
-            let numAleatorio = Math.random(1, 10);
+        <br>
+        <div class="container-senha">
+            <label>Senha:</label>
+            <input type="password" name="password" id="caixa-pwd" required>
+        </div>
+        
+        <br>
+        <br>
 
-            switch (numAleatorio) {
-                case 1:
-                    rotulo.innerText = "Só falta mais um passo!"
+        <button type="submit">Entrar</button>
+    </form>
+
+    <script>
+        const rotulo = document.getElementById("titulo-login");
+        let numAleatorio = Math.random(1, 10);
+
+        switch (numAleatorio) {
+            case 1:
+                rotulo.innerText = "Só falta mais um passo!"
                 break;
 
-                case 2:
-                    rotulo.innerText = "Bem-vindo(a) de volta!"
+            case 2:
+                rotulo.innerText = "Bem-vindo(a) de volta!"
                 break;
 
-                case 3:
-                    rotulo.innerText = "Apertem os cintos!"
+            case 3:
+                rotulo.innerText = "Apertem os cintos!"
                 break;
-            };
-        </script>
-        <!--FIM DO CONTEÚDO-->
+        };
+    </script>
+
+    <!--FIM DO CONTEÚDO-->
+    <%- include('../partials/footer.ejs') %>
 </body>

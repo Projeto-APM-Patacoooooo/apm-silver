@@ -84,7 +84,7 @@ create table if not exists dados_rela(
 create table if not exists metas (
     id_meta int primary key auto_increment,
     titulo_meta varchar(150) not null,
-    data_meta datetime,
+    data_meta date,
     batida boolean default false,
     id_staff int not null,
     foreign key (id_staff) references staffs(id_staff) on delete cascade
@@ -109,14 +109,12 @@ values ("Diretor", "Diretoria Executiva", "Bruno Santos Nascimento"),
 ("Vice-diretor financeiro:", "Diretoria Financeira", "José Antônio Labella");
 
 insert into metas(titulo_meta, data_meta, batida, id_staff)
-values("Comprar SSD´S para as máquinas dos laboratórios.", null, true, 2),
-("Comprar novos ventiladores", null, true, 3),
-("Passeio cultural para o Museu de História Natural de São Paulo", null, false, 1);
+values("Comprar SSD´S para as máquinas dos laboratórios.", '2024-06-16', true, 1),
+("Comprar novos ventiladores", '2024-06-16', true, 1),
+("Passeio cultural para o Museu de História Natural de São Paulo", '2024-06-16', false, 1);
 
 select * from staffs;
 select * from noticias;
 select * from metas;
 select * from instituicao;
 select * from relatorios;
-
-drop database apm_silver;

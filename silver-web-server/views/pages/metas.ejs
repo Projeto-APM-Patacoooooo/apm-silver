@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
+    <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
+</head>
+<body>
+        <%- include('../partials/barra-navegacao-adm.ejs') %>
+        
+        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+        <div class="noticias-container">
+            <div class="em-linha">
+                <h2>Metas</h2>
+                <a href="/dashboard/noticias/adicionar" class="btn-adicionar">Adicionar +</a>
+            </div>
+            
+            <table class="tabela-noticias table">
+                <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Data de Publicação</th>
+                        <th scope="col">Alcançada</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Excluir</th>
+                    </tr>
+                </thead>
+                <tbody id="alvo-metas">
+                    <tr id="aviso-nada">
+                        <th>Não há nenhuma meta postada no momento.</th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        
+        <script src="/assets/js/car_dash_metas.js"></script>
+        <script src="/assets/js/excluidor_de_noticias.js"></script>
+        <script>
+
+            function irParaPaginaDeEdicao(id){
+                window.location = `/dashboard/noticias/editar?id=${id}`
+        }
+        </script>
+        <!--FIM DO CONTEÚDO-->
+
+        <%- include('../partials/footer.ejs') %>
+</body>
