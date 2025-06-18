@@ -189,7 +189,11 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
     const blocos = req.body; // Array de blocos
 
     console.log("ID do relatório:", idRelatorio);
-    console.log("Blocos recebidos:", blocos);
+
+    for(let i = 0; i <= blocos.lenght; i++){
+        let blocoAtual = blocos[i];
+        console.log(blocoAtual)
+    }
 
     // Aqui você faria o insert/update em loop, por exemplo
     res.sendStatus(200);
