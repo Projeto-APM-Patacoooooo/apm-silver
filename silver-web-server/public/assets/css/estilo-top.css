@@ -267,7 +267,6 @@ footer {
     width: 800px;
     margin-right: auto;
     margin-left: auto;
-    border: 2px dotted #c6c5c5;
     padding: 15px 15px;
 }
  
@@ -1051,9 +1050,9 @@ footer {
 .btn-adicionar{
     text-decoration: none;
     text-align: center;
-    color: white;
+    color: #080908;
     font-size: x-large;
-    background-color: #211f1f;
+    background-color: #B0FDBC;
     padding: 0px 10px;
     border-radius: 3px;
     margin-left: auto;
@@ -1061,7 +1060,7 @@ footer {
 }
 
 .btn-adicionar:hover{
-    background-color: #434040;
+    background-color: #E9FFEC;
 }
 
 .adicionar-instituicao-container{
