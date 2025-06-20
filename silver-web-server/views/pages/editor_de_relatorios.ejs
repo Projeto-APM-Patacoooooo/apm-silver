@@ -20,30 +20,37 @@
 
         <div class="instituicoes-container">
             <div class="em-linha">
-                <h2>CONTROLE APM <%=rela_ano%></h2>
+                <h2>CONTROLE APM <%=rela_ano%>
+                </h2>
             </div>
             <div class="em-linha">
-                <p style="margin-right: 12px;">Agência: <%=inst_agencia%></p>
-                <p>Conta: <%=inst_conta%></p>
+                <p style="margin-right: 12px;">Agência: <%=inst_agencia%>
+                </p>
+                <p>Conta: <%=inst_conta%>
+                </p>
             </div>
-            <h4><%=rela_mes%> / <%=rela_ano%></h4>
+            <h4>
+                <%=rela_mes%> / <%=rela_ano%>
+            </h4>
             <p>Instituição: <%=inst_nome%></p>
-            
-            <button class="btn-adicionar" style="float: right;" onclick="criarNovoBloco()">Adicionar +</button>
-            <table class="tabela-instituicoes table">
-                <thead>
-                    <tr>
-                        <th scope="col">Data</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Entrada</th>
-                        <th scope="col">Saída</th>
-                        <th scope="col">Saldo</th>
-                    </tr>
-                </thead>
-                <tbody id="alvo-blocos">                    
-                </tbody>
-            </table>
-            <button class="btn-adicionar" onclick="enviarTodosOsBlocos()">Salvar</button>
+
+            <button class="btn-adicionar" style="align-self: center; width: 200px; border: none;" onclick="criarNovoBloco()">Adicionar +</button>
+            <div class="tabela-editor-inst">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Data</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Entrada</th>
+                            <th scope="col">Saída</th>
+                            <th scope="col">Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alvo-blocos">
+                    </tbody>
+                </table>
+            </div>
+            <button>Exportar</button>
         </div>
 
         <!--script src="/assets\js\carregador_de_instituicoes.js"></script>

@@ -22,6 +22,14 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
         });
     });
 
+    servidor.get('/vertudo/noticias', (req, res) => {
+      if(req.session.user){
+        res.render('pages/vertudo_noticias', {logado: true, emailLogado: req.session.user.email})
+      } else {
+        res.render('pages/vertudo_noticias',  {logado: false});
+      }
+    })
+
     servidor.get('/ver/noticia', (req, res) => {
        callbackVerificarMan(res);
         const noticiaId = req.query.id; // Pega o parâmetro ?id= do navegador

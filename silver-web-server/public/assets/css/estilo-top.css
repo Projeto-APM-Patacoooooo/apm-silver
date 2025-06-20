@@ -18,7 +18,7 @@ body {
 }
 
 ::selection {
-    background-color: #FFBD53;
+    background-color: #949494;
     color: white;
 }
 
@@ -190,11 +190,6 @@ footer {
     padding-top: 50px;
 }
 
-::selection{
-    background-color: #FFBD53;
-    color: white;
-}
-
 .caixa-central{
     margin-top: 40px;
     margin-left: auto;
@@ -272,7 +267,6 @@ footer {
     width: 800px;
     margin-right: auto;
     margin-left: auto;
-    border: 2px dotted #c6c5c5;
     padding: 15px 15px;
 }
  
@@ -310,36 +304,37 @@ footer {
 }
 
 .porque-contribuir{
-    background-color: #434040;
+    background-color: #c6c5c5;
     color: white;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
     margin-left: auto;
     margin-right: auto;  
     width: 900px;
     padding: 10px 10px;
     margin-top: 15px;
     border-radius: 3px;
+    margin-bottom: 10vh;
 }
 
-.porque-contribuir h1{
-    margin-top: 50px;
-    margin-left: 19px;
-    padding: 5px 5px;
-    border-radius: 20px;
-    font-family: "Istok Web", sans-serif;
-    font-weight: 700;
+.titulo-pq-contriubir{
+    font-size: x-large;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 290;
     font-style: normal;
-    color: #2b0101;
+    margin-top: 5vh;
 }
 
 .porque-contribuir ol{
-    text-align: left;
     margin-top: 20px;
-    border-radius: 8px;
+    
 }
 
 .porque-contribuir ol li{
-    margin-top: 5%;
-    text-align: justify;
+    margin-top: 20px;
+    margin-left: 30px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: small;
@@ -406,9 +401,10 @@ footer {
     font-weight: 400;
     font-size: x-small;
     font-style: small;
-    margin-top: -55px;
+    margin-top: -39px;
+    margin-left: 310px;
     float: right;
-    color: #ffb43b;
+    color: #809FFC;
     font-size: x-small;
 }
 
@@ -529,18 +525,38 @@ footer {
     height: 120px;
 }
 
-.caixa-login{
-    margin-top: 30vh;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    margin-left: auto;
+.caixa-login {
+    width: 400px;
     margin-right: auto;
-    width: 420px;
-    border: 2px solid #3030301b;
-    padding: 15px 15px;
-    height: 300px;
-    border-radius: 7px;
+    margin-left: auto;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px 20px;
+    border-radius: 3px;
+}
+
+.caixa-login label{
+    font-family: "Poppins", sans-serif;
+    font-size: small;
+}
+
+.caixa-login .container-email, .container-senha{
+    display: flexbox;    
+}
+
+@media (max-width: 480px) {
+    .caixa-login {
+        height: auto;
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+.titulo-login{
+    font-size:x-large;
+    font-family: "Istok Web", sans-serif;
+    font-weight: 400;
 }
 
 .caixa-login input{
@@ -560,7 +576,7 @@ footer {
     color: white;
     margin-top: 3px;
     text-decoration: none;
-    background-color: #FFBD53;
+    background-color: #cccaca;
     font-family: "Istok Web", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -571,31 +587,40 @@ footer {
 }
 
 .caixa-login button:hover{
-    background-color: #d5ab68;
+    background-color: rgb(228, 228, 228);
     cursor: pointer;
 }
 
 .caixa-membros {
     display: flex;
-    width: 1330px;
+    width: 100%;
+    max-width: 1330px;
     margin-left: auto;
     margin-right: auto;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a linha seguinte */
     justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
+    align-items: flex-start; /* Alinha os itens no topo */
     margin-top: 30px;
     margin-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.caixa-membros > div {
+    flex: 1 1 calc(33.333% - 20px); /* Faz as caixas ocuparem 1/3 do espaço com margens */
+    margin: 10px; /* Espaço entre os itens */
+    box-sizing: border-box; /* Para garantir que padding e margem não estiquem o item */
+    display: flex; /* Para garantir que os itens fiquem alinhados dentro de cada caixa */
+    flex-direction: column;
 }
 
 .caixa-membro {
-    padding: 15px 15px;
-    width: 400px;
-    color:  white;
-    background-color: #434040;
+    padding: 15px;
+    width: 100%; /* Faz a caixa de membro ocupar 100% da largura do container */
+    color: white;
+    background-color: #cccaca;
     border-radius: 3px;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -603,15 +628,32 @@ footer {
     margin-top: 10px;
 }
 
+/* Media queries para responsividade */
+@media (max-width: 768px) {
+    .caixa-membros > div {
+        flex: 1 1 calc(50% - 20px); /* 2 itens por linha */
+    }
+}
+
+@media (max-width: 480px) {
+    .caixa-membros > div {
+        flex: 1 1 calc(100% - 20px); /* 1 item por linha em telas menores */
+    }
+}
+
 .caixa-membro h1 {
     font-size: small;
     margin-top: 0;   
     margin-left: 0;    
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-weight: 290;
     font-style: normal;
 }
 
+.titulo-categoria {
+    font-size: x-large;
+    font-weight: 300;
+}
 .caixa-membro p {
     margin-top: 10px;  
     margin-left: 0;
@@ -749,10 +791,6 @@ footer {
     color: white;
 }
 
-.carrosel-escola{
-
-}
-
 .carrosel-escola img{
     border-radius: 3px;
     border: 2px solid #303030;
@@ -876,37 +914,33 @@ footer {
     margin-left: 10px;
 }
 
-.titulo-pq-contriubir{
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 400;
-    text-align: center;
-}
-
 .painel-de-controle{
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-    color: white;
+    color: black;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 .painel-de-controle .ferramentas{
     padding: 20px 20px;
-    background-color: #6d6969;
+    background-color: #c6c5c5;
     width: 20%;
-    border-radius: 3px;
     height: 900px;
+    width: 200px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
+
 .painel-de-controle .titulo{
-    border-radius: 3px;
     padding: 15px 15px;
-    color: white;
+    color: black;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-style: normal;
     background-color: #c6c5c5;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .painel-de-controle h3{
@@ -922,9 +956,9 @@ footer {
 .painel-de-controle li a{
     text-decoration: none;
     font-family: "Poppins", sans-serif;
-    font-weight: 250;
+    font-weight: 350;
     font-style: normal;
-    color: white;
+    color: black;
 }
 
 .painel-de-controle li a:hover{
@@ -939,14 +973,14 @@ footer {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-style: normal;
-    width: 90%;
+    width: 10px;
     margin-left: auto;
     margin-right: auto;
     height: 100px;
 }
 
 .instituicoes-container{
-    margin-bottom: 10px;
+    margin-bottom: 30vh;
     margin-top: 10px;
     text-align: center;
     padding: 35px 35px;
@@ -963,11 +997,11 @@ footer {
 }
 
 .botao-sair{
-    background-color: #d69429;
+    background-color: #e7e5e2;
 }
 
 .botao-sair:hover {
-    background-color: #ffb43b;
+    background-color: #ffabab;
 }
 
 .titulo_termos{
@@ -1020,17 +1054,16 @@ footer {
 .btn-adicionar{
     text-decoration: none;
     text-align: center;
-    color: white;
+    color: #080908;
     font-size: x-large;
-    background-color: #211f1f;
+    background-color: #c6c5c5;
     padding: 0px 10px;
-    border-radius: 3px;
     margin-left: auto;
     margin-right: 0;
 }
 
 .btn-adicionar:hover{
-    background-color: #434040;
+    background-color: #E9FFEC;
 }
 
 .adicionar-instituicao-container{
@@ -1058,30 +1091,45 @@ footer {
 }
 
 .descricao_rela{
-    width: 900px;
+    width: 500px;
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #2F2F2F;
-        color: white;
-    }
-
-    .caixa-login{
-        margin-top: 30vh;
-        font-family: "Poppins", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-        margin-left: auto;
-        margin-right: auto;
-        width: 420px;
-        border: 2px solid #4a4848;
-        padding: 15px 15px;
-        height: 300px;
-        border-radius: 7px;
-    }
+.caixa-relatorios{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+    padding: 15px 15px;
+    background-color: #cccaca;
+    color: white;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 5vh;
+    margin-bottom: 10vh;
 }
 
+.estatisticas{
+    color: black;
+    position: absolute;
+    margin-top: -880px;
+    margin-left: 38vh;
+}
+
+.tabela-editor-inst{
+    width: 100%;
+    overflow-x: auto;
+     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tabela-editor-inst table{
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+.btn-remover{
+    background: none;
+    border: none;
+}
 @media (max-width: 682px){
     .imagem-404{
         display: none;

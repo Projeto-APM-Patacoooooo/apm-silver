@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/estilo-top.css">
+    <link rel="shortcut icon" href="/assets/img/brasao_ermelinda.png" type="image/x-icon">
+    <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
+</head>
+
+<body>
+    <%- include('../partials/barra-navegacao-adm.ejs') %>
+
+
+        <!--INICIO DO CONTEÚDO DA PÁGINA-->
+        <div class="adicionar-instituicao-container">
+            <form action="/cadastrar/meta" method="post">
+                <h1 id="titulo-login">Postar Nova Meta</h1>
+                <label>Meta</label>
+                <br>
+                <input type="text" name="meta" required>
+                <br>
+                <button type="submit" style="margin-top: 10px;" class="btn btn-dark">Postar</button>
+            </form>
+        </div>
+
+        <!--FIM DO CONTEÚDO-->
+
+        <%- include('../partials/footer.ejs') %>
+</body>

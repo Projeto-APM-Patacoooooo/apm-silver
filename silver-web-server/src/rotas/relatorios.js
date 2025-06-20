@@ -1,5 +1,5 @@
 function rotear(servidor, callbackVerificarMan, callbackIsAuth) {
-    servidor.get('/relatorios', callbackIsAuth, function (req, res) {
+    servidor.get('/relatorios', function (req, res) {
         callbackVerificarMan(res);
         res.render('pages/relatorios');
     });

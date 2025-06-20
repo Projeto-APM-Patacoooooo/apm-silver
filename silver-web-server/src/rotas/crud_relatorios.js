@@ -1,4 +1,57 @@
 const express = require("express");
+const ExcelJS = require('exceljs');
+
+const path = require('path');
+const fs = require('fs');
+
+function GerarRelatorioExcel(info, dadosExtrato) {
+  async function preencherExtrato() {
+    const caminhoModelo = path.resolve(__dirname, 'modelo_planilha.xlsx');
+    const caminhoSaida = path.resolve(__dirname, '../../../relatorios-exportados/extrato_preenchido.xlsx');
+
+    if (!fs.existsSync(path.dirname(caminhoSaida))) {
+      fs.mkdirSync(path.dirname(caminhoSaida), { recursive: true });
+    }
+
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.readFile(caminhoModelo);
+    const sheet = workbook.getWorksheet(1);
+
+    sheet.getCell('A1').value = `CONTROLE APM 2025 ${info.ano}`;
+    sheet.getCell('D1').value = `${info.mes} / ${info.ano}`;
+    sheet.getCell('A2').value = `Instituição ${info.nome_banco}`;
+    sheet.getCell('D2').value = `Agência ${info.agencia}`;
+    sheet.getCell('E2').value = `Conta ${info.conta}`;
+    sheet.getCell('A4').value = `Saldo do mês anterior`;
+    sheet.getCell('E4').value = info.saldo_mes_passado;
+    sheet.getCell('E4').numFmt = '"R$"#,##0.00;[Red]\-"R$"#,##0.00';
+
+    let saldoAtual = info.saldo_mes_passado;
+    let linha = 6;
+    dadosExtrato.forEach((item) => {
+      saldoAtual += item.entrada - item.saida;
+
+      const row = sheet.getRow(linha++);
+      row.getCell(1).value = new Date(item.data.split('/').reverse().join('-'));
+      row.getCell(1).numFmt = 'dd/mm/yyyy';
+      row.getCell(2).value = item.descricao;
+      row.getCell(3).value = item.entrada || '';
+      row.getCell(4).value = item.saida || '';
+      row.getCell(5).value = saldoAtual;
+
+      ['C', 'D', 'E'].forEach((col) => {
+        sheet.getCell(`${col}${row.number}`).numFmt = '"R$"#,##0.00;[Red]\-"R$"#,##0.00';
+      });
+    });
+
+    await workbook.xlsx.writeFile(caminhoSaida);
+    console.log('Arquivo de extrato gerado com sucesso!');
+  }
+
+  preencherExtrato();
+  return
+}
+
 
 function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
   servidor.get('/dashboard/relatorios/adicionar', callbackIsAuth, function (req, res) {
@@ -171,9 +224,15 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
       res.redirect('/dashboard/relatorios')
     }
 
-    const query = 'insert into dados_rela(relatorio_pai) values(?)';
+    var hoje = new Date();
+    var dia = hoje.getDate();
+    var mes = hoje.getMonth() + 1;
+    var ano = hoje.getFullYear();
+    var dataFinal = `${ano}-${mes}-${dia}`;
 
-    connection.query(query, [relatorioId], (err, results) => {
+    const query = 'insert into dados_rela(relatorio_pai, dat, entrada, saida) values(?, ?, 0.00, 0.00)';
+
+    connection.query(query, [relatorioId, dataFinal], (err, results) => {
       if (err) {
         console.error('Erro ao buscar notícia:', err);
         return res.status(500).send('Erro interno no servidor');
@@ -183,21 +242,121 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
     });
   });
 
+  servidor.post('/relatorios/excluir/bloco', callbackIsAuth, (req, res) => {
+    callbackVerificarMan(res);
+    const blocoId = req.query.id;
 
-  servidor.post('/relatorios/salvar/blocos', express.json(), (req, res) => {
-    const idRelatorio = req.query.id;
-    const blocos = req.body; // Array de blocos
-
-    console.log("ID do relatório:", idRelatorio);
-
-    for(let i = 0; i <= blocos.lenght; i++){
-        let blocoAtual = blocos[i];
-        console.log(blocoAtual)
+    if (!blocoId) {
+      res.redirect('/dashboard/relatorios')
     }
 
-    // Aqui você faria o insert/update em loop, por exemplo
+    const query = `delete from dados_rela where id = ${blocoId}`;
+
+    connection.query(query, [relatorioId], (err, results) => {
+      if (err) {
+        console.error('Erro ao excluir bloco', err);
+        return res.status(500).send('Erro interno no servidor');
+      }
+
+      res.status(200).end();
+    });
+  });
+
+
+  servidor.post('/relatorios/salvar/blocos', express.json(), (req, res) => {
+    const blocos = req.body; // Array de blocos
+
+    blocos.forEach((bloco, i) => {
+
+      var query = `update dados_rela set dat = '${bloco.dat}', descricao = "${bloco.descricao}", entrada = ${bloco.entrada}, saida = ${bloco.saida} where id = ${bloco.id}`
+
+      connection.query(query, (err) => {
+        if (err) {
+          console.error("Erro ao salvar blocos de relatório: " + err)
+        }
+      })
+
+    });
+
     res.sendStatus(200);
   });
+
+  servidor.get("/relatorios/gerar", callbackIsAuth, (req, res) => {
+  const relatorioID = req.query.id;
+
+  if (!relatorioID) {
+    return res.send("<h1>Mensagem do Servidor:</h1><hr><p>Você não me disse qual relatório você quer editar.</p>");
+  }
+
+  const queryPesquisaRela = `SELECT * FROM relatorios WHERE id = ${relatorioID}`;
+
+  const info = {
+    ano: '',
+    mes: '',
+    nome_banco: '',
+    agencia: '',
+    conta: '',
+    saldo_mes_passado: 0,
+  };
+
+  connection.query(queryPesquisaRela, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar relatório:', err);
+      return res.status(500).send('Erro interno no servidor');
+    }
+
+    if (results.length < 1) {
+      return res.send("<h1>Relatório não encontrado.</h1>");
+    }
+
+    const relatorio = results[0];
+    info.ano = relatorio.ano;
+    info.mes = relatorio.mes;
+    info.saldo_mes_passado = relatorio.saldo_mes_passado || 0;
+
+    const queryPesquisaInstituicoes = `SELECT * FROM instituicoes WHERE id = ${relatorio.instituicao}`;
+
+    connection.query(queryPesquisaInstituicoes, (err, results2) => {
+      if (err) {
+        console.error('Erro ao buscar instituição:', err);
+        return res.status(500).send('Erro interno no servidor');
+      }
+
+      if (results2.length > 0) {
+        const inst = results2[0];
+        info.nome_banco = inst.nome;
+        info.agencia = inst.agencia;
+        info.conta = inst.conta;
+      }
+
+      const queryBlocos = `SELECT * FROM dados_rela WHERE id = ${relatorioID}`;
+
+      connection.query(queryBlocos, (err, blocos) => {
+        if (err) {
+          console.error('Erro ao buscar blocos:', err);
+          return res.status(500).send('Erro interno no servidor');
+        }
+
+        let saldoAtual = info.saldo_mes_passado;
+        blocos.forEach(bloco => {
+          saldoAtual += (bloco.entrada || 0) - (bloco.saida || 0);
+        });
+
+        GerarRelatorioExcel(info, blocos)
+        
+        /*
+        res.json({
+          relatorio: info,
+          blocos: blocos,
+          saldo_final: saldoAtual
+        });
+        */
+
+      });
+    });
+  });
+});
+
 
   servidor.get("/editor-de-relatorio", callbackIsAuth, (req, res) => {
     callbackVerificarMan();
