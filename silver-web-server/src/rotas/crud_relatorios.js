@@ -317,6 +317,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
       if (err) {
         console.error("Erro ao salvar saldo anterior: " + err);
       };
+      res.end();
     });
   })
 
