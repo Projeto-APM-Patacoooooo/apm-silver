@@ -77,7 +77,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
       });
 
       servidor.get('/noticia/tudo', (req, res) => {
-        const query = 'SELECT * FROM noticias';
+        const query = 'SELECT * FROM noticias ORDER BY data_publicacao desc limit 300';
     
         connection.query(query, (err, results) => {
           if (err) {

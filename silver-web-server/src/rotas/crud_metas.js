@@ -24,7 +24,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
   });
 
   servidor.get('/metas/tudo', (req, res) => {
-    const query = 'SELECT * FROM metas';
+    const query = 'SELECT * FROM metas ORDER BY data_meta desc limit 300';
 
     connection.query(query, (err, results) => {
       if (err) {
@@ -166,6 +166,13 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
     });
   });
 
+  servidor.get('/vertudo/metas', (req, res) => {
+      if(req.session.user){
+        res.render('pages/vertudo_metas', {logado: true, emailLogado: req.session.user.email})
+      } else {
+        res.render('pages/vertudo_metas',  {logado: false});
+      }
+    })
 }
 
 module.exports = {
