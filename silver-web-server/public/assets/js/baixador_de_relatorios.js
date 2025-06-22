@@ -1,5 +1,9 @@
+const urlParams = new URLSearchParams(window.location.search);
+const mes = urlParams.get('mes');
+const ano = urlParams.get('ano');
+
 setTimeout(() => {
-    fetch(`/relatorios/baixar?mes=Junho&ano=2025`)
+    fetch(`/relatorios/baixar?mes=${mes}&ano=${ano}`)
   .then(response => response.blob())
   .then(blob => {
     const url = window.URL.createObjectURL(blob);
@@ -11,5 +15,6 @@ setTimeout(() => {
     a.remove();
     window.URL.revokeObjectURL(url);
   });
-
+  setTimeout(window.close, 1000)
 }, 4000);
+

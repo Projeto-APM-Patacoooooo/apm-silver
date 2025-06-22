@@ -10,12 +10,6 @@ async function GerarRelatorioExcel(info, dadosExtrato) {
     const nomeArquivo = `${info.mes}_${info.ano}.xlsx`;
     const caminhoCompleto = path.join(pastaExport, nomeArquivo);
 
-    // Verifica se o relatório já existe
-    if (fs.existsSync(caminhoCompleto)) {
-      console.log(`Relatório já existe: ${caminhoCompleto}`);
-      return;
-    }
-
     // Verifica se o diretório existe, senão cria
     if (!fs.existsSync(pastaExport)) {
       fs.mkdirSync(pastaExport, { recursive: true });
