@@ -16,19 +16,38 @@
 
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
         <div class="adicionar-instituicao-container">
-            <form action="/cadastrar/meta" method="post">
+            <form>
                 <h1 id="titulo-login">Editar Meta</h1>
                 <label>Meta</label>
                 <br>
-                <input type="text" name="meta" value="<%=titulo%>" required>
+                <input type="text" id="meta" name="meta" value="<%=titulo%>" required>
                 <br>
                 <label>Atingida</label>
                 <br>
-                <input type="checkbox" value="<%=batida%>" a name="bati" id="bati">
-                <button type="submit" style="margin-top: 10px;" class="btn btn-dark">Editar</button>
+                <input type="checkbox" id="bati" name="bati" <%= batida == 1 ? 'checked' : '' %>>
+
+                <button style="margin-top: 10px;" class="btn btn-dark">Editar</button>
             </form>
         </div>
 
+        <script src="/assets/js/editor_de_metas.js"></script>
+
+        <p hidden id="id_holder">
+            <%=id_meta%>
+        </p>
+        <script>
+            document.querySelector('button').addEventListener('click', function (e) {
+                e.preventDefault(); // Evita recarregar o formulário
+
+                const id = Number(document.getElementById('id_holder').innerHTML);
+                const titulo = document.getElementById('meta').value;
+                const batida = document.getElementById('bati').checked;
+
+                console.log("Enviando:", { id, titulo, batida });
+
+                EditarUrl(id, titulo, batida);
+            });
+        </script>
         <!--FIM DO CONTEÚDO-->
 
         <%- include('../partials/footer.ejs') %>
