@@ -17,19 +17,11 @@ const router = require('./src/router.js');
 const sessaoLogin = require('./src/sessao_login.js');
 const teclasMagicas = require('./src/teclas_magicas.js');
 
-//Configurando rate limit (contra ataques DoS de nerds zé ruelas)
-const limitador = rateLimit({
-    windowMs: 60 * 1000,
-    max: 4000,
-    message: 'Erro 429: Muitas requisições no servidor. Tente novamente em alguns minutos.'
-});
-
 //Criando e configurando nosso servidor
 const servidor = express();
 servidor.use(express.static(path.join(__dirname, 'public')));
 servidor.use(express.urlencoded({ extended: true }));
 servidor.use(express.json());
-servidor.use(limitador);
 servidor.use(session({
   secret: "chave-secreta",
   resave: false,
