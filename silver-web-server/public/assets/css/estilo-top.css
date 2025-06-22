@@ -1117,7 +1117,7 @@ footer {
 .tabela-editor-inst{
     width: 100%;
     overflow-x: auto;
-     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .tabela-editor-inst table{
@@ -1130,6 +1130,19 @@ footer {
     background: none;
     border: none;
 }
+
+.exportacao-relatorio{
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    padding: 15px 15px;
+    text-align: center;
+    width: 500px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #c6c5c5;
+}
+
 @media (max-width: 682px){
     .imagem-404{
         display: none;

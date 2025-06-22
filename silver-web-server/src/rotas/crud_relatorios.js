@@ -4,36 +4,46 @@ const ExcelJS = require('exceljs');
 const path = require('path');
 const fs = require('fs');
 
-function GerarRelatorioExcel(info, dadosExtrato) {
-  async function preencherExtrato() {
-    const caminhoModelo = path.resolve(__dirname, 'modelo_planilha.xlsx');
-    const caminhoSaida = path.resolve(__dirname, '../../../relatorios-exportados/extrato_preenchido.xlsx');
+async function GerarRelatorioExcel(info, dadosExtrato) {
+  try {
+    const pastaExport = path.join(__dirname, '../../relatorios/exportados');
+    const nomeArquivo = `${info.mes}_${info.ano}.xlsx`;
+    const caminhoCompleto = path.join(pastaExport, nomeArquivo);
 
-    if (!fs.existsSync(path.dirname(caminhoSaida))) {
-      fs.mkdirSync(path.dirname(caminhoSaida), { recursive: true });
+    // Verifica se o relatório já existe
+    if (fs.existsSync(caminhoCompleto)) {
+      console.log(`Relatório já existe: ${caminhoCompleto}`);
+      return;
+    }
+
+    // Verifica se o diretório existe, senão cria
+    if (!fs.existsSync(pastaExport)) {
+      fs.mkdirSync(pastaExport, { recursive: true });
     }
 
     const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.readFile(caminhoModelo);
-    const sheet = workbook.getWorksheet(1);
+    await workbook.xlsx.readFile(path.join(__dirname, 'modelo_planilha.xlsx'));
 
+    const sheet = workbook.getWorksheet(1); // ou pelo nome: getWorksheet('Relatório')
+
+    // Substitui os valores fixos
     sheet.getCell('A1').value = `CONTROLE APM 2025 ${info.ano}`;
     sheet.getCell('D1').value = `${info.mes} / ${info.ano}`;
     sheet.getCell('A2').value = `Instituição ${info.nome_banco}`;
     sheet.getCell('D2').value = `Agência ${info.agencia}`;
     sheet.getCell('E2').value = `Conta ${info.conta}`;
     sheet.getCell('A4').value = `Saldo do mês anterior`;
-    sheet.getCell('E4').value = info.saldo_mes_passado;
+    sheet.getCell('E4').value = info.saldo_mes_passado || 0;
     sheet.getCell('E4').numFmt = '"R$"#,##0.00;[Red]\-"R$"#,##0.00';
 
-    let saldoAtual = info.saldo_mes_passado;
+    // Começa a preencher a tabela na linha 6
+    let saldoAtual = info.saldo_mes_passado || 0;
     let linha = 6;
     dadosExtrato.forEach((item) => {
-      saldoAtual += item.entrada - item.saida;
+      saldoAtual += (item.entrada || 0) - (item.saida || 0);
 
       const row = sheet.getRow(linha++);
-      row.getCell(1).value = new Date(item.data.split('/').reverse().join('-'));
-      row.getCell(1).numFmt = 'dd/mm/yyyy';
+      row.getCell(1).value = item.data;
       row.getCell(2).value = item.descricao;
       row.getCell(3).value = item.entrada || '';
       row.getCell(4).value = item.saida || '';
@@ -44,12 +54,11 @@ function GerarRelatorioExcel(info, dadosExtrato) {
       });
     });
 
-    await workbook.xlsx.writeFile(caminhoSaida);
-    console.log('Arquivo de extrato gerado com sucesso!');
+    await workbook.xlsx.writeFile(caminhoCompleto);
+    console.log(`Arquivo gerado com sucesso: ${caminhoCompleto}`);
+  } catch (err) {
+    console.error('Erro ao gerar relatório Excel:', err);
   }
-
-  preencherExtrato();
-  return
 }
 
 
@@ -252,7 +261,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
 
     const query = `delete from dados_rela where id = ${blocoId}`;
 
-    connection.query(query, [relatorioId], (err, results) => {
+    connection.query(query, (err, results) => {
       if (err) {
         console.error('Erro ao excluir bloco', err);
         return res.status(500).send('Erro interno no servidor');
@@ -281,81 +290,105 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
     res.sendStatus(200);
   });
 
+  //http://localhost:8080/relatorios/gerar?id=
   servidor.get("/relatorios/gerar", callbackIsAuth, (req, res) => {
-  const relatorioID = req.query.id;
+    const relatorioID = req.query.id;
 
-  if (!relatorioID) {
-    return res.send("<h1>Mensagem do Servidor:</h1><hr><p>Você não me disse qual relatório você quer editar.</p>");
-  }
-
-  const queryPesquisaRela = `SELECT * FROM relatorios WHERE id = ${relatorioID}`;
-
-  const info = {
-    ano: '',
-    mes: '',
-    nome_banco: '',
-    agencia: '',
-    conta: '',
-    saldo_mes_passado: 0,
-  };
-
-  connection.query(queryPesquisaRela, (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar relatório:', err);
-      return res.status(500).send('Erro interno no servidor');
+    if (!relatorioID) {
+      return res.send("<h1>Mensagem do Servidor:</h1><hr><p>Você não me disse qual relatório você quer editar.</p>");
     }
 
-    if (results.length < 1) {
-      return res.send("<h1>Relatório não encontrado.</h1>");
-    }
+    res.render("pages/exportacao_relatorio", { emailLogado: req.session.user.email });
 
-    const relatorio = results[0];
-    info.ano = relatorio.ano;
-    info.mes = relatorio.mes;
-    info.saldo_mes_passado = relatorio.saldo_mes_passado || 0;
+    const queryPesquisaRela = `SELECT * FROM relatorios WHERE id = ${relatorioID}`;
 
-    const queryPesquisaInstituicoes = `SELECT * FROM instituicoes WHERE id = ${relatorio.instituicao}`;
+    const info = {
+      ano: '',
+      mes: '',
+      nome_banco: '',
+      agencia: '',
+      conta: '',
+      saldo_mes_passado: 0,
+    };
 
-    connection.query(queryPesquisaInstituicoes, (err, results2) => {
+    connection.query(queryPesquisaRela, (err, results) => {
       if (err) {
-        console.error('Erro ao buscar instituição:', err);
+        console.error('Erro ao buscar relatório:', err);
         return res.status(500).send('Erro interno no servidor');
       }
 
-      if (results2.length > 0) {
-        const inst = results2[0];
-        info.nome_banco = inst.nome;
-        info.agencia = inst.agencia;
-        info.conta = inst.conta;
+      if (results.length < 1) {
+        return res.send("<h1>Relatório não encontrado.</h1>");
       }
 
-      const queryBlocos = `SELECT * FROM dados_rela WHERE id = ${relatorioID}`;
+      const relatorio = results[0];
+      info.ano = relatorio.ano;
+      info.mes = relatorio.mes;
+      info.saldo_mes_passado = relatorio.saldo_mes_passado || 0;
 
-      connection.query(queryBlocos, (err, blocos) => {
+      const queryPesquisaInstituicoes = `SELECT * FROM instituicoes WHERE id = ${relatorio.instituicao}`;
+
+      connection.query(queryPesquisaInstituicoes, (err, results2) => {
         if (err) {
-          console.error('Erro ao buscar blocos:', err);
+          console.error('Erro ao buscar instituição:', err);
           return res.status(500).send('Erro interno no servidor');
         }
 
-        let saldoAtual = info.saldo_mes_passado;
-        blocos.forEach(bloco => {
-          saldoAtual += (bloco.entrada || 0) - (bloco.saida || 0);
-        });
+        if (results2.length > 0) {
+          const inst = results2[0];
+          info.nome_banco = inst.nome;
+          info.agencia = inst.agencia;
+          info.conta = inst.conta;
+        }
 
-        GerarRelatorioExcel(info, blocos)
-        
-        /*
-        res.json({
-          relatorio: info,
-          blocos: blocos,
-          saldo_final: saldoAtual
-        });
-        */
+        const queryBlocos = `SELECT * FROM dados_rela WHERE relatorio_pai = ${relatorioID}`;
 
+        connection.query(queryBlocos, (err, blocos) => {
+
+          let blocosTable = {};
+
+          if (err) {
+            console.error('Erro ao buscar blocos:', err);
+            return res.status(500).send('Erro interno no servidor');
+          }
+
+          let saldoAtual = info.saldo_mes_passado;
+          blocos.forEach(bloco => {
+            saldoAtual += (bloco.entrada || 0) - (bloco.saida || 0);
+          });
+
+          GerarRelatorioExcel(info, blocos)
+
+          /*
+          res.json({
+            relatorio: info,
+            blocos: blocos,
+            saldo_final: saldoAtual
+          });
+          */
+
+        });
       });
     });
   });
-});
+
+  ///relatorios/baixar?mes=Junho?ano=2024
+  servidor.get("/relatorios/baixar", callbackIsAuth, (req, res) => {
+    const { mes, ano } = req.query;
+
+    const arquivo = path.join(__dirname, "../../relatorios/exportados", `${mes}_${ano}.xlsx`);
+
+    if (fs.existsSync(arquivo)) {
+      res.download(arquivo, `Relatorio_${mes}_${ano}.xlsx`, (err) => {
+        if (err) {
+          console.error("Erro ao enviar o arquivo:", err);
+          res.status(500).send("Erro ao baixar o relatório.");
+        }
+      });
+    } else {
+      res.status(404).send("Relatório não encontrado.");
+    }
+  });
 
 
   servidor.get("/editor-de-relatorio", callbackIsAuth, (req, res) => {
@@ -395,16 +428,11 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
             return
           } else {
             console.log(results2)
-            res.render('pages/editor_de_relatorios', { rela_ano: results[0].ano, rela_mes: results[0].mes, inst_nome: results2[0].nome, inst_conta: results2[0].conta, inst_agencia: results2[0].agencia, emailLogado: req.session.user.email })
+            res.render('pages/editor_de_relatorios', { rela_ano: results[0].ano, rela_mes: results[0].mes, inst_nome: results2[0].nome, inst_conta: results2[0].conta, inst_agencia: results2[0].agencia, emailLogado: req.session.user.email, id_rela: results2[0].id })
           }
         })
-
-
       }
     });
-
-
-
   })
 }
 
