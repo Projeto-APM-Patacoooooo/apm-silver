@@ -38,13 +38,20 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection){
         });
       });
 
-
       servidor.get('/dashboard/metas', callbackIsAuth, function (req, res) {
         callbackVerificarMan(res);
         res.render('pages/metas', {
           emailLogado: req.session.user.email,
           chave: req.session.user.chave
         });
+      });
+
+      servidor.get('/dashboard/sumulas', callbackIsAuth, function (req, res) {
+        callbackVerificarMan(res);
+        res.render('pages/sumulas', {
+          emailLogado: req.session.user.email,
+          chave: req.session.user.chave
+        })
       });
 }
 

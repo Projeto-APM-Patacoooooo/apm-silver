@@ -4,13 +4,13 @@ const ExcelJS = require('exceljs');
 const path = require('path');
 const fs = require('fs');
 
+
 async function GerarRelatorioExcel(info, dadosExtrato) {
   try {
     const pastaExport = path.join(__dirname, '../../relatorios/exportados');
     const nomeArquivo = `${info.mes}_${info.ano}.xlsx`;
     const caminhoCompleto = path.join(pastaExport, nomeArquivo);
 
-    // Verifica se o diretório existe, senão cria
     if (!fs.existsSync(pastaExport)) {
       fs.mkdirSync(pastaExport, { recursive: true });
     }
@@ -18,10 +18,9 @@ async function GerarRelatorioExcel(info, dadosExtrato) {
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile(path.join(__dirname, 'modelo_planilha.xlsx'));
 
-    const sheet = workbook.getWorksheet(1); // ou pelo nome: getWorksheet('Relatório')
+    const sheet = workbook.getWorksheet(1);
 
-    // Substitui os valores fixos
-    sheet.getCell('A1').value = `CONTROLE APM 2025 ${info.ano}`;
+    sheet.getCell('A1').value = `CONTROLE APM ${info.ano}`;
     sheet.getCell('D1').value = `${info.mes} / ${info.ano}`;
     sheet.getCell('A2').value = `Instituição ${info.nome_banco}`;
     sheet.getCell('D2').value = `Agência ${info.agencia}`;
@@ -30,22 +29,58 @@ async function GerarRelatorioExcel(info, dadosExtrato) {
     sheet.getCell('E4').value = info.saldo_mes_passado || 0;
     sheet.getCell('E4').numFmt = '"R$"#,##0.00;[Red]\-"R$"#,##0.00';
 
-    // Começa a preencher a tabela na linha 6
-    let saldoAtual = info.saldo_mes_passado || 0;
+    let totalEntradas = 0;
+    let totalSaidas = 0;
     let linha = 6;
-    dadosExtrato.forEach((item) => {
-      saldoAtual += (item.entrada || 0) - (item.saida || 0);
+    let saldoAtual = info.saldo_mes_passado || 0;
 
-      const row = sheet.getRow(linha++);
-      row.getCell(1).value = item.data;
+    dadosExtrato.forEach((item) => {
+      let linhaAtual = linha++;
+
+      let dataFormatada = '';
+      try {
+        dataFormatada = new Date(item.dat).toLocaleDateString('pt-BR');
+      } catch {
+        dataFormatada = item.dat?.toString() || 'Data inválida';
+      }
+
+      const entrada = Number(item.entrada) || 0;
+      const saida = Number(item.saida) || 0;
+
+      totalEntradas += entrada;
+      totalSaidas += saida;
+
+      const row = sheet.getRow(linhaAtual);
+      row.getCell(1).value = dataFormatada;
       row.getCell(2).value = item.descricao;
-      row.getCell(3).value = item.entrada || '';
-      row.getCell(4).value = item.saida || '';
+      row.getCell(3).value = entrada || '';
+      row.getCell(4).value = saida || '';
+
+      saldoAtual += entrada - saida;
       row.getCell(5).value = saldoAtual;
 
       ['C', 'D', 'E'].forEach((col) => {
-        sheet.getCell(`${col}${row.number}`).numFmt = '"R$"#,##0.00;[Red]\-"R$"#,##0.00';
+        sheet.getCell(`${col}${linhaAtual}`).numFmt = '"R$"#,##0.00;[Red]\-"R$"#,##0.00';
       });
+
+    });
+
+    // Títulos em G4, H4, I4
+    sheet.getCell('G4').value = 'Entrada';
+    sheet.getCell('H4').value = 'Saída';
+    sheet.getCell('I4').value = 'Total';
+
+    // Valores em G5, H5, I5
+    sheet.getCell('G5').value = totalEntradas;
+    sheet.getCell('H5').value = totalSaidas;
+    sheet.getCell('I5').value = saldoAtual; // já é saldo anterior + entradas - saídas
+
+    ['G5', 'H5', 'I5'].forEach((cell) => {
+      sheet.getCell(cell).numFmt = '"R$"#,##0.00;[Red]\-"R$"#,##0.00';
+    });
+
+    ['G', 'H', 'I'].forEach((coluna) => {
+      sheet.getColumn(coluna).width = 18; // Ajuste conforme o necessário
     });
 
     await workbook.xlsx.writeFile(caminhoCompleto);
@@ -54,7 +89,6 @@ async function GerarRelatorioExcel(info, dadosExtrato) {
     console.error('Erro ao gerar relatório Excel:', err);
   }
 }
-
 
 function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
   servidor.get('/dashboard/relatorios/adicionar', callbackIsAuth, function (req, res) {
@@ -265,12 +299,32 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
     });
   });
 
+  servidor.post('/relatorios/salvar/saldo_anterior', callbackIsAuth, (req, res) => {
+    const idRelatorio = req.query.relatorio;
+    const novoValor = req.query.saldo;
 
-  servidor.post('/relatorios/salvar/blocos', express.json(), (req, res) => {
+    if (!idRelatorio) {
+      return res.send("É preciso providenciar um id de relatório para salvar");
+    }
+
+    if (!novoValor) {
+      return res.send("É preciso providenciar um novo valor de saldo para salvar");
+    }
+
+    var query = `update relatorios set saldo_anterior = ${novoValor} where id = ${idRelatorio}`;
+
+    connection.query(query, (err) => {
+      if (err) {
+        console.error("Erro ao salvar saldo anterior: " + err);
+      };
+    });
+  })
+
+
+  servidor.post('/relatorios/salvar/blocos', callbackIsAuth, (req, res) => {
     const blocos = req.body; // Array de blocos
 
     blocos.forEach((bloco, i) => {
-
       var query = `update dados_rela set dat = '${bloco.dat}', descricao = "${bloco.descricao}", entrada = ${bloco.entrada}, saida = ${bloco.saida} where id = ${bloco.id}`
 
       connection.query(query, (err) => {
@@ -318,7 +372,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
       const relatorio = results[0];
       info.ano = relatorio.ano;
       info.mes = relatorio.mes;
-      info.saldo_mes_passado = relatorio.saldo_mes_passado || 0;
+      info.saldo_mes_passado = relatorio.saldo_anterior || 0;
 
       const queryPesquisaInstituicoes = `SELECT * FROM instituicoes WHERE id = ${relatorio.instituicao}`;
 
@@ -339,8 +393,6 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
 
         connection.query(queryBlocos, (err, blocos) => {
 
-          let blocosTable = {};
-
           if (err) {
             console.error('Erro ao buscar blocos:', err);
             return res.status(500).send('Erro interno no servidor');
@@ -349,18 +401,10 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
           let saldoAtual = info.saldo_mes_passado;
           blocos.forEach(bloco => {
             saldoAtual += (bloco.entrada || 0) - (bloco.saida || 0);
+            console.log("/relatorios/gerar" + bloco.dat)
           });
 
           GerarRelatorioExcel(info, blocos)
-
-          /*
-          res.json({
-            relatorio: info,
-            blocos: blocos,
-            saldo_final: saldoAtual
-          });
-          */
-
         });
       });
     });
@@ -422,7 +466,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
             return
           } else {
             console.log(results2)
-            res.render('pages/editor_de_relatorios', { rela_ano: results[0].ano, rela_mes: results[0].mes, inst_nome: results2[0].nome, inst_conta: results2[0].conta, inst_agencia: results2[0].agencia, emailLogado: req.session.user.email, id_rela: results2[0].id })
+            res.render('pages/editor_de_relatorios', { rela_ano: results[0].ano, rela_mes: results[0].mes, inst_nome: results2[0].nome, inst_conta: results2[0].conta, inst_agencia: results2[0].agencia, emailLogado: req.session.user.email, id_rela: results[0].id, saldo_ant: results[0].saldo_anterior })
           }
         })
       }

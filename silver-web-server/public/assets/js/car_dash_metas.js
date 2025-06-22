@@ -11,9 +11,6 @@ xhr.onreadystatechange = () => {
 
 
         if (Object.keys(resultadoFormatado).length > 0) {
-
-
-
             for (var i = 0; i < Object.keys(resultadoFormatado).length; i++) {
                 var alvoAtual = resultadoFormatado[i]
                 var data_pub = alvoAtual.data_meta;
@@ -35,9 +32,10 @@ xhr.onreadystatechange = () => {
                 alvoInstituicoes.innerHTML += `<tr><td scope="row">${titulo}</td><td>${formatada}</td><td>${batida}</td><td><button class="btn btn-primary" onclick=irParaPaginaDeEdicao(${alvoAtual.id_meta})>Editar</button></td><td><button class="btn btn-danger" onclick=IniciarExclusao(${alvoAtual.id_meta})>Excluir</button></td><tr>`
 
 
-            }
+            
+            }   
             document.getElementById("aviso-nada").remove();
-        }
+        } 
     }
 
 };

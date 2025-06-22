@@ -117,4 +117,5 @@ select * from staffs;
 select * from noticias;
 select * from metas;
 select * from instituicao;
+select * from dados_rela;
 select * from relatorios;

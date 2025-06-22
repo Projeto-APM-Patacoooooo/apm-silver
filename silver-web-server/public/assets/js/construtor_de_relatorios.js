@@ -13,6 +13,8 @@ let blocosRecebidos = [];
 const params = new URLSearchParams(window.location.search);
 const IdRelatorio = params.get("relatorio");
 
+const saldoAnterior = document.getElementById("saldo_anterior");
+
 // Funções auxiliares de log
 const log = {
   info: (msg) => console.log(`[Construtor de Relatórios]: ${msg}`),
@@ -30,6 +32,24 @@ function formatarData(data) {
   if (!data) return '';
   const d = new Date(data);
   return new Intl.DateTimeFormat('pt-BR').format(d);
+}
+
+function atualizarSaldos() {
+  let saldoAtual = parseFloat(saldoAnterior.value.replace(',', '.')) || 0;
+
+  const linhas = tabelaVisual.querySelectorAll('tr');
+
+  linhas.forEach(linha => {
+    const inputs = linha.querySelectorAll('input');
+    const entrada = parseFloat(inputs[2]?.value) || 0;
+    const saida = parseFloat(inputs[3]?.value) || 0;
+    const campoSaldo = inputs[4]; // campo do "extra" = saldo da linha
+
+    saldoAtual += entrada - saida;
+
+    // Atualiza o campo de saldo
+    campoSaldo.value = `R$ ${saldoAtual.toFixed(2).replace('.', ',')}`;
+  });
 }
 
 function formatarDinheiro(valor) {
@@ -91,6 +111,8 @@ function construir() {
     `;
     tabelaVisual.appendChild(linha);
   });
+
+   atualizarSaldos();
 }
 
 // Função para buscar blocos via fetch e atualizar a tabela
@@ -115,6 +137,10 @@ async function carregarBlocos() {
 
 // Função para criar um novo bloco via POST
 async function criarNovoBloco() {
+  
+  salvarBlocos()
+  salvarSaldoAnterior();
+  
   try {
     log.info("Criando novo bloco...");
     const response = await fetch(`/relatorios/novo/bloco?id=${IdRelatorio}`, { method: 'POST' });
@@ -150,6 +176,24 @@ function coletarDadosDosBlocos() {
   });
 
   return blocos;
+}
+
+async function salvarSaldoAnterior() {
+  var saldo = Number(saldoAnterior.value);
+
+  try{
+    const response = await fetch(`/relatorios/salvar/saldo_anterior?relatorio=${IdRelatorio}&saldo=${saldo}`, {
+      method: 'POST' 
+    })
+
+    if(!response.ok){
+      throw new Error(`Erro ao salvar saldo anterior: ${response.status}`);
+    }
+
+    log.info("Saldo anterior salvo com sucesso!" + JSON.stringify);
+  } catch(err){
+    log.err(err.message);
+  }
 }
 
 // Envia os blocos atualizados ao servidor via POST
@@ -199,14 +243,23 @@ let timeoutId;
 
 function salvarAutomaticamenteComDebounce() {
   clearTimeout(timeoutId);
-  timeoutId = setTimeout(salvarBlocos, 2000); // 2 segundos após a última edição
+  timeoutId = setTimeout(() => {
+    salvarBlocos();
+    salvarSaldoAnterior();
+    atualizarSaldos();
+  }, 800);
 }
+
+saldoAnterior.addEventListener('input', atualizarSaldos);
 
 // Salvar após 2s de inatividade após edição
 tabelaVisual.addEventListener('input', salvarAutomaticamenteComDebounce);
 
 // Salvar ao sair da página
-window.addEventListener("beforeunload", () => salvarBlocos());
+window.addEventListener("beforeunload", () => { 
+  salvarBlocos()
+  salvarSaldoAnterior()
+});
 
 // Evento para carregar blocos quando a página carregar
 window.addEventListener('load', carregarBlocos);

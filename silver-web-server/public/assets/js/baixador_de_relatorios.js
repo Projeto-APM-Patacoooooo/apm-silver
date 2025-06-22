@@ -9,7 +9,7 @@ setTimeout(() => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'Relatorio_Junho_2025.xlsx';
+    a.download = `Relatorio_${mes}_${ano}.xlsx`;
     document.body.appendChild(a);
     a.click();
     a.remove();

@@ -33,7 +33,9 @@
                 <%=rela_mes%> / <%=rela_ano%>
             </h4>
             <p>Instituição: <%=inst_nome%></p>
-
+            <label for="saldo_anterior">Saldo no mês anterior:</label>
+            <input id="saldo_anterior" value="<%=saldo_ant%>" type="number" style="margin-bottom: 4vh;">
+            <br>
             <button class="btn-adicionar" style="align-self: center; width: 200px; border: none;" onclick="criarNovoBloco()">Adicionar +</button>
             <div class="tabela-editor-inst">
                 <table class="table">
@@ -50,7 +52,7 @@
                     </tbody>
                 </table>
             </div>
-            <button onclick="window.open('/relatorios/gerar?id=<%=id_rela%>&mes=<%=rela_mes%>&ano=<%=rela_ano%>')">Exportar</button>
+            <button onclick="window.open(`/relatorios/gerar?id=<%=id_rela%>&mes=<%=rela_mes%>&ano=<%=rela_ano%>&saldo_ant=${Number(document.getElementById('saldo_anterior').value)}`)">Exportar</button>
         </div>
 
         <!--script src="/assets\js\carregador_de_instituicoes.js"></script>

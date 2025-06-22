@@ -926,9 +926,8 @@ footer {
 .painel-de-controle .ferramentas{
     padding: 20px 20px;
     background-color: #c6c5c5;
-    width: 20%;
     height: 900px;
-    width: 200px;
+    width: 230px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -962,7 +961,7 @@ footer {
 }
 
 .painel-de-controle li a:hover{
-    color: #FFBD53;
+    color: #6d6969;
 }
 
 .tabela-instituicoes{
@@ -1111,7 +1110,7 @@ footer {
     color: black;
     position: absolute;
     margin-top: -880px;
-    margin-left: 38vh;
+    margin-left: 250px;
 }
 
 .tabela-editor-inst{
@@ -1141,6 +1140,14 @@ footer {
     margin-right: auto;
     margin-left: auto;
     background-color: #c6c5c5;
+}
+
+.container-foto-etec{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    margin-top: 5vh;
 }
 
 @media (max-width: 682px){
