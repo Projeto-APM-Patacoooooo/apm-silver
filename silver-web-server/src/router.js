@@ -60,6 +60,12 @@ function Router(servidor) {
   const crud_relatorio = require("./rotas/crud_relatorios.js");
   crud_relatorio.rotear(servidor, verificarManutencao, verificarLogin.verificar, connection)
 
+  const crud_sumulas = require("./rotas/crud_sumulas.js");
+  crud_sumulas.rotear(servidor, verificarManutencao, verificarLogin.verificar, connection);
+
+  const crud_upload = require("./rotas/upload.js");
+  crud_upload.rotear(servidor, verificarManutencao, verificarLogin.verificar, connection);
+ 
   //Página 404
   servidor.get('*', function(req, res){
     res.status(404).render('pages/404');

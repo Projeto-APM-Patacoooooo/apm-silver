@@ -102,6 +102,19 @@ create table if not exists membros_etec(
     nome varchar(150) not null unique
 );
 
+/*
+	===================================
+    SÚMULAS
+    ===================================
+ */
+create table if not exists sumulas(
+	id int primary key auto_increment,
+    nome varchar(500) not null,
+	mes enum("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro") not null,
+    ano int(4), 
+    instituicao varchar(290)
+);
+
 insert into membros_etec(cargo, setor, nome)
 values ("Diretor", "Diretoria Executiva", "Bruno Santos Nascimento"),
 ("Vice-diretora Executiva:", "Diretoria Executiva", "Maria Ângela Teodoro"),
