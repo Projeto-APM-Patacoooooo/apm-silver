@@ -108,7 +108,30 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
         });
     });
 
+    servidor.get("/ver/sumula", (req, res) => {
+        let nome = req.query.nome;
 
+        if (!nome) {
+            return res.status(400).send('Nome do arquivo não informado');
+        }
+
+        // Nota do Eduardo: Isso é uma filtro de segurança para que nenhum hacker
+        // zé ruela tente acessar arquivos de outros diretórios via query
+        // Desabilitar ou remover essse filtro pode comprometer a segurança do site!
+        if (nome.includes("..") || path.isAbsolute(nome)) {
+            return res.status(400).send('Método não permitido!');
+        }
+
+        const caminhoArquivo = path.join(__dirname, '..', '..', 'uploads', 'sumulas', nome);
+
+
+        res.sendFile(caminhoArquivo, err => {
+            if (err) {
+                console.error('Erro ao enviar o arquivo:', err);
+                return res.status(404).send('Arquivo não encontrado');
+            }
+        });
+    });
 }
 
 module.exports = {

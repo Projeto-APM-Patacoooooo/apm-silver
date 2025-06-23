@@ -306,7 +306,7 @@ footer {
 
 .porque-contribuir{
     background-color: #c6c5c5;
-    color: white;
+    color: rgb(0, 0, 0);
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
     margin-left: auto;
     margin-right: auto;  
@@ -620,7 +620,7 @@ footer {
 .caixa-membro {
     padding: 15px;
     width: 100%; /* Faz a caixa de membro ocupar 100% da largura do container */
-    color: white;
+    color: rgb(36, 36, 36);
     background-color: #cccaca;
     border-radius: 3px;
     font-family: "Poppins", sans-serif;
@@ -1097,7 +1097,7 @@ footer {
 .caixa-relatorios{
     margin-left: auto;
     margin-right: auto;
-    width: 1200px;
+    width: 900px;
     padding: 15px 15px;
     background-color: #cccaca;
     color: white;
@@ -1168,6 +1168,27 @@ footer {
     background-color: #c6c5c5;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
+
+#botoes-anos{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#botoes-anos button{
+    width: 100px;
+    border: none;
+    background-color: #c6c5c5;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px;
+    margin-bottom: 10vh;
+}
+
+#botoes-anos button:hover{
+    background-color: #e7e5e2;
+    cursor: pointer;
+}
+
 
 @media (max-width: 682px){
     .imagem-404{

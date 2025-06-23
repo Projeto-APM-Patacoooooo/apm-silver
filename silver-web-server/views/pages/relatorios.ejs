@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,63 +8,68 @@
     <link rel="shortcut icon" href="assets/img/brasao_ermelinda.png" type="image/x-icon">
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
+
 <body>
-        <%- include('../partials/barra-navegacao.ejs') %>
+    <%- include('../partials/barra-navegacao.ejs') %>
 
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
+        <h1 class="titulo-pq-contriubir">Relatórios</h1>
+        <div id="botoes-anos"></div>
 
-        <div class="caixa-relatorios">
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Janeiro</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Fevereiro</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Março</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Abril</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Maio</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Junho</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Julho</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Agosto</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Setembro</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Outubro</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Novembro</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-            <a href="/relatorios/relateste" class="thumbnail-relatorio">
-                <h1>Dezembro</h1>
-                <img src="assets/img/exemplo_relatorio.png" height="150">
-            </a>
-        </div>
+        <div id="relatorios-ano"></div>
+
+        <script>
+            fetch('/sumulas/por-ano')
+                .then(response => response.json())
+                .then(data => {
+                    const botoesContainer = document.getElementById('botoes-anos');
+                    const relatoriosContainer = document.getElementById('relatorios-ano');
+
+                    const anos = Object.keys(data).sort((a, b) => b - a); // Anos em ordem decrescente
+
+                    anos.forEach(ano => {
+                        const botao = document.createElement('button');
+                        botao.textContent = ano;
+                        botao.classList.add('botao-ano');
+
+                        botao.addEventListener('click', () => {
+                            // Limpa conteúdo anterior
+                            relatoriosContainer.innerHTML = '';
+
+                            // Cria a caixa de relatórios
+                            const caixa = document.createElement('div');
+                            caixa.classList.add('caixa-relatorios');
+
+                            data[ano].forEach(sumula => {
+                                const link = document.createElement('a');
+                                link.href = `/ver/sumula?nome=${sumula.nome}`; // ou rota de download
+                                link.classList.add('thumbnail-relatorio');
+                                link.target = "_blank"; // abrir nova aba
+
+                                const titulo = document.createElement('h1');
+                                titulo.textContent = sumula.mes;
+
+                                const img = document.createElement('img');
+                                img.src = 'assets/img/exemplo_relatorio.png'; // Pode mudar por sumula.imagem se houver
+                                img.height = 150;
+
+                                link.appendChild(titulo);
+                                link.appendChild(img);
+                                caixa.appendChild(link);
+                            });
+
+                            relatoriosContainer.appendChild(caixa);
+                        });
+
+                        botoesContainer.appendChild(botao);
+                    });
+                })
+                .catch(err => {
+                    console.error('Erro ao buscar sumulas:', err);
+                });
+        </script>
         <!--FIM DO CONTEÚDO-->
 
         <%- include('../partials/footer.ejs') %>
-    </div>
+            </div>
 </body>

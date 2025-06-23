@@ -37,6 +37,7 @@ function rotear(servidor, callbackVerificarMan, callbackIsAuth, connection) {
             res.redirect("/dashboard/sumulas");
         });
     });
+
 }
 
 module.exports = {
