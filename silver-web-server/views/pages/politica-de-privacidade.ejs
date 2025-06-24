@@ -11,8 +11,11 @@
 </head>
 
 <body>
-
-    <%- include('../partials/barra-navegacao.ejs') %>
+    <% if (logado) { %>
+        <%- include('../partials/barra-navegacao-adm.ejs') %>
+            <% } else { %>
+                <%- include('../partials/barra-navegacao.ejs') %>
+                    <% } %>
 
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
         <div class="container my-5">

@@ -8,8 +8,11 @@
     <title>Apm Silver - Etec Profª Ermelinda Giannini Teixeira</title>
 </head>
 <body>
-    
-        <%- include('../partials/barra-navegacao.ejs') %>
+    <% if (logado) { %>
+        <%- include('../partials/barra-navegacao-adm.ejs') %>
+            <% } else { %>
+                <%- include('../partials/barra-navegacao.ejs') %>
+                    <% } %>
 
         <!--INICIO DO CONTEÚDO DA PÁGINA-->
         <h1 class="titulo-pq-contriubir">Por que contribuir?</h1>
