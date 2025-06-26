@@ -14,18 +14,6 @@ O **APM SILVER** é uma plataforma online com o objetivo de facilitar a comunica
 
 ---
 
-## 📅 Ajustes e Melhorias
-
-O projeto ainda está em desenvolvimento. As próximas etapas previstas incluem:
-
-- ✅ Prototipar Back-End e Front-End
-- ⏳ Implementar um design responsivo e prático
-- ⏳ Finalizar Back-End e Front-End
-- ⏳ Realizar testes e correções de bugs
-- ⏳ Hospedar o site em um servidor dedicado ou na nuvem
-
----
-
 ## ⚙️ Pré-requisitos
 
 Antes de começar, verifique se você atende aos seguintes requisitos:
