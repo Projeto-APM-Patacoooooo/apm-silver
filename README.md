@@ -14,18 +14,6 @@ O **APM SILVER** é uma plataforma online com o objetivo de facilitar a comunica
 
 ---
 
-## 📅 Ajustes e Melhorias
-
-O projeto ainda está em desenvolvimento. As próximas etapas previstas incluem:
-
-- ✅ Prototipar Back-End e Front-End
-- ⏳ Implementar um design responsivo e prático
-- ⏳ Finalizar Back-End e Front-End
-- ⏳ Realizar testes e correções de bugs
-- ⏳ Hospedar o site em um servidor dedicado ou na nuvem
-
----
-
 ## ⚙️ Pré-requisitos
 
 Antes de começar, verifique se você atende aos seguintes requisitos:
@@ -62,4 +50,9 @@ Durante a execução do projeto, você pode ativar o modo de manutenção pressi
 
 ## 👥 Equipe de Desenvolvimento
 
-<table> <tr> <td align="center"> <a href="#" title="Produtor Executivo"> <img src="https://avatars.githubusercontent.com/u/168495018?v=4" width="100px;" alt="Foto do BMS_@007"/><br> <sub><b>BMS_@007</b></sub> </a> </td> <td align="center"> <a href="#" title="Designer"> <img src="https://avatars.githubusercontent.com/u/168494022?v=4" width="100px;" alt="Foto do Galo_Dante"/><br> <sub><b>Galo_Dante</b></sub> </a> </td> <td align="center"> <a href="#" title="Programador"> <img src="https://avatars.githubusercontent.com/u/168492663?v=4" width="100px;" alt="Foto do Pardoardo"/><br> <sub><b>Pardoardo</b></sub> </a> </td> </tr> </table>
+<table> 
+ <tr> <td align="center"> <a href="#" title="Produtor Executivo"> <img src="https://avatars.githubusercontent.com/u/168495018?v=4" width="100px;" alt="Foto do BMS_@007"/><br> <sub><b>BMS_@007</b></sub> </a> </td> 
+  <td align="center"> <a href="#" title="Designer"> <img src="https://avatars.githubusercontent.com/u/168494022?v=4" width="100px;" alt="Foto do Galo_Dante"/><br> <sub><b>Galo_Dante</b></sub> </a> </td>
+  <td align="center"> <a href="#" title="Programador"> <img src="https://avatars.githubusercontent.com/u/168492663?v=4" width="100px;" alt="Foto do Pardoardo"/><br> <sub><b>Pardoardo</b></sub> </a> </td> 
+  <td align="center"> <a href="#" title="Analista Administrativo"> <img src="https://avatars.githubusercontent.com/u/168494016?v=4" width="100px;" alt="Foto do Pardoardo"/><br> <sub><b>GabrielCF</b></sub> </a> </td>
+ </tr> </table>

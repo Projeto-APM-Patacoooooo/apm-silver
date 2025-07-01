@@ -28,9 +28,6 @@ async function criarPastaComData(diretorioBase) {
   }
 }
 
-const fs = require('fs').promises;
-const path = require('path');
-
 // Função que verifica a data de criação da pasta e apaga se tiver mais de 7 dias
 async function apagarBackupsAntigos(diretorioBase) {
   console.warn("[Backup]: Iniciando limpeza de backups antigos");
@@ -62,7 +59,7 @@ const conector = require('./src/conexao');
 const novaConexao = conector.novaConexao();
 
 // Faz backup todas as segundas 00:30
-cron.schedule('30 0 * * 1', () => {
+cron.schedule('30 00 * * 1', () => {
   console.warn('[Backup]: começando backup automático das 00:30');
 
   try {
@@ -179,6 +176,23 @@ cron.schedule('30 0 * * 1', () => {
       fs.writeFile(caminhoArquivo, conteudoJSON, 'utf8');
     });
 
+
+    const query7 = 'SELECT * FROM sumulas';
+
+    novaConexao.query(query7, (err, results) => {
+      if (err) {
+        console.error('[Backup]: Erro ao buscar súmulas para salvar:', err);
+        return
+      }
+
+      if (results.length === 0) {
+        console.warn('[Backup]: A tabela de súmulas está vazia, sem necessidade de salvamento')
+        return
+      }
+      var caminhoArquivo = path.join(caminhoPasta, `noticias.json`);
+      let conteudoJSON = JSON.stringify(results, null, 2);
+      fs.writeFile(caminhoArquivo, conteudoJSON, 'utf8');
+    });
     console.warn('[Backup]: Iniciando o processo de limpeza de backups antigos');
     apagarBackupsAntigos('./silver-backup-system/saves');
 
