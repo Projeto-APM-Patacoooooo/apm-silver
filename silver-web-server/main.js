@@ -39,6 +39,18 @@ sessaoLogin.Configuar(servidor, router.connection);
 teclasMagicas.TeclasMagicas(router.mudarModoDeManutencao);
 
 //Colocando essa bagaça para rodar
-servidor.listen(porta, () => {
-  console.log(`\n\n\n\n====================================================================\nSERVIDOR ZICA PARA O APM SILVER V1.5\n====================================================================\nFeito com ❤️  para a Etec Ermelinda \nRodando na porta ${porta} \nCom o enderenço de IP: N/A \n `);
+servidor.listen(porta, '0.0.0.0', () => {
+  const os = require('os');
+  const interfaces = os.networkInterfaces();
+  const enderecos = [];
+
+  for (let nome in interfaces) {
+    for (let iface of interfaces[nome]) {
+      if (iface.family === 'IPv4' && !iface.internal) {
+        enderecos.push(iface.address);
+      }
+    }
+  }
+
+  console.log(`\n\n\n\n====================================================================\nSERVIDOR ZICA PARA O APM SILVER V1.5\n====================================================================\nFeito com ❤️  para a Etec Ermelinda \nRodando na porta ${porta} \nCom o endereço de IP: ${enderecos.join(', ')} \n `);
 });
